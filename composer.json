@@ -1,0 +1,13 @@
+{
+    "name": "sagautam5/local-states-nepal",
+    "description": "PHP Package for data set of local states of Nepal",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sagar Gautam",
+            "email": "sagautam5@gmail.com"
+        }
+    ],
+    "require": {}
+}
