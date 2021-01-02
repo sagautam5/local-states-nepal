@@ -4,7 +4,7 @@
 namespace Sagautam5\LocalStateNepal\Loaders;
 
 
-use Sagautam5\LocalStateNepal\Exception\LoadingException;
+use Sagautam5\LocalStateNepal\Exceptions\LoadingException;
 
 /**
  * Class DistrictsLoader
