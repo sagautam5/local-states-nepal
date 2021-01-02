@@ -44,7 +44,6 @@ class Municipality
                 return (object)$item;
             }, $this->municipalities);
 
-            var_dump($this->municipalities);
         }catch (LoadingException $exception){
             throw $exception;
         }
@@ -67,6 +66,19 @@ class Municipality
     public function allMunicipalities()
     {
         return $this->municipalities;
+    }
+
+    /**
+     * Get Municipalities By District ID
+     *
+     * @param $districtId
+     * @return array|mixed|null
+     */
+    public function getMunicipalitiesByDistrict($districtId)
+    {
+        return array_filter($this->municipalities, function ($item) use ($districtId) {
+            return ($item->district_id == $districtId);
+        });
     }
 
     /**

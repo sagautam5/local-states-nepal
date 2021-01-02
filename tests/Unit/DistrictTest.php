@@ -103,12 +103,11 @@ class DistrictTest extends PHPUnit_Framework_TestCase
         $hasNull = false;
         foreach ($this->district->allDistricts() as $set) {
             if ($hasNull = in_array(null, (array) $set, true)) {
+                $this->fail('District dataset can\'t have null values');
                 break;
             }
         }
-        if($hasNull)
-            $this->fail('District dataset can\'t have null values');
-        else
+        if(!$hasNull)
             $this->assertTrue(true);
     }
 
@@ -125,14 +124,13 @@ class DistrictTest extends PHPUnit_Framework_TestCase
             $district = $this->district->find($id);
             if($district && !in_array($district->province_id, range(1,7))){
                 $correct = false;
+                $this->fail('Invalid Province for District');
                 break;
             }
         }
 
         if($correct)
             $this->assertTrue(true);
-        else
-            $this->fail('Invalid Province for District');
 
     }
 }

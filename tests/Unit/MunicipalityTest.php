@@ -103,12 +103,11 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $hasNull = false;
         foreach ($this->municipality->allMunicipalities() as $set) {
             if ($hasNull = in_array(null, (array) $set, true)) {
+                $this->fail('Municipality dataset can\'t have null values');
                 break;
             }
         }
-        if($hasNull)
-            $this->fail('Municipality dataset can\'t have null values');
-        else
+        if(!$hasNull)
             $this->assertTrue(true);
     }
 
@@ -134,14 +133,13 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
             if(array_diff($this->municipality->wards($id), $wards))
             {
                 $correct = false;
+                $this->fail('Invalid Wards for Municipality');
                 break;
             }
         }
 
         if($correct)
             $this->assertTrue(true);
-        else
-            $this->fail('Invalid Wards for Municipality');
     }
 
     /**
@@ -157,15 +155,13 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
             $municipality = $this->municipality->find($id);
             if($municipality && !in_array($municipality->category_id, range(1,4))){
                 $correct = false;
+                $this->fail('Invalid Category for Municipality');
                 break;
             }
         }
 
         if($correct)
             $this->assertTrue(true);
-        else
-            $this->fail('Invalid Category for Municipality');
-
     }
 
     /**
@@ -181,14 +177,12 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
             $municipality = $this->municipality->find($id);
             if($municipality && !in_array($municipality->district_id, range(1,77))){
                 $correct = false;
+                $this->fail('Invalid District for Municipality');
                 break;
             }
         }
 
         if($correct)
             $this->assertTrue(true);
-        else
-            $this->fail('Invalid District for Municipality');
-
     }
 }

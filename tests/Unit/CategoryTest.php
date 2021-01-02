@@ -94,12 +94,11 @@ class CategoryTest extends PHPUnit_Framework_TestCase
         $hasNull = false;
         foreach ($this->category->allCategories() as $set) {
             if ($hasNull = in_array(null, (array) $set, true)) {
+                $this->fail('Category dataset can\'t have null values');
                 break;
             }
         }
-        if($hasNull)
-            $this->fail('Category dataset can\'t have null values');
-        else
+        if(!$hasNull)
             $this->assertTrue(true);
     }
 

@@ -94,4 +94,55 @@ class Province
         }
         return $this->provinces[array_search(min($area), $area)];
     }
+
+
+    /**
+     * Get Provinces With Districts
+     *
+     * @return array
+     * @throws LoadingException
+     */
+    public function getProvincesWithDistricts()
+    {
+        $district = new District($this->lang);
+
+        $provinces = $this->allProvinces();
+
+        return array_map(function ($item) use($district){
+            $item = (array) $item;
+            $item['districts'] = $district->getDistrictsByProvince($item['id']);
+            return (object) $item;
+        },$provinces);
+    }
+
+    /**
+     * Get Provinces With Districts With Municipalities
+     *
+     * @return array
+     * @throws LoadingException
+     */
+    public function getProvincesWithDistrictsWithMunicipalities()
+    {
+        $district = new District($this->lang);
+        $municipality = new Municipality($this->lang);
+
+        $provinces = $this->allProvinces();
+
+        return array_map(function ($provinceItem) use($district, $municipality){
+            $provinceItem = (array) $provinceItem;
+            $provinceDistricts = $district->getDistrictsByProvince($provinceItem['id']);
+            $provinceItem['districts'] = array_map(function ($districtItem) use ($municipality){
+                $districtItem = (array)$districtItem;
+                $municipalities = $municipality->getMunicipalitiesByDistrict($districtItem['id']);
+                $districtItem['municipalities'] = array_map(function ($municipalityItem) use ($municipality){
+                    $municipalityItem = (array) $municipalityItem;
+                    $municipalityItem['wards'] = $municipality->wards($municipalityItem['id']);
+                    return (object) $municipalityItem;
+                }, $municipalities);
+
+                return (object) $districtItem;
+            }, $provinceDistricts);
+            return (object) $provinceItem;
+        },$provinces);
+    }
 }

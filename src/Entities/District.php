@@ -49,6 +49,43 @@ class District
     }
 
     /**
+     * Get Districts With Municipalities
+     *
+     * @return array
+     * @throws LoadingException
+     */
+    public function getDistrictsWithMunicipalities()
+    {
+        $municipality = new Municipality($this->lang);
+
+        $provinces = $this->allDistricts();
+
+        return array_map(function ($districtItem) use($municipality){
+            $districtItem = (array) $districtItem;
+            $municipalities = $municipality->getMunicipalitiesByDistrict($districtItem['id']);
+            $districtItem['municipalities'] = array_map(function ($municipalityItem) use ($municipality){
+                $municipalityItem = (array) $municipalityItem;
+                $municipalityItem['wards'] = $municipality->wards($municipalityItem['id']);
+                return (object) $municipalityItem;
+            }, $municipalities);
+            return (object) $districtItem;
+        },$provinces);
+    }
+
+    /**
+     * Get Districts By Province ID
+     *
+     * @param $provinceId
+     * @return array|mixed|null
+     */
+    public function getDistrictsByProvince($provinceId)
+    {
+         return array_filter($this->districts, function ($item) use ($provinceId) {
+            return ($item->province_id == $provinceId);
+        });
+    }
+
+    /**
      * Find Province By ID
      *
      * @param $id

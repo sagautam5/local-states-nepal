@@ -103,12 +103,11 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
         $hasNull = false;
         foreach ($this->province->allProvinces() as $set) {
             if ($hasNull = in_array(null, (array) $set, true)) {
+                $this->fail('Province dataset can\'t have null values');
                 break;
             }
         }
-        if($hasNull)
-            $this->fail('Province dataset can\'t have null values');
-        else
+        if(!$hasNull)
             $this->assertTrue(true);
     }
 }

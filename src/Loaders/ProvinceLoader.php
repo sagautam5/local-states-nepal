@@ -27,7 +27,6 @@ class ProvinceLoader
             $json = $file ? file_get_contents(__DIR__ . '/../../dataset/provinces/' .$file) : null;
             $this->provinces = $json ? json_decode($json):null;
         }catch (\Exception $e){
-            var_dump($e->getMessage());
             throw new LoadingException('Failed to load province data from source ');
         }
     }
