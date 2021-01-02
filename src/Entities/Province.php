@@ -3,6 +3,7 @@
 namespace Sagautam5\LocalStateNepal\Entities;
 
 use Sagautam5\LocalStateNepal\Exceptions\LoadingException;
+use Sagautam5\LocalStateNepal\Helpers\Helper;
 use Sagautam5\LocalStateNepal\Loaders\ProvinceLoader;
 
 /**
@@ -17,6 +18,11 @@ class Province
     private $provinces;
 
     /**
+     * @var string
+     */
+    private $lang;
+
+    /**
      * Province constructor.
      * @param $lang
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
@@ -24,7 +30,9 @@ class Province
     public function __construct($lang = 'en')
     {
         try{
-            $loader = new ProvinceLoader($lang);
+            $this->lang = $lang;
+
+            $loader = new ProvinceLoader($this->lang);
             $this->provinces = $loader->provinces();
         }catch (LoadingException $exception){
             throw $exception;
@@ -60,6 +68,13 @@ class Province
     public function largest()
     {
         $area = array_column($this->provinces, 'area_sq_km');
+
+        if($this->lang == 'np'){
+            $area = array_map(function ($item){
+                return Helper::numericEnglish($item);
+            }, $area);
+        }
+
         return $this->provinces[array_search(max($area), $area)];
     }
 
@@ -71,6 +86,12 @@ class Province
     public function smallest()
     {
         $area = array_column($this->provinces, 'area_sq_km');
+
+        if($this->lang == 'np'){
+            $area = array_map(function ($item){
+                return Helper::numericEnglish($item);
+            }, $area);
+        }
         return $this->provinces[array_search(min($area), $area)];
     }
 }

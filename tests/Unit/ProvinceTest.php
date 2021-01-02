@@ -14,12 +14,17 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     private $province;
 
     /**
+     * @var array
+     */
+    private $languages = ['en', 'np'];
+
+    /**
      * ProvinceTest constructor.
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
     public function __construct()
     {
-        $this->province = new Province('en');
+        $this->province = new Province($this->languages[array_rand($this->languages)]);
     }
 
     /**

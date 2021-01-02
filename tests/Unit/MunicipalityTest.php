@@ -11,12 +11,17 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     private $municipality;
 
     /**
+     * @var array
+     */
+    private $languages = ['en', 'np'];
+
+    /**
      * MunicipalityTest constructor.
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
     public function __construct()
     {
-        $this->municipality = new Municipality('en');
+        $this->municipality = new Municipality($this->languages[array_rand($this->languages)]);
     }
 
     /**
@@ -102,5 +107,85 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
             $this->fail('Municipality dataset can\'t have null values');
         else
             $this->assertTrue(true);
+    }
+
+    /**
+     * Test Municipality Wards
+     */
+    public function testMunicipalityWards()
+    {
+        $lang = $this->municipality->getLanguage();
+        if($lang == 'np'){
+            $wards = range(1,33);
+            $wards = array_map(function ($item){
+                return \Sagautam5\LocalStateNepal\Helpers\Helper::numericNepali($item);
+            }, $wards);
+        }else{
+            $wards = range(1,33);
+        }
+        $idSet = range(1,753);
+
+        $correct = true;
+        foreach ($idSet as $id)
+        {
+            if(array_diff($this->municipality->wards($id), $wards))
+            {
+                $correct = false;
+                break;
+            }
+        }
+
+        if($correct)
+            $this->assertTrue(true);
+        else
+            $this->fail('Invalid Wards for Municipality');
+    }
+
+    /**
+     * Test Municipality Categories
+     */
+    public function testMunicipalityCategories()
+    {
+        $idSet = range(1,753);
+
+        $correct = true;
+        foreach ($idSet as $id)
+        {
+            $municipality = $this->municipality->find($id);
+            if($municipality && !in_array($municipality->category_id, range(1,4))){
+                $correct = false;
+                break;
+            }
+        }
+
+        if($correct)
+            $this->assertTrue(true);
+        else
+            $this->fail('Invalid Category for Municipality');
+
+    }
+
+    /**
+     * Test Municipality Categories
+     */
+    public function testMunicipalityDistrict()
+    {
+        $idSet = range(1,753);
+
+        $correct = true;
+        foreach ($idSet as $id)
+        {
+            $municipality = $this->municipality->find($id);
+            if($municipality && !in_array($municipality->district_id, range(1,77))){
+                $correct = false;
+                break;
+            }
+        }
+
+        if($correct)
+            $this->assertTrue(true);
+        else
+            $this->fail('Invalid District for Municipality');
+
     }
 }

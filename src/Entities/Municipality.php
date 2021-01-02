@@ -3,6 +3,7 @@
 namespace Sagautam5\LocalStateNepal\Entities;
 
 use Sagautam5\LocalStateNepal\Exceptions\LoadingException;
+use Sagautam5\LocalStateNepal\Helpers\Helper;
 use Sagautam5\LocalStateNepal\Loaders\MunicipalitiesLoader;
 
 /**
@@ -14,7 +15,12 @@ class Municipality
     /**
      * @var
      */
-    protected $municipalities;
+    private $municipalities;
+
+    /**
+     * @var string
+     */
+    private $lang;
 
     /**
      * Municipality constructor.
@@ -24,11 +30,22 @@ class Municipality
     public function __construct($lang = 'en')
     {
         try{
-            $loader = new MunicipalitiesLoader($lang);
+            $this->lang = $lang;
+            $loader = new MunicipalitiesLoader($this->lang);
             $this->municipalities = $loader->municipalites();
         }catch (LoadingException $exception){
             throw $exception;
         }
+    }
+
+    /**
+     * Get Language
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->lang;
     }
 
     /**
@@ -60,6 +77,13 @@ class Municipality
     public function largest()
     {
         $area = array_column($this->municipalities, 'area_sq_km');
+
+        if($this->lang == 'np'){
+            $area = array_map(function ($item){
+                return Helper::numericEnglish($item);
+            }, $area);
+        }
+
         return $this->municipalities[array_search(max($area), $area)];
     }
 
@@ -71,6 +95,37 @@ class Municipality
     public function smallest()
     {
         $area = array_column($this->municipalities, 'area_sq_km');
+
+        if($this->lang == 'np'){
+            $area = array_map(function ($item){
+                return Helper::numericEnglish($item);
+            }, $area);
+        }
+
         return $this->municipalities[array_search(min($area), $area)];
+    }
+
+    /**
+     * Get Wards of Municipality
+     *
+     * @param $id
+     * @return array
+     */
+    public function wards($id)
+    {
+        $municipality = $this->find($id);
+
+        if($this->lang == 'np'){
+
+            $totalWards = Helper::numericEnglish($municipality->wards);
+
+            $wards = range(1, $totalWards);
+            $wards = array_map(function ($item){
+                return Helper::numericNepali($item);
+            }, $wards);
+        }else{
+            $wards = range(1, $municipality->wards);
+        }
+        return $wards;
     }
 }

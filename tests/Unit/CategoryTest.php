@@ -14,12 +14,17 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     private $category;
 
     /**
+     * @var array
+     */
+    private $languages = ['en', 'np'];
+
+    /**
      * CategoryTest constructor.
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
     public function __construct()
     {
-        $this->category = new Category('en');
+        $this->category = new Category($this->languages[array_rand($this->languages)]);
     }
 
     /**

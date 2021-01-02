@@ -3,6 +3,7 @@
 namespace Sagautam5\LocalStateNepal\Entities;
 
 use Sagautam5\LocalStateNepal\Exceptions\LoadingException;
+use Sagautam5\LocalStateNepal\Helpers\Helper;
 use Sagautam5\LocalStateNepal\Loaders\DistrictsLoader;
 
 /**
@@ -17,6 +18,11 @@ class District
     protected $districts;
 
     /**
+     * @var string
+     */
+    private $lang;
+
+    /**
      * District constructor.
      * @param string $lang
      * @throws LoadingException
@@ -24,7 +30,9 @@ class District
     public function __construct($lang = 'en')
     {
         try{
-            $loader = new DistrictsLoader($lang);
+            $this->lang = $lang;
+
+            $loader = new DistrictsLoader($this->lang);
             $this->districts = $loader->districts();
         }catch (LoadingException $exception){
             throw $exception;
@@ -60,6 +68,13 @@ class District
     public function largest()
     {
         $area = array_column($this->districts, 'area_sq_km');
+
+        if($this->lang == 'np'){
+            $area = array_map(function ($item){
+                return Helper::numericEnglish($item);
+            }, $area);
+        }
+
         return $this->districts[array_search(max($area), $area)];
     }
 
@@ -71,6 +86,13 @@ class District
     public function smallest()
     {
         $area = array_column($this->districts, 'area_sq_km');
+
+        if($this->lang == 'np'){
+            $area = array_map(function ($item){
+                return Helper::numericEnglish($item);
+            }, $area);
+        }
+
         return $this->districts[array_search(min($area), $area)];
     }
 }

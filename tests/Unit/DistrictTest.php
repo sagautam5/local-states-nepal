@@ -14,12 +14,17 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     private $district;
 
     /**
+     * @var array
+     */
+    private $languages = ['en', 'np'];
+
+    /**
      * DistrictTest constructor.
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
     public function __construct()
     {
-        $this->district = new District('en');
+        $this->district = new District($this->languages[array_rand($this->languages)]);
     }
 
     /**
@@ -105,5 +110,29 @@ class DistrictTest extends PHPUnit_Framework_TestCase
             $this->fail('District dataset can\'t have null values');
         else
             $this->assertTrue(true);
+    }
+
+    /**
+     * Test Province of District
+     */
+    public function testDistrictProvince()
+    {
+        $idSet = range(1,77);
+
+        $correct = true;
+        foreach ($idSet as $id)
+        {
+            $district = $this->district->find($id);
+            if($district && !in_array($district->province_id, range(1,7))){
+                $correct = false;
+                break;
+            }
+        }
+
+        if($correct)
+            $this->assertTrue(true);
+        else
+            $this->fail('Invalid Province for District');
+
     }
 }

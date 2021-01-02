@@ -14,7 +14,12 @@ class Category
     /**
      * @var
      */
-    protected $categories;
+    private $categories;
+
+    /**
+     * @var string
+     */
+    private $lang;
 
     /**
      * Category constructor.
@@ -24,7 +29,9 @@ class Category
     public function __construct($lang = 'en')
     {
         try{
-            $loader = new CategoriesLoader('en');
+            $this->lang = $lang;
+
+            $loader = new CategoriesLoader($this->lang);
             $this->categories = $loader->categories();
         }catch (LoadingException $exception){
             throw $exception;
