@@ -1,10 +1,10 @@
 <?php
 
-namespace LocalStateNepal\Entities;
+namespace Sagautam5\LocalStateNepal\Entities;
 
 /**
  * Class Municipality
- * @package LocalStateNepal\Entities
+ * @package Sagautam5\LocalStateNepal\Entities
  */
 class Municipality
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace LocalStateNepal\Loaders;
+namespace Sagautam5\LocalStateNepal\Loaders;
 
-use LocalStateNepal\Exception\LoadingException;
+use Sagautam5\LocalStateNepal\Exceptions\LoadingException;
 
 /**
  * Class ProvinceLoader
- * @package LocalStateNepal\Loaders
+ * @package Sagautam5\LocalStateNepal\Loaders
  */
 class ProvinceLoader
 {
@@ -24,10 +24,11 @@ class ProvinceLoader
     {
         try{
             $file = ($lang == 'np' ? 'np.json':($lang == 'en' ? 'en.json':''));
-            $json = $file ? file_get_contents(__DIR__ . '../../dataset/provinces/' .$file) : null;
+            $json = $file ? file_get_contents(__DIR__ . '/../../dataset/provinces/' .$file) : null;
             $this->provinces = $json ? json_decode($json):null;
         }catch (\Exception $e){
-            throw new LoadingException('Failed to load data from source ');
+            var_dump($e->getMessage());
+            throw new LoadingException('Failed to load province data from source ');
         }
     }
 

@@ -9,5 +9,13 @@
             "email": "sagautam5@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sagautam5\\LocalStateNepal\\": "src"
+        }
+    }
 }

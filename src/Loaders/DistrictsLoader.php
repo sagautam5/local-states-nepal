@@ -1,14 +1,14 @@
 <?php
 
 
-namespace LocalStateNepal\Loaders;
+namespace Sagautam5\LocalStateNepal\Loaders;
 
 
-use LocalStateNepal\Exception\LoadingException;
+use Sagautam5\LocalStateNepal\Exception\LoadingException;
 
 /**
  * Class DistrictsLoader
- * @package LocalStateNepal\Loaders
+ * @package Sagautam5\LocalStateNepal\Loaders
  */
 class DistrictsLoader
 {
@@ -29,7 +29,7 @@ class DistrictsLoader
             $json = $file ? file_get_contents(__DIR__ . '../../dataset/districts/' .$file) : null;
             $this->districts = $json ? json_decode($json):null;
         }catch (\Exception $e){
-            throw new LoadingException('Failed to load data from source ');
+            throw new LoadingException('Failed to load districts data from source ');
         }
     }
 

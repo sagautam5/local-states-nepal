@@ -1,10 +1,10 @@
 <?php
 
-namespace LocalStateNepal\Exception;
+namespace Sagautam5\LocalStateNepal\Exceptions;
 
 /**
  * Class LoadingException
- * @package LocalStateNepal\Exception
+ * @package Sagautam5\LocalStateNepal\Exception
  */
 class LoadingException extends \Exception
 {

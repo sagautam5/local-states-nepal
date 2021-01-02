@@ -1,14 +1,14 @@
 <?php
 
 
-namespace LocalStateNepal\Loaders;
+namespace Sagautam5\LocalStateNepal\Loaders;
 
 
-use LocalStateNepal\Exception\LoadingException;
+use Sagautam5\LocalStateNepal\Exception\LoadingException;
 
 /**
  * Class CategoriesLoader
- * @package LocalStateNepal\Loaders
+ * @package Sagautam5\LocalStateNepal\Loaders
  */
 class CategoriesLoader
 {
@@ -29,7 +29,7 @@ class CategoriesLoader
             $json = $file ? file_get_contents(__DIR__ . '../../dataset/categories/' .$file) : null;
             $this->categories = $json ? json_decode($json):null;
         }catch (\Exception $e){
-            throw new LoadingException('Failed to load data from source ');
+            throw new LoadingException('Failed to load categories data from source ');
         }
     }
 
