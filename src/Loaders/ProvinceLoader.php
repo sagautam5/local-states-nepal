@@ -20,7 +20,7 @@ class ProvinceLoader
      * @param $lang
      * @throws LoadingException
      */
-    public function __construct($lang)
+    public function __construct($lang = 'en')
     {
         try{
             $file = ($lang == 'np' ? 'np.json':($lang == 'en' ? 'en.json':''));

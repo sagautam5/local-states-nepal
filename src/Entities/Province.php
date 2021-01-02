@@ -21,7 +21,7 @@ class Province
      * @param $lang
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function __construct($lang)
+    public function __construct($lang = 'en')
     {
         try{
             $loader = new ProvinceLoader($lang);

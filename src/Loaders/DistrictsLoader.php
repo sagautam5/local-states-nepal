@@ -22,11 +22,11 @@ class DistrictsLoader
      * @param $lang
      * @throws LoadingException
      */
-    public function __construct($lang)
+    public function __construct($lang = 'en')
     {
         try{
             $file = ($lang == 'np' ? 'np.json':($lang == 'en' ? 'en.json':''));
-            $json = $file ? file_get_contents(__DIR__ . '../../dataset/districts/' .$file) : null;
+            $json = $file ? file_get_contents(__DIR__ . '/../../dataset/districts/' .$file) : null;
             $this->districts = $json ? json_decode($json):null;
         }catch (\Exception $e){
             throw new LoadingException('Failed to load districts data from source ');

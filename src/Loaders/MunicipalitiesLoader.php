@@ -21,11 +21,11 @@ class MunicipalitiesLoader
      * @param $lang
      * @throws LoadingException
      */
-    public function __construct($lang)
+    public function __construct($lang = 'en')
     {
         try{
             $file = ($lang == 'np' ? 'np.json':($lang == 'en' ? 'en.json':''));
-            $json = $file ? file_get_contents(__DIR__ . '../../dataset/municipalities/' .$file) : null;
+            $json = $file ? file_get_contents(__DIR__ . '/../../dataset/municipalities/' .$file) : null;
             $this->municipalities = $json ? json_decode($json):null;
         }catch (\Exception $e){
             throw new LoadingException('Failed to load municipalities data from source ');

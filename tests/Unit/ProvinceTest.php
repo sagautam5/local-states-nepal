@@ -2,6 +2,9 @@
 
 use Sagautam5\LocalStateNepal\Entities\Province;
 
+/**
+ * Class ProvinceTest
+ */
 class ProvinceTest extends PHPUnit_Framework_TestCase
 {
 

@@ -4,7 +4,7 @@
 namespace Sagautam5\LocalStateNepal\Loaders;
 
 
-use Sagautam5\LocalStateNepal\Exception\LoadingException;
+use Sagautam5\LocalStateNepal\Exceptions\LoadingException;
 
 /**
  * Class CategoriesLoader
@@ -22,11 +22,11 @@ class CategoriesLoader
      * @param $lang
      * @throws LoadingException
      */
-    public function __construct($lang)
+    public function __construct($lang = 'en')
     {
         try{
             $file = ($lang == 'np' ? 'np.json':($lang == 'en' ? 'en.json':''));
-            $json = $file ? file_get_contents(__DIR__ . '../../dataset/categories/' .$file) : null;
+            $json = $file ? file_get_contents(__DIR__ . '/../../dataset/categories/' .$file) : null;
             $this->categories = $json ? json_decode($json):null;
         }catch (\Exception $e){
             throw new LoadingException('Failed to load categories data from source ');
