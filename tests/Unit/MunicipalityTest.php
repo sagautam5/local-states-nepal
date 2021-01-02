@@ -3,6 +3,9 @@
 
 use Sagautam5\LocalStateNepal\Entities\Municipality;
 
+/**
+ * Class MunicipalityTest
+ */
 class MunicipalityTest extends PHPUnit_Framework_TestCase
 {
     /**

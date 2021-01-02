@@ -31,8 +31,20 @@ class Municipality
     {
         try{
             $this->lang = $lang;
+
             $loader = new MunicipalitiesLoader($this->lang);
             $this->municipalities = $loader->municipalites();
+
+            $category = new Category($this->lang);
+            $categories = $category->allCategories();
+
+            $this->municipalities = array_map(function ($item) use ($categories){
+                $item = (array)$item;
+                $item['name'] = $item['name'].' '.$categories[$item['category_id']-1]->name;
+                return (object)$item;
+            }, $this->municipalities);
+
+            var_dump($this->municipalities);
         }catch (LoadingException $exception){
             throw $exception;
         }
