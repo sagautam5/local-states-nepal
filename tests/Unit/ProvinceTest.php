@@ -6,14 +6,27 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
 {
 
     /**
+     * @var Province
+     */
+    private $province;
+
+    /**
+     * ProvinceTest constructor.
+     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
+     */
+    public function __construct()
+    {
+        $this->province = new Province('en');
+    }
+
+    /**
      * Test Largest Province
      *
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
     public function testLargest()
     {
-        $province = new Province('en');
-        $largest = $province->largest();
+        $largest = $this->province->largest();
         $largest->id == 6 ? $this->assertTrue(true): $this->fail('Not a Largest Province');
     }
 
@@ -30,8 +43,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
         $correctStatus = true;
         foreach ($correctIdSet as $id)
         {
-            $province = new Province('en');
-            $item = $province->find($id);
+            $item = $this->province->find($id);
 
             if(!$item){
                 $correctStatus= false;
@@ -43,8 +55,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
         $correctStatus = false;
         foreach ($incorrectIdSet as $id)
         {
-            $province = new Province('en');
-            if($province->find($id)){
+            if($this->province->find($id)){
                 $correctStatus= true;
             }
         }
@@ -58,8 +69,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
      */
     public function testSmallest()
     {
-        $province = new Province('en');
-        $smallest = $province->smallest();
+        $smallest = $this->province->smallest();
         $smallest->id == 2 ? $this->assertTrue(true): $this->fail('Not a Smallest Province');
     }
 
@@ -70,8 +80,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
      */
     public function testAllProvinces()
     {
-        $province = new Province('en');
-        if(count($province->allProvinces()) == 7){
+        if(count($this->province->allProvinces()) == 7){
             $this->assertTrue(true);
         }else{
             $this->fail('Only Seven Provinces Exists in Nepal');
@@ -83,6 +92,15 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
      */
     public function testNullValues()
     {
-        $this->assertTrue(true);
+        $hasNull = false;
+        foreach ($this->province->allProvinces() as $set) {
+            if ($hasNull = in_array(null, (array) $set, true)) {
+                break;
+            }
+        }
+        if($hasNull)
+            $this->fail('Province dataset can\'t have null values');
+        else
+            $this->assertTrue(true);
     }
 }
