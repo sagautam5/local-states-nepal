@@ -1,4 +1,4 @@
-### Category
+### Categories
 
 #### Introduction
 
