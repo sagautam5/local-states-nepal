@@ -31,7 +31,7 @@ class DistrictMunicipalityFeatureTest extends PHPUnit_Framework_TestCase
     public function testGetDistrictsWithMunicipalities()
     {
         $districtsWithMunicipalities = $this->district->getDistrictsWithMunicipalities();
-        
+
         $correct = true;
         foreach ($districtsWithMunicipalities as $item) {
             if (!(isset($item->municipalities) && is_array($item->municipalities))) {
