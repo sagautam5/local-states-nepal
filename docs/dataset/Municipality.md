@@ -5,9 +5,9 @@
 Based on recent administrative divisions, there are 753 municipalities in Nepal.
 
 1. Rural Municipalities - 460
-2. Municipalities - 293
+2. Municipalities - 276
 3. Sub-Metropolitan City - 11
-4. Metropolitan City - 4
+4. Metropolitan City - 6
 
 #### Format of the dataset
 
