@@ -12,8 +12,10 @@ Image Source: [Wikipedia(Provinces of Nepal)](https://en.wikipedia.org/wiki/Prov
 ![Issues](https://img.shields.io/github/issues/sagautam5/local-states-nepal
 ) [![Stars](https://img.shields.io/github/stars/sagautam5/local-states-nepal
 )](https://github.com/sagautam5/local-states-nepal/stargazers) 
-[![License](https://img.shields.io/github/license/sagautam5/local-states-nepal)](https://github.com/sagautam5/local-states-nepal/stargazers) [![Forks](https://img.shields.io/github/forks/sagautam5/local-states-nepal
-)](https://github.com/sagautam5/local-states-nepal/LICENSE) [![Twitter](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fsagautam5%2Flocal-states-nepal
+[![License](https://img.shields.io/github/license/sagautam5/local-states-nepal)](https://github.com/sagautam5/local-states-nepal/stargazers) 
+[![Forks](https://img.shields.io/github/forks/sagautam5/local-states-nepal
+)](https://github.com/sagautam5/local-states-nepal/LICENSE) 
+[![Twitter](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fsagautam5%2Flocal-states-nepal
 )](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fsagautam5%2Flocal-states-nepal)
 
 ## Description
