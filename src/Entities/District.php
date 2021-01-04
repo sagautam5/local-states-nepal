@@ -81,9 +81,9 @@ class District
      */
     public function getDistrictsByProvince($provinceId)
     {
-         return array_filter($this->districts, function ($item) use ($provinceId) {
-            return ($item->province_id == $provinceId);
-        });
+         return array_values(array_filter($this->districts, function ($item) use ($provinceId) {
+             return ($item->province_id == $provinceId);
+         }));
     }
 
     /**

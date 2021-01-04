@@ -43,7 +43,6 @@ class Municipality
                 $item['name'] = $item['name'].' '.$categories[$item['category_id']-1]->name;
                 return (object)$item;
             }, $this->municipalities);
-
         }catch (LoadingException $exception){
             throw $exception;
         }
@@ -76,9 +75,9 @@ class Municipality
      */
     public function getMunicipalitiesByDistrict($districtId)
     {
-        return array_filter($this->municipalities, function ($item) use ($districtId) {
+        return array_values(array_filter($this->municipalities, function ($item) use ($districtId) {
             return ($item->district_id == $districtId);
-        });
+        }));
     }
 
     /**
@@ -89,9 +88,9 @@ class Municipality
      */
     public function getMunicipalityByCategory($categoryId)
     {
-        return array_filter($this->municipalities, function ($item) use ($categoryId) {
+        return array_values(array_filter($this->municipalities, function ($item) use ($categoryId) {
             return ($item->category_id == $categoryId);
-        });
+        }));
     }
 
     /**
