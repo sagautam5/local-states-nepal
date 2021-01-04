@@ -18,7 +18,7 @@ Image Source: [Wikipedia(Provinces of Nepal)](https://en.wikipedia.org/wiki/Prov
 
 ## Description
 
-  Local States Nepal is the php composer package to get structured dataset about local states in Nepal  
+  Local States Nepal is the php composer package to get structured dataset about local states in Nepal.  
   
   Local States Nepal Requires 
   
@@ -42,7 +42,7 @@ composer require sagautam5/local-states-nepal
 Currently, No mandatory configuration is required for using this package. We have used english as the default language and if you want nepali you have to specify the language while using this package.
 
 ## About Dataset
-All data are collected from wikipedia and various Nepal government data. We have data set in Nepali and English format for following four entities.
+All data are collected from wikipedia and various Nepal government sites. We have data set in Nepali and English format for following four entities.
 
 1. [Province](./docs/dataset/Province.md)
 2. [District](./docs/dataset/District.md)
