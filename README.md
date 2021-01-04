@@ -7,7 +7,6 @@
 Image Source: [Wikipedia(Provinces of Nepal)](https://en.wikipedia.org/wiki/Provinces_of_Nepal)
 
 
-[![Latest Stable Version](https://poser.pugx.org/sagautam5/local-states-nepal/v)](//packagist.org/packages/sagautam5/local-states-nepal)
 [![Total Downloads](https://poser.pugx.org/sagautam5/local-states-nepal/downloads)](//packagist.org/packages/sagautam5/local-states-nepal)
 ![Issues](https://img.shields.io/github/issues/sagautam5/local-states-nepal
 ) [![Stars](https://img.shields.io/github/stars/sagautam5/local-states-nepal
