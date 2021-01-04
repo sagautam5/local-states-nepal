@@ -39,7 +39,8 @@ class Category
     }
 
     /**
-     * Get List of All Categories
+     * Get list of all categories
+     *
      * @return mixed|null
      */
     public function allCategories()
@@ -48,7 +49,7 @@ class Category
     }
 
     /**
-     * Find Province By ID
+     * Find category by id
      *
      * @param $id
      * @return false|int|string
@@ -61,7 +62,7 @@ class Category
     }
 
     /**
-     * Find Category By Short Code
+     * Find category by short code
      *
      * @param $short_code
      * @return |null

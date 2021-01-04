@@ -33,7 +33,7 @@ class Municipality
             $this->lang = $lang;
 
             $loader = new MunicipalitiesLoader($this->lang);
-            $this->municipalities = $loader->municipalites();
+            $this->municipalities = $loader->municipalities();
 
             $category = new Category($this->lang);
             $categories = $category->allCategories();
@@ -50,7 +50,7 @@ class Municipality
     }
 
     /**
-     * Get Language
+     * Get language
      *
      * @return string
      */
@@ -60,7 +60,7 @@ class Municipality
     }
 
     /**
-     * Get List of All Municipalities
+     * Get list of all municipalities
      * @return mixed|null
      */
     public function allMunicipalities()
@@ -69,7 +69,7 @@ class Municipality
     }
 
     /**
-     * Get Municipalities By District ID
+     * Get municipalities by district id
      *
      * @param $districtId
      * @return array|mixed|null
@@ -82,7 +82,7 @@ class Municipality
     }
 
     /**
-     * Get Municipalities By Category
+     * Get municipalities by category id
      *
      * @param $categoryId
      * @return array
@@ -95,7 +95,7 @@ class Municipality
     }
 
     /**
-     * Find Municipality By ID
+     * Find municipality by id
      *
      * @param $id
      * @return false|int|string
@@ -108,7 +108,8 @@ class Municipality
     }
 
     /**
-     * Get Province With Largest Area
+     * Get municipality with largest area
+     *
      * @return mixed
      */
     public function largest()
@@ -125,7 +126,7 @@ class Municipality
     }
 
     /**
-     * Get Province With Smallest Area
+     * Get municipality with smallest area
      *
      * @return mixed
      */
@@ -143,7 +144,7 @@ class Municipality
     }
 
     /**
-     * Get Wards of Municipality
+     * Get wards of municipality
      *
      * @param $id
      * @return array

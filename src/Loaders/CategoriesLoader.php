@@ -34,7 +34,7 @@ class CategoriesLoader
     }
 
     /**
-     * Fetch Categories
+     * Fetch categories
      *
      * @return mixed|null
      */

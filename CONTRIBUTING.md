@@ -36,12 +36,13 @@ Before submitting a pull request:
 ```sh 
 composer update 
 ```
-- Create and test the feature and make sure it doesn't affect codebase by running full tests by executing following console command.
+- Create and test the feature/issue and make sure it doesn't affect codebase by running full tests by executing following console command.
 ```sh 
 vendor/bin/phpunit 
 ```
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
+- Send pull request to dev branch only.
 
 ## Requirements
 

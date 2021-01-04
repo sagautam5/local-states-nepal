@@ -40,7 +40,8 @@ class District
     }
 
     /**
-     * Get List of All Districts
+     * Get list of all districts
+     *
      * @return mixed|null
      */
     public function allDistricts()
@@ -49,7 +50,7 @@ class District
     }
 
     /**
-     * Get Districts With Municipalities
+     * Get districts with municipalities
      *
      * @return array
      * @throws LoadingException
@@ -73,7 +74,7 @@ class District
     }
 
     /**
-     * Get Districts By Province ID
+     * Get districts by province id
      *
      * @param $provinceId
      * @return array|mixed|null
@@ -86,7 +87,7 @@ class District
     }
 
     /**
-     * Find Province By ID
+     * Find district by id
      *
      * @param $id
      * @return false|int|string
@@ -99,7 +100,8 @@ class District
     }
 
     /**
-     * Get Province With Largest Area
+     * Get district with largest area
+     *
      * @return mixed
      */
     public function largest()
@@ -116,7 +118,7 @@ class District
     }
 
     /**
-     * Get Province With Smallest Area
+     * Get district with smallest area
      *
      * @return mixed
      */

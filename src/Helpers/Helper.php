@@ -20,7 +20,7 @@ class Helper
     private static $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
     /**
-     * Convert English Numeric Value to Nepali Numeric Value
+     * Convert english numeric value to nepali numeric value
      *
      * @param $value
      * @return mixed
@@ -36,7 +36,7 @@ class Helper
     }
 
     /**
-     * Convert Nepali Numeric Value to English Numeric Value
+     * Convert nepali numeric value to english numeric value
      *
      * @param $value
      * @return mixed

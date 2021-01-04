@@ -32,7 +32,7 @@ class ProvinceLoader
     }
 
     /**
-     * Fetch Provinces
+     * Fetch provinces
      *
      * @return mixed|null
      */

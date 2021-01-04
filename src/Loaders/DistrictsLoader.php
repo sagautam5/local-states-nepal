@@ -34,7 +34,7 @@ class DistrictsLoader
     }
 
     /**
-     * Fetch Districts
+     * Fetch districts
      *
      * @return mixed|null
      */

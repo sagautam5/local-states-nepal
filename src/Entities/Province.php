@@ -40,7 +40,7 @@ class Province
     }
 
     /**
-     * Get List of All Provinces
+     * Get list of all provinces
      * @return mixed|null
      */
     public function allProvinces()
@@ -49,7 +49,7 @@ class Province
     }
 
     /**
-     * Find Province By ID
+     * Find province by id
      *
      * @param $id
      * @return false|int|string
@@ -62,7 +62,7 @@ class Province
     }
 
     /**
-     * Get Province With Largest Area
+     * Get province with largest area
      * @return mixed
      */
     public function largest()
@@ -79,7 +79,7 @@ class Province
     }
 
     /**
-     * Get Province With Smallest Area
+     * Get province with smallest area
      *
      * @return mixed
      */
@@ -97,7 +97,7 @@ class Province
 
 
     /**
-     * Get Provinces With Districts
+     * Get provinces with districts
      *
      * @return array
      * @throws LoadingException
@@ -116,7 +116,7 @@ class Province
     }
 
     /**
-     * Get Provinces With Districts With Municipalities
+     * Get provinces with districts with municipalities
      *
      * @return array
      * @throws LoadingException

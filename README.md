@@ -60,13 +60,13 @@ use Sagautam5\LocalStateNepal\Entities\Province;
 
 $province = new Province('np');
 
-// Get list of all provinces
+// Get List of all Provinces
 $provincesData = $province->allProvinces();
 
-// Get List of All Provinces With District
+// Get List of All Provinces with District
 $provincesData = $province->getProvincesWithDistricts();
 
-// Get List of All Provinces With District
+// Get List of All Provinces with District and Districts with Municipalities
 $provincesData = $province->getProvincesWithDistrictsWithMunicipalities();
 ``` 
 

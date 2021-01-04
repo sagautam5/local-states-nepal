@@ -33,9 +33,10 @@ class MunicipalitiesLoader
     }
 
     /**
+     * Fetch municipalities
      * @return mixed|null
      */
-    public function municipalites()
+    public function municipalities()
     {
         return $this->municipalities;
     }
