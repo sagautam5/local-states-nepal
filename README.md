@@ -79,6 +79,10 @@ You can see more detail documentation of each entity in the links provided in fo
 3. [Municipality](./docs/usage/Municipality.md)
 4. [Category](./docs/usage/Category.md)
 
+Security
+
+If you discover a security vulnerability within this package, please send an e-mail to sagautam5@gmail.com, All security vulnerabilities will be promptly addressed.
+
 ## 🤝 Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
