@@ -82,6 +82,19 @@ class Municipality
     }
 
     /**
+     * Get Municipalities By Category
+     *
+     * @param $categoryId
+     * @return array
+     */
+    public function getMunicipalityByCategory($categoryId)
+    {
+        return array_filter($this->municipalities, function ($item) use ($categoryId) {
+            return ($item->category_id == $categoryId);
+        });
+    }
+
+    /**
      * Find Municipality By ID
      *
      * @param $id
