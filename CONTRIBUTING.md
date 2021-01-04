@@ -32,7 +32,14 @@ Before filing an issue:
 - Check the pull requests tab to ensure that the feature isn't already in progress.
 
 Before submitting a pull request:
-
+- Fetch the phpunit testing dependency by executing following command on root of the project.
+```sh 
+composer update 
+```
+- Create and test the feature and make sure it doesn't affect codebase by running full tests by executing following console command.
+```sh 
+vendor/bin/phpunit 
+```
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
 
