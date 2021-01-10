@@ -97,3 +97,15 @@ Once you initiate province entity, you can retrieve variety of data.
     
     $provinceDetails = $province->getProvincesWithDistrictsWithMunicipalities();
     ```
+   
+7. Search Province By Keyword
+      
+      ```php
+      <?php
+      
+      use Sagautam5\LocalStateNepal\Entities\Province;
+      
+      $province = new Province();
+     
+      $provinceDetails = $province->search('Kathmandu');
+      ```         

@@ -115,4 +115,23 @@ class CategoryTest extends PHPUnit_Framework_TestCase
             $this->fail('Only Four Categories of Local Level Exists in Nepal');
         }
     }
+
+    /**
+     * Test Category Search
+     */
+    public function testSearch()
+    {
+        $categories = $this->category->allCategories();
+        $dataSet = array_column($categories, 'name');
+
+        $correct = true;
+        foreach ($dataSet as $item){
+            if(!count($this->category->search($item))){
+                $correct = false;
+                $this->fail('Municipality Category '. $item. ' not found');
+            }
+        }
+
+        $this->assertTrue($correct);
+    }
 }

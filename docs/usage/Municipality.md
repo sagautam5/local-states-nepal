@@ -108,3 +108,15 @@ Once you initiate municipality entity, you can retrieve variety of data.
    
    $municipalityDetails = $municipality->wards(4);
    ```
+   
+8. Search Municipality By Keyword
+   
+   ```php
+   <?php
+   
+   use Sagautam5\LocalStateNepal\Entities\Municipality;
+   
+   $municipality = new Municipality();
+  
+   $municipalityDetails = $municipality->search('Kathmandu');
+   ```      

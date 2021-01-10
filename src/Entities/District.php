@@ -134,4 +134,18 @@ class District
 
         return $this->districts[array_search(min($area), $area)];
     }
+
+    /**
+     * Search Districts
+     *
+     * @param $keyword
+     * @return array
+     */
+    public function search($keyword)
+    {
+        $districts = $this->allDistricts();
+        return array_filter($districts, function ($item) use ($keyword) {
+            return is_int(strpos($item->name, $keyword)) ? true:false;
+        });
+    }
 }

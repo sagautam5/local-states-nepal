@@ -96,3 +96,15 @@ Once you initiate district entity, you can retrieve variety of data.
     
     $districtDetails = $district->getDistrictsByProvince(3);
     ```
+   
+7. Search District By Keyword
+
+   ```php
+    <?php
+    
+    use Sagautam5\LocalStateNepal\Entities\District;
+    
+    $district = new District();
+   
+    $districtDetails = $district->search('Gulmi');
+    ```      

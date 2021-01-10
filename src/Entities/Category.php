@@ -73,4 +73,18 @@ class Category
 
         return is_int($key) ? $this->categories[$key]:null;
     }
+
+    /**
+     * Search Categories
+     *
+     * @param $keyword
+     * @return array
+     */
+    public function search($keyword)
+    {
+        $categories = $this->allCategories();
+        return array_filter($categories, function ($item) use ($keyword) {
+            return is_int(strpos($item->name, $keyword)) ? true:false;
+        });
+    }
 }

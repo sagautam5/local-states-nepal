@@ -110,4 +110,23 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
         if(!$hasNull)
             $this->assertTrue(true);
     }
+
+    /**
+     * Test Province Search
+     */
+    public function testSearch()
+    {
+        $provinces = $this->province->allProvinces();
+        $dataSet = array_column($provinces, 'name');
+
+        $correct = true;
+        foreach ($dataSet as $item){
+            if(!count($this->province->search($item))){
+                $correct = false;
+                $this->fail('Province '. $item. ' not found');
+            }
+        }
+
+        $this->assertTrue($correct);
+    }
 }

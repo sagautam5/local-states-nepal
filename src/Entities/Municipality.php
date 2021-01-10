@@ -165,4 +165,18 @@ class Municipality
         }
         return $wards;
     }
+
+    /**
+     * Search Municipalities
+     *
+     * @param $keyword
+     * @return array
+     */
+    public function search($keyword)
+    {
+        $municipalities = $this->allMunicipalities();
+        return array_filter($municipalities, function ($item) use ($keyword) {
+            return is_int(strpos($item->name, $keyword)) ? true:false;
+        });
+    }
 }

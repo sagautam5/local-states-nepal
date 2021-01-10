@@ -133,4 +133,23 @@ class DistrictTest extends PHPUnit_Framework_TestCase
             $this->assertTrue(true);
 
     }
+
+    /**
+     * Test District Search
+     */
+    public function testSearch()
+    {
+        $districts = $this->district->allDistricts();
+        $dataSet = array_column($districts, 'name');
+
+        $correct = true;
+        foreach ($dataSet as $item){
+            if(!count($this->district->search($item))){
+                $correct = false;
+                $this->fail('District '. $item. ' not found');
+            }
+        }
+
+        $this->assertTrue($correct);
+    }
 }

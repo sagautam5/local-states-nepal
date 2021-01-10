@@ -29,12 +29,12 @@ class Province
      */
     public function __construct($lang = 'en')
     {
-        try{
+        try {
             $this->lang = $lang;
 
             $loader = new ProvinceLoader($this->lang);
             $this->provinces = $loader->provinces();
-        }catch (LoadingException $exception){
+        } catch (LoadingException $exception) {
             throw $exception;
         }
     }
@@ -58,7 +58,7 @@ class Province
     {
         $key = (array_search($id, array_column($this->provinces, 'id')));
 
-        return is_int($key) ? $this->provinces[$key]:null;
+        return is_int($key) ? $this->provinces[$key] : null;
     }
 
     /**
@@ -69,8 +69,8 @@ class Province
     {
         $area = array_column($this->provinces, 'area_sq_km');
 
-        if($this->lang == 'np'){
-            $area = array_map(function ($item){
+        if ($this->lang == 'np') {
+            $area = array_map(function ($item) {
                 return Helper::numericEnglish($item);
             }, $area);
         }
@@ -87,8 +87,8 @@ class Province
     {
         $area = array_column($this->provinces, 'area_sq_km');
 
-        if($this->lang == 'np'){
-            $area = array_map(function ($item){
+        if ($this->lang == 'np') {
+            $area = array_map(function ($item) {
                 return Helper::numericEnglish($item);
             }, $area);
         }
@@ -108,11 +108,11 @@ class Province
 
         $provinces = $this->allProvinces();
 
-        return array_map(function ($item) use($district){
-            $item = (array) $item;
+        return array_map(function ($item) use ($district) {
+            $item = (array)$item;
             $item['districts'] = $district->getDistrictsByProvince($item['id']);
-            return (object) $item;
-        },$provinces);
+            return (object)$item;
+        }, $provinces);
     }
 
     /**
@@ -128,21 +128,35 @@ class Province
 
         $provinces = $this->allProvinces();
 
-        return array_map(function ($provinceItem) use($district, $municipality){
-            $provinceItem = (array) $provinceItem;
+        return array_map(function ($provinceItem) use ($district, $municipality) {
+            $provinceItem = (array)$provinceItem;
             $provinceDistricts = $district->getDistrictsByProvince($provinceItem['id']);
-            $provinceItem['districts'] = array_map(function ($districtItem) use ($municipality){
+            $provinceItem['districts'] = array_map(function ($districtItem) use ($municipality) {
                 $districtItem = (array)$districtItem;
                 $municipalities = $municipality->getMunicipalitiesByDistrict($districtItem['id']);
-                $districtItem['municipalities'] = array_map(function ($municipalityItem) use ($municipality){
-                    $municipalityItem = (array) $municipalityItem;
+                $districtItem['municipalities'] = array_map(function ($municipalityItem) use ($municipality) {
+                    $municipalityItem = (array)$municipalityItem;
                     $municipalityItem['wards'] = $municipality->wards($municipalityItem['id']);
-                    return (object) $municipalityItem;
+                    return (object)$municipalityItem;
                 }, $municipalities);
 
-                return (object) $districtItem;
+                return (object)$districtItem;
             }, $provinceDistricts);
-            return (object) $provinceItem;
-        },$provinces);
+            return (object)$provinceItem;
+        }, $provinces);
+    }
+
+    /**
+     * Search Provinces
+     *
+     * @param $keyword
+     * @return array
+     */
+    public function search($keyword)
+    {
+        $provinces = $this->allProvinces();
+        return array_filter($provinces, function ($item) use ($keyword) {
+            return is_int(strpos($item->name, $keyword)) ? true:false;
+        });
     }
 }

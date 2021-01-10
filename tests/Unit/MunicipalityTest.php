@@ -185,4 +185,23 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         if($correct)
             $this->assertTrue(true);
     }
+
+    /**
+     * Test Municipality Search
+     */
+    public function testSearch()
+    {
+        $municipalities = $this->municipality->allMunicipalities();
+        $dataSet = array_column($municipalities, 'name');
+
+        $correct = true;
+        foreach ($dataSet as $item){
+            if(!count($this->municipality->search($item))){
+                $correct = false;
+                $this->fail('Municipality '. $item. ' not found');
+            }
+        }
+
+        $this->assertTrue($correct);
+    }
 }

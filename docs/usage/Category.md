@@ -62,3 +62,15 @@ Once you initiate category entity, you can retrieve variety of data.
     // Options: MC, SMC, M, RM
     $categoryDetails = $category->findByShortCode('MC');
     ```
+   
+4. Search Category By Keyword
+
+   ```php
+    <?php
+    
+    use Sagautam5\LocalStateNepal\Entities\Category;
+    
+    $category = new Category();
+   
+    $categoryDetails = $category->search('Rural');
+    ```   
