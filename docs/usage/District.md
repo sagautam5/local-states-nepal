@@ -116,4 +116,4 @@ Once you initiate district entity, you can retrieve variety of data.
       
       ```php
        ['id', 'province_id', 'name', 'area_sq_km', 'website', 'headquarter'];
-       ```         
+      ```         
