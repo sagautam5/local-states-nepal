@@ -109,7 +109,7 @@ Once you initiate municipality entity, you can retrieve variety of data.
    $municipalityDetails = $municipality->wards(4);
    ```
    
-8. Search Municipality By Keyword
+8. Search municipalities by key and value with exact match option
    
    ```php
    <?php
@@ -118,5 +118,14 @@ Once you initiate municipality entity, you can retrieve variety of data.
    
    $municipality = new Municipality();
   
-   $municipalityDetails = $municipality->search('Kathmandu');
+   $municipalityDetails = $municipality->search('name','Kathmandu');
+    
+   // For exact match, pass optional parameter $exact as true 
+   $municipalityDetails = $municipality->search('name','Kathmandu', true);
    ```      
+   
+   List of options for parameter key:
+      
+      ```php
+       ['id', 'district_id', 'category_id', 'name', 'area_sq_km', 'website', 'wards']
+   ```         

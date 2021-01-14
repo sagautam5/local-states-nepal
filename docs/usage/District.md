@@ -97,7 +97,7 @@ Once you initiate district entity, you can retrieve variety of data.
     $districtDetails = $district->getDistrictsByProvince(3);
     ```
    
-7. Search District By Keyword
+7. Search districts by key and value with exact match option
 
    ```php
     <?php
@@ -106,5 +106,14 @@ Once you initiate district entity, you can retrieve variety of data.
     
     $district = new District();
    
-    $districtDetails = $district->search('Gulmi');
+    $districtDetails = $district->search('name','Gulmi');
+    
+    // For exact match, pass optional parameter $exact as true 
+    $districtDetails = $district->search('name','Gulmi', true);
     ```      
+   
+   List of options for parameter key:
+      
+      ```php
+       ['id', 'province_id', 'name', 'area_sq_km', 'website', 'headquarter'];
+       ```         

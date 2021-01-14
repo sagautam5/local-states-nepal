@@ -98,7 +98,7 @@ Once you initiate province entity, you can retrieve variety of data.
     $provinceDetails = $province->getProvincesWithDistrictsWithMunicipalities();
     ```
    
-7. Search Province By Keyword
+7. Search provinces by key and value with exact match option
       
       ```php
       <?php
@@ -107,5 +107,15 @@ Once you initiate province entity, you can retrieve variety of data.
       
       $province = new Province();
      
-      $provinceDetails = $province->search('Kathmandu');
-      ```         
+      $provinceDetails = $province->search('name','Bagmati');
+       
+      // For exact match, pass optional parameter $exact as true 
+      $provinceDetails = $province->search('name','Bagmati', true);
+   
+      ```
+   
+   List of options for parameter key:
+   
+   ```php
+    ['id', 'name', 'area_sq_km', 'website', 'headquarter'];
+    ```         

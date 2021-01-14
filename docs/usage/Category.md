@@ -63,7 +63,7 @@ Once you initiate category entity, you can retrieve variety of data.
     $categoryDetails = $category->findByShortCode('MC');
     ```
    
-4. Search Category By Keyword
+4. Search categories by key and value with exact match option
 
    ```php
     <?php
@@ -72,5 +72,14 @@ Once you initiate category entity, you can retrieve variety of data.
     
     $category = new Category();
    
-    $categoryDetails = $category->search('Rural');
+    $categoryDetails = $category->search('name', 'Municipality');
+   
+    // For exact match, pass optional parameter $exact as true 
+    $categoryDetails = $category->search('name', 'Municipality', true);
     ```   
+   
+   List of options for parameter key:
+         
+      ```php
+          ['id', 'name', 'short_code']
+      ```       
