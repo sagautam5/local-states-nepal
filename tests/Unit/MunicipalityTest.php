@@ -196,7 +196,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
 
         $correct = true;
         foreach ($dataSet as $item){
-            if(!count($this->municipality->search($item))){
+            if(!count($this->municipality->search('name', $item, true))){
                 $correct = false;
                 $this->fail('Municipality '. $item. ' not found');
             }

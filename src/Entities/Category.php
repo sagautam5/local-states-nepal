@@ -77,14 +77,16 @@ class Category
     /**
      * Search Categories
      *
-     * @param $keyword
+     * @param $key
+     * @param $value
+     * @param bool $exact
      * @return array
      */
-    public function search($keyword)
+    public function search($key, $value, $exact = false)
     {
         $categories = $this->allCategories();
-        return array_filter($categories, function ($item) use ($keyword) {
-            return is_int(strpos($item->name, $keyword)) ? true:false;
+        return  array_filter($categories, function ($item) use ($key, $value, $exact) {
+            return $exact ? ($item->$key == $value ? true:false) :(is_int(strpos($item->$key, $value)) ? true:false);
         });
     }
 }

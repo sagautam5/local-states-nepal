@@ -144,7 +144,7 @@ class DistrictTest extends PHPUnit_Framework_TestCase
 
         $correct = true;
         foreach ($dataSet as $item){
-            if(!count($this->district->search($item))){
+            if(!count($this->district->search('name', $item, true))){
                 $correct = false;
                 $this->fail('District '. $item. ' not found');
             }

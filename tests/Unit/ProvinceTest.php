@@ -121,7 +121,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
 
         $correct = true;
         foreach ($dataSet as $item){
-            if(!count($this->province->search($item))){
+            if(!count($this->province->search('name', $item, true))){
                 $correct = false;
                 $this->fail('Province '. $item. ' not found');
             }
