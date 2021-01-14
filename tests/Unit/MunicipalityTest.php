@@ -192,14 +192,18 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     public function testSearch()
     {
         $municipalities = $this->municipality->allMunicipalities();
-        $dataSet = array_column($municipalities, 'name');
+        $keywords = ['id', 'district_id', 'category_id', 'name', 'area_sq_km', 'website', 'wards'];
 
         $correct = true;
-        foreach ($dataSet as $item){
-            if(!count($this->municipality->search('name', $item, true))){
-                $correct = false;
-                $this->fail('Municipality '. $item. ' not found');
+        foreach ($keywords as $key){
+            $dataSet = array_column($municipalities, $key);
+            foreach ($dataSet as $item){
+                if(!count($this->municipality->search($key, $item, true))){
+                    $correct = false;
+                    $this->fail('Municipality not found for '.$key.' => '.$item);
+                }
             }
+
         }
 
         $this->assertTrue($correct);

@@ -117,13 +117,16 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     public function testSearch()
     {
         $provinces = $this->province->allProvinces();
-        $dataSet = array_column($provinces, 'name');
+        $keywords = ['id', 'name', 'area_sq_km', 'website', 'headquarter'];
 
         $correct = true;
-        foreach ($dataSet as $item){
-            if(!count($this->province->search('name', $item, true))){
-                $correct = false;
-                $this->fail('Province '. $item. ' not found');
+        foreach ($keywords as $key){
+            $dataSet = array_column($provinces, $key);
+            foreach ($dataSet as $item){
+                if(!count($this->province->search($key, $item, true))){
+                    $correct = false;
+                    $this->fail('Province not found for '.$key.' => '.$item);
+                }
             }
         }
 

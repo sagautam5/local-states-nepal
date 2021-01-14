@@ -122,12 +122,16 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     public function testSearch()
     {
         $categories = $this->category->allCategories();
-        $dataSet = array_column($categories, 'name');
+        $keywords = ['id', 'name', 'short_code'];
+
         $correct = true;
-        foreach ($dataSet as $item){
-            if(!count($this->category->search('name',$item,true))){
-                $correct = false;
-                $this->fail('Municipality Category '. $item. ' not found');
+        foreach ($keywords as $key){
+            $dataSet = array_column($categories, $key);
+            foreach ($dataSet as $item){
+                if(!count($this->category->search($key,$item,true))){
+                    $correct = false;
+                    $this->fail('Municipality Category not found for '.$key.' => '.$item);
+                }
             }
         }
 

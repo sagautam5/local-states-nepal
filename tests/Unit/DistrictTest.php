@@ -140,13 +140,16 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     public function testSearch()
     {
         $districts = $this->district->allDistricts();
-        $dataSet = array_column($districts, 'name');
+        $keywords =  ['id', 'province_id', 'name', 'area_sq_km', 'website', 'headquarter'];
 
         $correct = true;
-        foreach ($dataSet as $item){
-            if(!count($this->district->search('name', $item, true))){
-                $correct = false;
-                $this->fail('District '. $item. ' not found');
+        foreach ($keywords as $key){
+            $dataSet = array_column($districts, $key);
+            foreach ($dataSet as $item){
+                if(!count($this->district->search($key, $item, true))){
+                    $correct = false;
+                    $this->fail('District not found for '.$key.' => '. $item);
+                }
             }
         }
 
