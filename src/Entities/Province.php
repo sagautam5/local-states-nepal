@@ -10,7 +10,7 @@ use Sagautam5\LocalStateNepal\Loaders\ProvinceLoader;
  * Class Province
  * @package Sagautam5\LocalStateNepal\Entities
  */
-class Province
+class Province extends BaseEntity
 {
     /**
      * @var mixed|null
@@ -157,8 +157,7 @@ class Province
     public function search($key, $value, $exact = false)
     {
         $provinces = $this->allProvinces();
-        return array_filter($provinces, function ($item) use ($key, $value, $exact) {
-            return $exact ? ($item->$key == $value ? true:false)  :is_int(strpos($item->$key, $value)) ? true:false;
-        });
+
+        return $this->filter($key, $value, $provinces, $exact);
     }
 }

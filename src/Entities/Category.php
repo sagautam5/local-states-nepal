@@ -9,7 +9,7 @@ use Sagautam5\LocalStateNepal\Loaders\CategoriesLoader;
  * Class Category
  * @package Sagautam5\LocalStateNepal\Entities
  */
-class Category
+class Category extends BaseEntity
 {
     /**
      * @var
@@ -85,8 +85,7 @@ class Category
     public function search($key, $value, $exact = false)
     {
         $categories = $this->allCategories();
-        return  array_filter($categories, function ($item) use ($key, $value, $exact) {
-            return $exact ? ($item->$key == $value ? true:false) :(is_int(strpos($item->$key, $value)) ? true:false);
-        });
+
+        return $this->filter($key, $value, $categories, $exact);
     }
 }

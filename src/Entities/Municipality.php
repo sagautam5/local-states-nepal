@@ -10,7 +10,7 @@ use Sagautam5\LocalStateNepal\Loaders\MunicipalitiesLoader;
  * Class Municipality
  * @package Sagautam5\LocalStateNepal\Entities
  */
-class Municipality
+class Municipality extends BaseEntity
 {
     /**
      * @var
@@ -177,8 +177,7 @@ class Municipality
     public function search($key, $value, $exact = false)
     {
         $municipalities = $this->allMunicipalities();
-        return array_filter($municipalities, function ($item) use ($key, $value, $exact) {
-            return $exact ? ($item->$key ==  $value ? true:false) : is_int(strpos($item->$key, $value)) ? true:false;
-        });
+
+        return $this->filter($key, $value, $municipalities, $exact);
     }
 }

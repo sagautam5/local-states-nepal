@@ -10,7 +10,7 @@ use Sagautam5\LocalStateNepal\Loaders\DistrictsLoader;
  * Class District
  * @package Sagautam5\LocalStateNepal\Entities
  */
-class District
+class District extends BaseEntity
 {
     /**
      * @var
@@ -146,8 +146,7 @@ class District
     public function search($key, $value, $exact = false)
     {
         $districts = $this->allDistricts();
-        return array_filter($districts, function ($item) use ($key, $value, $exact) {
-            return $exact ? ($item->$key == $value ? true:false): is_int(strpos($item->$key, $value)) ? true:false;
-        });
+
+        return $this->filter($key, $value, $districts, $exact);
     }
 }
