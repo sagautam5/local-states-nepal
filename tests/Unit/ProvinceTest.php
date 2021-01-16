@@ -16,7 +16,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     /**
      * @var array
      */
-    private $languages = ['en', 'np'];
+    private $language;
 
     /**
      * ProvinceTest constructor.
@@ -24,7 +24,9 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $this->province = new Province($this->languages[array_rand($this->languages)]);
+        $this->language = $_ENV['APP_LANG'];
+
+        $this->province = new Province($this->language);
     }
 
     /**

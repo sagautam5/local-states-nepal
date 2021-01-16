@@ -12,9 +12,10 @@
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
-    <coverage processUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">./src/</directory>
-        </include>
-    </coverage>
+
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_NAME" value="LOCAL_STATES_NEPAL"/>
+        <env name="APP_LANG" value="en"/>
+    </php>
 </phpunit>

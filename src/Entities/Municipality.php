@@ -13,11 +13,6 @@ use Sagautam5\LocalStateNepal\Loaders\MunicipalitiesLoader;
 class Municipality extends BaseEntity
 {
     /**
-     * @var
-     */
-    private $municipalities;
-
-    /**
      * @var string
      */
     private $lang;
@@ -33,16 +28,16 @@ class Municipality extends BaseEntity
             $this->lang = $lang;
 
             $loader = new MunicipalitiesLoader($this->lang);
-            $this->municipalities = $loader->municipalities();
+            $this->items = $loader->municipalities();
 
             $category = new Category($this->lang);
             $categories = $category->allCategories();
 
-            $this->municipalities = array_map(function ($item) use ($categories){
+            $this->items = array_map(function ($item) use ($categories){
                 $item = (array)$item;
                 $item['name'] = $item['name'].' '.$categories[$item['category_id']-1]->name;
                 return (object)$item;
-            }, $this->municipalities);
+            }, $this->items);
         }catch (LoadingException $exception){
             throw $exception;
         }
@@ -64,7 +59,7 @@ class Municipality extends BaseEntity
      */
     public function allMunicipalities()
     {
-        return $this->municipalities;
+        return $this->items;
     }
 
     /**
@@ -75,7 +70,7 @@ class Municipality extends BaseEntity
      */
     public function getMunicipalitiesByDistrict($districtId)
     {
-        return array_values(array_filter($this->municipalities, function ($item) use ($districtId) {
+        return array_values(array_filter($this->items, function ($item) use ($districtId) {
             return ($item->district_id == $districtId);
         }));
     }
@@ -88,7 +83,7 @@ class Municipality extends BaseEntity
      */
     public function getMunicipalityByCategory($categoryId)
     {
-        return array_values(array_filter($this->municipalities, function ($item) use ($categoryId) {
+        return array_values(array_filter($this->items, function ($item) use ($categoryId) {
             return ($item->category_id == $categoryId);
         }));
     }
@@ -101,9 +96,9 @@ class Municipality extends BaseEntity
      */
     public function find($id)
     {
-        $key = (array_search($id, array_column($this->municipalities, 'id')));
+        $key = (array_search($id, array_column($this->items, 'id')));
 
-        return is_int($key) ? $this->municipalities[$key]:null;
+        return is_int($key) ? $this->items[$key]:null;
     }
 
     /**
@@ -113,7 +108,7 @@ class Municipality extends BaseEntity
      */
     public function largest()
     {
-        $area = array_column($this->municipalities, 'area_sq_km');
+        $area = array_column($this->items, 'area_sq_km');
 
         if($this->lang == 'np'){
             $area = array_map(function ($item){
@@ -121,7 +116,7 @@ class Municipality extends BaseEntity
             }, $area);
         }
 
-        return $this->municipalities[array_search(max($area), $area)];
+        return $this->items[array_search(max($area), $area)];
     }
 
     /**
@@ -131,7 +126,7 @@ class Municipality extends BaseEntity
      */
     public function smallest()
     {
-        $area = array_column($this->municipalities, 'area_sq_km');
+        $area = array_column($this->items, 'area_sq_km');
 
         if($this->lang == 'np'){
             $area = array_map(function ($item){
@@ -139,7 +134,7 @@ class Municipality extends BaseEntity
             }, $area);
         }
 
-        return $this->municipalities[array_search(min($area), $area)];
+        return $this->items[array_search(min($area), $area)];
     }
 
     /**

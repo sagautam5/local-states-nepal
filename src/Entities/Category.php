@@ -12,11 +12,6 @@ use Sagautam5\LocalStateNepal\Loaders\CategoriesLoader;
 class Category extends BaseEntity
 {
     /**
-     * @var
-     */
-    private $categories;
-
-    /**
      * @var string
      */
     private $lang;
@@ -32,7 +27,7 @@ class Category extends BaseEntity
             $this->lang = $lang;
 
             $loader = new CategoriesLoader($this->lang);
-            $this->categories = $loader->categories();
+            $this->items = $loader->categories();
         }catch (LoadingException $exception){
             throw $exception;
         }
@@ -45,7 +40,7 @@ class Category extends BaseEntity
      */
     public function allCategories()
     {
-        return $this->categories;
+        return $this->items;
     }
 
     /**
@@ -56,9 +51,9 @@ class Category extends BaseEntity
      */
     public function find($id)
     {
-        $key = (array_search($id, array_column($this->categories, 'id')));
+        $key = (array_search($id, array_column($this->items, 'id')));
 
-        return is_int($key) ? $this->categories[$key]:null;
+        return is_int($key) ? $this->items[$key]:null;
     }
 
     /**
@@ -69,9 +64,9 @@ class Category extends BaseEntity
      */
     public function findByShortCode($short_code)
     {
-        $key = (array_search($short_code, array_column($this->categories, 'short_code')));
+        $key = (array_search($short_code, array_column($this->items, 'short_code')));
 
-        return is_int($key) ? $this->categories[$key]:null;
+        return is_int($key) ? $this->items[$key]:null;
     }
 
     /**

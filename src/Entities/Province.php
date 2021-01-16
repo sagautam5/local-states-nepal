@@ -13,11 +13,6 @@ use Sagautam5\LocalStateNepal\Loaders\ProvinceLoader;
 class Province extends BaseEntity
 {
     /**
-     * @var mixed|null
-     */
-    private $provinces;
-
-    /**
      * @var string
      */
     private $lang;
@@ -33,7 +28,7 @@ class Province extends BaseEntity
             $this->lang = $lang;
 
             $loader = new ProvinceLoader($this->lang);
-            $this->provinces = $loader->provinces();
+            $this->items = $loader->provinces();
         } catch (LoadingException $exception) {
             throw $exception;
         }
@@ -45,7 +40,7 @@ class Province extends BaseEntity
      */
     public function allProvinces()
     {
-        return $this->provinces;
+        return $this->items;
     }
 
     /**
@@ -56,9 +51,9 @@ class Province extends BaseEntity
      */
     public function find($id)
     {
-        $key = (array_search($id, array_column($this->provinces, 'id')));
+        $key = (array_search($id, array_column($this->items, 'id')));
 
-        return is_int($key) ? $this->provinces[$key] : null;
+        return is_int($key) ? $this->items[$key] : null;
     }
 
     /**
@@ -67,7 +62,7 @@ class Province extends BaseEntity
      */
     public function largest()
     {
-        $area = array_column($this->provinces, 'area_sq_km');
+        $area = array_column($this->items, 'area_sq_km');
 
         if ($this->lang == 'np') {
             $area = array_map(function ($item) {
@@ -75,7 +70,7 @@ class Province extends BaseEntity
             }, $area);
         }
 
-        return $this->provinces[array_search(max($area), $area)];
+        return $this->items[array_search(max($area), $area)];
     }
 
     /**
@@ -85,14 +80,14 @@ class Province extends BaseEntity
      */
     public function smallest()
     {
-        $area = array_column($this->provinces, 'area_sq_km');
+        $area = array_column($this->items, 'area_sq_km');
 
         if ($this->lang == 'np') {
             $area = array_map(function ($item) {
                 return Helper::numericEnglish($item);
             }, $area);
         }
-        return $this->provinces[array_search(min($area), $area)];
+        return $this->items[array_search(min($area), $area)];
     }
 
 
