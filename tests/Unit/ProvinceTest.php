@@ -134,4 +134,26 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($correct);
     }
+
+    /**
+     * Test Recursive Search
+     */
+    public function testRecursiveSearch()
+    {
+        $params = $_ENV['APP_LANG'] == 'en' ? [
+            ['key' => 'name', 'value' => 'mati', 'exact' => false],
+            ['key' => 'headquarter', 'value' => 'Hetauda', 'exact' => false]
+        ]:[
+            ['key' => 'name', 'value' => 'मती', 'exact' => false],
+            ['key' => 'headquarter', 'value' => 'हेटौडा', 'exact' => false]
+        ];
+
+        $result = $this->province->recursiveSearch($params);
+
+        if(!$result){
+            $this->fail('Not Found');
+        }
+
+        $this->assertTrue(true);
+    }
 }

@@ -16,6 +16,6 @@
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="APP_NAME" value="LOCAL_STATES_NEPAL"/>
-        <env name="APP_LANG" value="en"/>
+        <env name="APP_LANG" value="np"/>
     </php>
 </phpunit>

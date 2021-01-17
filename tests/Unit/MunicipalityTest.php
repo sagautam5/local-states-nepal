@@ -210,4 +210,24 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($correct);
     }
+
+    /**
+     * Test Recursive Search
+     */
+    public function testRecursiveSearch()
+    {
+        $params = $_ENV['APP_LANG'] == 'en' ? [
+            ['key' => 'name', 'value' => 'Jorpati', 'exact' => false],
+        ]:[
+            ['key' => 'name', 'value' => 'जोरपाटी', 'exact' => false],
+        ];
+
+        $result = $this->municipality->recursiveSearch($params);
+
+        if(!$result){
+            $this->fail('Not Found');
+        }
+
+        $this->assertTrue(true);
+    }
 }

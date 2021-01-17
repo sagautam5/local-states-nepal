@@ -22,9 +22,9 @@ class BaseEntity
      */
     protected function filter($key, $value, $data, $exact = false)
     {
-        return  array_filter($data, function ($item) use ($key, $value, $exact) {
-            return $exact ? ($item->$key == $value ? true:false) :(is_int(strpos($item->$key, $value)) ? true:false);
-        });
+        return  array_values(array_filter($data, function ($item) use ($key, $value, $exact) {
+            return ($exact ? ($item->$key == $value ? true:false) :(is_int(strpos($item->$key, $value)) ? true:false));
+        }));
     }
 
     /**
@@ -42,6 +42,6 @@ class BaseEntity
 
         $data = $param ? $this->filter($param['key'], $param['value'], $data, $param['exact']):$data;
 
-        return $param ? $this->recursiveSearch($params, $data):$data;
+        return ($param && $data) ? $this->recursiveSearch($params, $data):$data;
     }
 }

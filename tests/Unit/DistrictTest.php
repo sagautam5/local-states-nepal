@@ -156,4 +156,28 @@ class DistrictTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($correct);
     }
+
+    /**
+     * Test Recursive Search
+     */
+    public function testRecursiveSearch()
+    {
+        $params = $_ENV['APP_LANG'] == 'en' ? [
+            ['key' => 'name', 'value' => 'Gulmi', 'exact' => false],
+            ['key' => 'headquarter', 'value' => 'Tamghas', 'exact' => false],
+            ['key' => 'province_id', 'value' => '5', 'exact' => false]
+        ]:[
+            ['key' => 'name', 'value' => 'गुल्', 'exact' => false],
+            ['key' => 'headquarter', 'value' => 'तम्घा', 'exact' => false],
+            ['key' => 'province_id', 'value' => '5', 'exact' => false]
+        ];
+
+        $result = $this->district->recursiveSearch($params);
+
+        if(!$result){
+            $this->fail('Not Found');
+        }
+
+        $this->assertTrue(true);
+    }
 }

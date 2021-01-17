@@ -144,12 +144,16 @@ class CategoryTest extends PHPUnit_Framework_TestCase
      */
     public function testRecursiveSearch()
     {
-        $result = $this->category->recursiveSearch(
+        $params = $_ENV['APP_LANG'] == 'en' ? [
+            ['key' => 'name', 'value' => 'Municipality', 'exact' => false],
+            ['key' => 'short_code', 'value' => 'M', 'exact' => false]
+        ]
+            :
             [
-                ['key' => 'name', 'value' => 'Municipality', 'exact' => false],
-                ['key' => 'short_code', 'value' => 'R', 'exact' => false]
-            ]
-        );
+                ['key' => 'name', 'value' => 'नगरपालिका', 'exact' => false],
+                ['key' => 'short_code', 'value' => 'M', 'exact' => false]
+            ];
+        $result = $this->category->recursiveSearch($params);
 
         if(!$result){
             $this->fail('Not Found');
