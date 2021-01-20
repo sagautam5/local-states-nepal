@@ -119,3 +119,29 @@ Once you initiate province entity, you can retrieve variety of data.
    ```php
     ['id', 'name', 'area_sq_km', 'website', 'headquarter'];
     ```         
+   
+8. Recursive search with multiple set of key value data
+      
+    ```php
+    <?php
+    
+    use Sagautam5\LocalStateNepal\Entities\Province;
+    
+    $province = new Province();
+    $params = [
+                 ['key' => 'name', 'value' => 'some name', 'exact' => false],   
+                 ['key' => 'headquarter', 'value' => 'some name', 'exact' => true]
+     ];
+    $provinceDetails = $province->recursiveSearch($params);   
+    
+    // if you have already filtered province data in structured format, then you can pass the data in recursive search
+    $data =  $province->search('name', 'some name', false); 
+    
+    $provinceDetails = $province->search($params, $data);
+    ```   
+         
+    List of options for parameter key:
+    
+    ```php
+    ['id', 'name', 'area_sq_km', 'website', 'headquarter'];
+    ```  

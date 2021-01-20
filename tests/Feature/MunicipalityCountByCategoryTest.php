@@ -13,7 +13,7 @@ class MunicipalityCountByCategoryTest extends PHPUnit_Framework_TestCase
     /**
      * @var array
      */
-    private $languages = ['en', 'np'];
+    private $language;
 
     /**
      * MunicipalityCountByCategoryTest constructor.
@@ -21,7 +21,8 @@ class MunicipalityCountByCategoryTest extends PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $this->municipality = new Municipality($this->languages[array_rand($this->languages)]);
+        $this->language = $_ENV['APP_LANG'];
+        $this->municipality = new Municipality($this->language);
     }
 
     /**

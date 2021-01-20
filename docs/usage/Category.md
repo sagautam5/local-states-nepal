@@ -83,3 +83,29 @@ Once you initiate category entity, you can retrieve variety of data.
       ```php
           ['id', 'name', 'short_code']
       ```       
+   
+5. Recursive search with multiple set of key value data
+
+   ```php
+    <?php
+    
+    use Sagautam5\LocalStateNepal\Entities\Category;
+    
+    $category = new Category();
+    $params = [
+                   ['key' => 'name', 'value' => 'some name', 'exact' => false],   
+                   ['key' => 'id', 'value' => 'some id', 'exact' => true]
+       ];
+    $categoryDetails = $category->recursiveSearch($params);   
+   
+    // if you have already filtered category data in structured format, then you can pass the data in recursive search
+    $data =  $category->search('name', 'some name', false); 
+   
+    $categoryDetails = $category->search($params, $data);
+    ```   
+   
+   List of options for parameter key:
+         
+    ```php
+   ['id', 'name', 'short_code']
+    ```          

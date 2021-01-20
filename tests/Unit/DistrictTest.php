@@ -16,7 +16,7 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     /**
      * @var array
      */
-    private $languages = ['en', 'np'];
+    private $language;
 
     /**
      * DistrictTest constructor.
@@ -24,7 +24,8 @@ class DistrictTest extends PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $this->district = new District($this->languages[array_rand($this->languages)]);
+        $this->language = $_ENV['APP_LANG'];
+        $this->district = new District($this->language);
     }
 
     /**
@@ -154,5 +155,29 @@ class DistrictTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertTrue($correct);
+    }
+
+    /**
+     * Test Recursive Search
+     */
+    public function testRecursiveSearch()
+    {
+        $params = $_ENV['APP_LANG'] == 'en' ? [
+            ['key' => 'name', 'value' => 'Gulmi', 'exact' => false],
+            ['key' => 'headquarter', 'value' => 'Tamghas', 'exact' => false],
+            ['key' => 'province_id', 'value' => '5', 'exact' => false]
+        ]:[
+            ['key' => 'name', 'value' => 'गुल्', 'exact' => false],
+            ['key' => 'headquarter', 'value' => 'तम्घा', 'exact' => false],
+            ['key' => 'province_id', 'value' => '5', 'exact' => false]
+        ];
+
+        $result = $this->district->recursiveSearch($params);
+
+        if(!$result){
+            $this->fail('Not Found');
+        }
+
+        $this->assertTrue(true);
     }
 }

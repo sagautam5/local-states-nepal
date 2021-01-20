@@ -36,7 +36,9 @@ Before submitting a pull request:
 ```sh 
 composer update 
 ```
-- Create and test the feature/issue and make sure it doesn't affect codebase by running full tests by executing following console command.
+- Create and test the feature/issue and make sure it doesn't affect codebase by running full tests by executing following console command for two different environment variables.
+  
+  Set APP_LANG to np and en respectively and run following command for each value of language.
 ```sh 
 vendor/bin/phpunit 
 ```

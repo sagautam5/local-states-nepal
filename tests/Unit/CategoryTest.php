@@ -16,7 +16,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * @var array
      */
-    private $languages = ['en', 'np'];
+    private $language;
 
     /**
      * CategoryTest constructor.
@@ -24,7 +24,8 @@ class CategoryTest extends PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $this->category = new Category($this->languages[array_rand($this->languages)]);
+        $this->language = $_ENV['APP_LANG'];
+        $this->category = new Category($this->language);
     }
 
     /**
@@ -136,5 +137,28 @@ class CategoryTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertTrue($correct);
+    }
+
+    /**
+     * Test Recursive Search
+     */
+    public function testRecursiveSearch()
+    {
+        $params = $_ENV['APP_LANG'] == 'en' ? [
+            ['key' => 'name', 'value' => 'Municipality', 'exact' => false],
+            ['key' => 'short_code', 'value' => 'M', 'exact' => false]
+        ]
+            :
+            [
+                ['key' => 'name', 'value' => 'नगरपालिका', 'exact' => false],
+                ['key' => 'short_code', 'value' => 'M', 'exact' => false]
+            ];
+        $result = $this->category->recursiveSearch($params);
+
+        if(!$result){
+            $this->fail('Not Found');
+        }
+
+        $this->assertTrue(true);
     }
 }

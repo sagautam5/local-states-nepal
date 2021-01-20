@@ -10,13 +10,8 @@ use Sagautam5\LocalStateNepal\Loaders\DistrictsLoader;
  * Class District
  * @package Sagautam5\LocalStateNepal\Entities
  */
-class District
+class District extends BaseEntity
 {
-    /**
-     * @var
-     */
-    protected $districts;
-
     /**
      * @var string
      */
@@ -33,7 +28,7 @@ class District
             $this->lang = $lang;
 
             $loader = new DistrictsLoader($this->lang);
-            $this->districts = $loader->districts();
+            $this->items = $loader->districts();
         }catch (LoadingException $exception){
             throw $exception;
         }
@@ -46,7 +41,7 @@ class District
      */
     public function allDistricts()
     {
-        return $this->districts;
+        return $this->items;
     }
 
     /**
@@ -81,7 +76,7 @@ class District
      */
     public function getDistrictsByProvince($provinceId)
     {
-         return array_values(array_filter($this->districts, function ($item) use ($provinceId) {
+         return array_values(array_filter($this->items, function ($item) use ($provinceId) {
              return ($item->province_id == $provinceId);
          }));
     }
@@ -94,9 +89,9 @@ class District
      */
     public function find($id)
     {
-        $key = (array_search($id, array_column($this->districts, 'id')));
+        $key = (array_search($id, array_column($this->items, 'id')));
 
-        return is_int($key) ? $this->districts[$key]:null;
+        return is_int($key) ? $this->items[$key]:null;
     }
 
     /**
@@ -106,7 +101,7 @@ class District
      */
     public function largest()
     {
-        $area = array_column($this->districts, 'area_sq_km');
+        $area = array_column($this->items, 'area_sq_km');
 
         if($this->lang == 'np'){
             $area = array_map(function ($item){
@@ -114,7 +109,7 @@ class District
             }, $area);
         }
 
-        return $this->districts[array_search(max($area), $area)];
+        return $this->items[array_search(max($area), $area)];
     }
 
     /**
@@ -124,7 +119,7 @@ class District
      */
     public function smallest()
     {
-        $area = array_column($this->districts, 'area_sq_km');
+        $area = array_column($this->items, 'area_sq_km');
 
         if($this->lang == 'np'){
             $area = array_map(function ($item){
@@ -132,7 +127,7 @@ class District
             }, $area);
         }
 
-        return $this->districts[array_search(min($area), $area)];
+        return $this->items[array_search(min($area), $area)];
     }
 
     /**
@@ -146,8 +141,7 @@ class District
     public function search($key, $value, $exact = false)
     {
         $districts = $this->allDistricts();
-        return array_filter($districts, function ($item) use ($key, $value, $exact) {
-            return $exact ? ($item->$key == $value ? true:false): is_int(strpos($item->$key, $value)) ? true:false;
-        });
+
+        return $this->filter($key, $value, $districts, $exact);
     }
 }

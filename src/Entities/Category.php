@@ -9,13 +9,8 @@ use Sagautam5\LocalStateNepal\Loaders\CategoriesLoader;
  * Class Category
  * @package Sagautam5\LocalStateNepal\Entities
  */
-class Category
+class Category extends BaseEntity
 {
-    /**
-     * @var
-     */
-    private $categories;
-
     /**
      * @var string
      */
@@ -32,7 +27,7 @@ class Category
             $this->lang = $lang;
 
             $loader = new CategoriesLoader($this->lang);
-            $this->categories = $loader->categories();
+            $this->items = $loader->categories();
         }catch (LoadingException $exception){
             throw $exception;
         }
@@ -45,7 +40,7 @@ class Category
      */
     public function allCategories()
     {
-        return $this->categories;
+        return $this->items;
     }
 
     /**
@@ -56,9 +51,9 @@ class Category
      */
     public function find($id)
     {
-        $key = (array_search($id, array_column($this->categories, 'id')));
+        $key = (array_search($id, array_column($this->items, 'id')));
 
-        return is_int($key) ? $this->categories[$key]:null;
+        return is_int($key) ? $this->items[$key]:null;
     }
 
     /**
@@ -69,9 +64,9 @@ class Category
      */
     public function findByShortCode($short_code)
     {
-        $key = (array_search($short_code, array_column($this->categories, 'short_code')));
+        $key = (array_search($short_code, array_column($this->items, 'short_code')));
 
-        return is_int($key) ? $this->categories[$key]:null;
+        return is_int($key) ? $this->items[$key]:null;
     }
 
     /**
@@ -85,8 +80,7 @@ class Category
     public function search($key, $value, $exact = false)
     {
         $categories = $this->allCategories();
-        return  array_filter($categories, function ($item) use ($key, $value, $exact) {
-            return $exact ? ($item->$key == $value ? true:false) :(is_int(strpos($item->$key, $value)) ? true:false);
-        });
+
+        return $this->filter($key, $value, $categories, $exact);
     }
 }

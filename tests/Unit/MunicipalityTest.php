@@ -16,7 +16,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     /**
      * @var array
      */
-    private $languages = ['en', 'np'];
+    private $language;
 
     /**
      * MunicipalityTest constructor.
@@ -24,7 +24,9 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $this->municipality = new Municipality($this->languages[array_rand($this->languages)]);
+        $this->language = $_ENV['APP_LANG'];
+
+        $this->municipality = new Municipality($this->language);
     }
 
     /**
@@ -207,5 +209,25 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertTrue($correct);
+    }
+
+    /**
+     * Test Recursive Search
+     */
+    public function testRecursiveSearch()
+    {
+        $params = $_ENV['APP_LANG'] == 'en' ? [
+            ['key' => 'name', 'value' => 'Jorpati', 'exact' => false],
+        ]:[
+            ['key' => 'name', 'value' => 'जोरपाटी', 'exact' => false],
+        ];
+
+        $result = $this->municipality->recursiveSearch($params);
+
+        if(!$result){
+            $this->fail('Not Found');
+        }
+
+        $this->assertTrue(true);
     }
 }
