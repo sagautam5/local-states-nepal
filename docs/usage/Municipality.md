@@ -129,3 +129,29 @@ Once you initiate municipality entity, you can retrieve variety of data.
       ```php
        ['id', 'district_id', 'category_id', 'name', 'area_sq_km', 'website', 'wards']
    ```         
+   
+9. Recursive search with multiple set of key value data
+      
+    ```php
+    <?php
+    
+    use Sagautam5\LocalStateNepal\Entities\Municipality;
+    
+    $municipality = new Municipality();
+    $params = [
+                 ['key' => 'municipality_id', 'value' => 'some id', 'exact' => true],   
+                 ['key' => 'wards', 'value' => 'some ward', 'exact' => true]
+     ];
+    $municipalityDetails = $municipality->recursiveSearch($params);   
+    
+    // if you have already filtered municipality data in structured format, then you can pass the data in recursive search
+    $data =  $municipality->search('name', 'some name', false); 
+    
+    $municipalityDetails = $municipality->search($params, $data);
+    ```   
+         
+    List of options for parameter key:
+    
+    ```php
+    ['id', 'district_id', 'category_id', 'name', 'area_sq_km', 'website', 'wards'];
+    ```   

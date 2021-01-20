@@ -117,3 +117,29 @@ Once you initiate district entity, you can retrieve variety of data.
       ```php
        ['id', 'province_id', 'name', 'area_sq_km', 'website', 'headquarter'];
       ```         
+8. Recursive search with multiple set of key value data
+   
+      ```php
+       <?php
+       
+       use Sagautam5\LocalStateNepal\Entities\District;
+       
+       $district = new District();
+       $params = [
+                      ['key' => 'headquarter', 'value' => 'some name', 'exact' => true],   
+                      ['key' => 'id', 'value' => 'some id', 'exact' => true]
+          ];
+       $districtDetails = $district->recursiveSearch($params);   
+      
+       // if you have already filtered district data in structured format, then you can pass the data in recursive search
+       $data =  $district->search('name', 'some name', false); 
+      
+       $districtDetails = $district->search($params, $data);
+   ```   
+      
+      
+   List of options for parameter key:
+      
+   ```php
+    ['id', 'province_id', 'name', 'area_sq_km', 'website', 'headquarter'];
+   ```           
