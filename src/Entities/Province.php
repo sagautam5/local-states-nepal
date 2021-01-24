@@ -29,6 +29,9 @@ class Province extends BaseEntity
 
             $loader = new ProvinceLoader($this->lang);
             $this->items = $loader->provinces();
+
+            $this->keys = ['id', 'name','area_sq_km', 'website', 'headquarter'];
+
         } catch (LoadingException $exception) {
             throw $exception;
         }

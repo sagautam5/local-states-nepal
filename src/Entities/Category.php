@@ -28,6 +28,9 @@ class Category extends BaseEntity
 
             $loader = new CategoriesLoader($this->lang);
             $this->items = $loader->categories();
+
+            $this->keys = ['id', 'name', 'short_code'];
+
         }catch (LoadingException $exception){
             throw $exception;
         }

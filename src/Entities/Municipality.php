@@ -38,6 +38,9 @@ class Municipality extends BaseEntity
                 $item['name'] = $item['name'].' '.$categories[$item['category_id']-1]->name;
                 return (object)$item;
             }, $this->items);
+
+            $this->keys = ['id', 'district_id', 'category_id', 'name','area_sq_km', 'website', 'wards'];
+
         }catch (LoadingException $exception){
             throw $exception;
         }

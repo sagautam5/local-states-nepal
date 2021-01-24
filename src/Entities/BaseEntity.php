@@ -12,6 +12,11 @@ class BaseEntity
     protected $items;
 
     /**
+     * @var
+     */
+    protected $keys;
+
+    /**
      * Filter data by key value pair
      *
      * @param $key
@@ -43,5 +48,10 @@ class BaseEntity
         $data = $param ? $this->filter($param['key'], $param['value'], $data, $param['exact']):$data;
 
         return ($param && $data) ? $this->recursiveSearch($params, $data):$data;
+    }
+
+    public function sortBy($key, $data = [], $direction = 'asc')
+    {
+        $data = $data ? $data: $this->items;
     }
 }
