@@ -36,34 +36,34 @@ class BaseEntity
      * Recursive Search Data
      *
      * @param $params
-     * @param array $data
+     * @param array $items
      * @return array|mixed
      */
-    public function recursiveSearch($params, $data = [])
+    public function recursiveSearch($params, $items = [])
     {
-        $data = $data ? $data : $this->items;
+        $items = $items ? $items : $this->items;
 
         $param = count($params) ? array_pop($params):null;
 
-        $data = $param ? $this->filter($param['key'], $param['value'], $data, $param['exact']):$data;
+        $items = $param ? $this->filter($param['key'], $param['value'], $items, $param['exact']):$items;
 
-        return ($param && $data) ? $this->recursiveSearch($params, $data):$data;
+        return ($param && $items) ? $this->recursiveSearch($params, $items):$items;
     }
 
     /**
      * Sort Data by Key
      *
      * @param $key
-     * @param array $data
+     * @param array $items
      * @param string $direction
      *
      * @return array
      */
-    public function sortBy($key, $direction = 'ASC', $data = [] )
+    public function sortBy($key, $direction = 'ASC', $items = [] )
     {
-        $data = ($data ? $data: $this->items);
+        $items = ($items ? $items: $this->items);
 
-        uasort($data, function ($first, $second) use ($key, $direction) {
+        uasort($items, function ($first, $second) use ($key, $direction) {
             $firstValue = $first->$key;
             $secondValue = $second->$key;
             if ($firstValue == $secondValue) return 0;
@@ -71,6 +71,6 @@ class BaseEntity
             else return -1;
         });
 
-        return $data;
+        return $items;
     }
 }
