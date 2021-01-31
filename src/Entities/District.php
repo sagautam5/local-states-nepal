@@ -29,6 +29,9 @@ class District extends BaseEntity
 
             $loader = new DistrictsLoader($this->lang);
             $this->items = $loader->districts();
+
+            $this->keys = ['id', 'province_id', 'name', 'area_sq_km', 'website', 'headquarter'];
+
         }catch (LoadingException $exception){
             throw $exception;
         }
