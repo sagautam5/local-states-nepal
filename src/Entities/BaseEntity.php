@@ -50,8 +50,27 @@ class BaseEntity
         return ($param && $data) ? $this->recursiveSearch($params, $data):$data;
     }
 
-    public function sortBy($key, $data = [], $direction = 'asc')
+    /**
+     * Sort Data by Key
+     *
+     * @param $key
+     * @param array $data
+     * @param string $direction
+     *
+     * @return array
+     */
+    public function sortBy($key, $direction = 'ASC', $data = [] )
     {
-        $data = $data ? $data: $this->items;
+        $data = ($data ? $data: $this->items);
+
+        uasort($data, function ($first, $second) use ($key, $direction) {
+            $firstValue = $first->$key;
+            $secondValue = $second->$key;
+            if ($firstValue == $secondValue) return 0;
+            elseif (($direction == 'DSC' ? $firstValue < $secondValue : $firstValue > $secondValue)) return 1;
+            else return -1;
+        });
+
+        return $data;
     }
 }
