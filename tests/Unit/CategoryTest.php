@@ -161,4 +161,28 @@ class CategoryTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(true);
     }
+
+    /**
+     * Test sort by feature on categories
+     */
+    public function testSortBy()
+    {
+        $keys = $this->category->getKeys();
+
+        $orders = array(SORT_ASC, SORT_DESC);
+
+        foreach ($orders as $order)
+        {
+            foreach ($keys as $key)
+            {
+                $expected = array_column($this->category->allCategories(), $key);
+
+                $order == SORT_ASC ? sort($expected) : rsort($expected);
+
+                $actual = array_column($this->category->sortBy($key, $order), $key);
+
+                $this->assertSame($expected, $actual);
+            }
+        }
+    }
 }

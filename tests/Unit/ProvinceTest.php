@@ -156,4 +156,28 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(true);
     }
+
+    /**
+     * Test sort by feature on province
+     */
+    public function testSortBy()
+    {
+        $keys = $this->province->getKeys();
+
+        $orders = array(SORT_ASC, SORT_DESC);
+
+        foreach ($orders as $order)
+        {
+            foreach ($keys as $key)
+            {
+                $expected = array_column($this->province->allProvinces(), $key);
+
+                $order == SORT_ASC ? sort($expected) : rsort($expected);
+
+                $actual = array_column($this->province->sortBy($key, $order), $key);
+
+                $this->assertSame($expected, $actual);
+            }
+        }
+    }
 }

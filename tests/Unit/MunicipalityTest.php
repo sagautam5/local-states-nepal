@@ -230,4 +230,28 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(true);
     }
+
+    /**
+     * Test sort by feature on municipalities
+     */
+    public function testSortBy()
+    {
+        $keys = $this->municipality->getKeys();
+
+        $orders = array(SORT_ASC, SORT_DESC);
+
+        foreach ($orders as $order)
+        {
+            foreach ($keys as $key)
+            {
+                $expected = array_column($this->municipality->allMunicipalities(), $key);
+
+                $order == SORT_ASC ? sort($expected) : rsort($expected);
+
+                $actual = array_column($this->municipality->sortBy($key, $order), $key);
+
+                $this->assertSame($expected, $actual);
+            }
+        }
+    }
 }

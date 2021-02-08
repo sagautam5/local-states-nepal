@@ -4,7 +4,7 @@
 namespace Sagautam5\LocalStateNepal\Entities;
 
 
-class BaseEntity
+abstract class BaseEntity
 {
     /**
      * @var
@@ -33,6 +33,14 @@ class BaseEntity
     }
 
     /**
+     * @return mixed
+     */
+    public function getKeys()
+    {
+        return $this->keys;
+    }
+
+    /**
      * Recursive Search Data
      *
      * @param $params
@@ -51,25 +59,18 @@ class BaseEntity
     }
 
     /**
-     * Sort Data by Key
+     * Sort items by column
      *
-     * @param $key
-     * @param array $items
-     * @param string $direction
-     *
-     * @return array
+     * @param string $key
+     * @param int $order
+     * @return mixed
      */
-    public function sortBy($key, $direction = 'ASC', $items = [] )
+    public function sortBy($key = 'name', $order = SORT_ASC)
     {
-        $items = ($items ? $items: $this->items);
+        $keys = array_column($this->items, $key);
 
-        uasort($items, function ($first, $second) use ($key, $direction) {
-            $firstValue = $first->$key;
-            $secondValue = $second->$key;
-            if ($firstValue == $secondValue) return 0;
-            elseif (($direction == 'DSC' ? $firstValue < $secondValue : $firstValue > $secondValue)) return 1;
-            else return -1;
-        });
+        $items = $this->items;
+        array_multisort($keys, $order, $items);
 
         return $items;
     }
