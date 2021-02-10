@@ -31,21 +31,17 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test Largest Province
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testLargest()
+    public function test_largest_Province()
     {
         $largest = $this->province->largest();
-        $largest->id == 6 ? $this->assertTrue(true): $this->fail('Not a Largest Province');
+        $this->assertSame($largest->id, 6);
     }
 
     /**
      * Test Find Province By ID
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testFind()
+    public function test_find_Province_For_Range_Between_1_to_7()
     {
         $correctIdSet = range(1,7);
         $incorrectIdSet = range(8,15);
@@ -74,21 +70,17 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test Smallest Province
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testSmallest()
+    public function test_smallest_Province()
     {
         $smallest = $this->province->smallest();
-        $smallest->id == 2 ? $this->assertTrue(true): $this->fail('Not a Smallest Province');
+        $this->assertSame($smallest->id, 2);
     }
 
     /**
      * Test Number of All Provinces
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testAllProvinces()
+    public function test_allProvinces_Count()
     {
         if(count($this->province->allProvinces()) == 7){
             $this->assertTrue(true);
@@ -100,7 +92,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     /**
      * Test Null Values in Provinces Data
      */
-    public function testNullValues()
+    public function test_Null_Values()
     {
         $hasNull = false;
         foreach ($this->province->allProvinces() as $set) {
@@ -109,14 +101,14 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
                 break;
             }
         }
-        if(!$hasNull)
-            $this->assertTrue(true);
+
+        $this->assertTrue(!$hasNull);
     }
 
     /**
      * Test Province Search
      */
-    public function testSearch()
+    public function test_search()
     {
         $provinces = $this->province->allProvinces();
         $keywords = ['id', 'name', 'area_sq_km', 'website', 'headquarter'];
@@ -138,7 +130,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     /**
      * Test Recursive Search
      */
-    public function testRecursiveSearch()
+    public function test_recursiveSearch()
     {
         $params = $_ENV['APP_LANG'] == 'en' ? [
             ['key' => 'name', 'value' => 'mati', 'exact' => false],
@@ -160,7 +152,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     /**
      * Test sort by feature on province
      */
-    public function testSortBy()
+    public function test_sortBy()
     {
         $keys = $this->province->getKeys();
 

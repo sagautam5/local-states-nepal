@@ -31,7 +31,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Category Find By ID
      */
-    public function testFind()
+    public function test_find_Category_For_Range_Between_1_to_4()
     {
         $correctIdSet = range(1,4);
         $incorrectIdSet = range(5,8);
@@ -61,7 +61,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Find Category By Short Code
      */
-    public function testFindByShortCode()
+    public function test_findBy_For_Each_Short_Code()
     {
         $correctCodeSet = ['MC', 'SMC', 'M', 'RM'];
         $incorrectCodeSet = ['AA', 'BB', 'CC', 'DD'];
@@ -90,7 +90,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Null Values in Category Data
      */
-    public function testNullValues()
+    public function test_Null_Values()
     {
         $hasNull = false;
         foreach ($this->category->allCategories() as $set) {
@@ -99,16 +99,14 @@ class CategoryTest extends PHPUnit_Framework_TestCase
                 break;
             }
         }
-        if(!$hasNull)
-            $this->assertTrue(true);
+
+        $this->assertTrue(!$hasNull);
     }
 
     /**
      * Test Number of All Categories
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testAllProvinces()
+    public function test_allCategories_For_Count()
     {
         if(count($this->category->allCategories()) == 4){
             $this->assertTrue(true);
@@ -120,7 +118,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Category Search
      */
-    public function testSearch()
+    public function test_search()
     {
         $categories = $this->category->allCategories();
         $keywords = ['id', 'name', 'short_code'];
@@ -142,7 +140,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Recursive Search
      */
-    public function testRecursiveSearch()
+    public function test_recursiveSearch()
     {
         $params = $_ENV['APP_LANG'] == 'en' ? [
             ['key' => 'name', 'value' => 'Municipality', 'exact' => false],
@@ -165,7 +163,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test sort by feature on categories
      */
-    public function testSortBy()
+    public function test_sortBy()
     {
         $keys = $this->category->getKeys();
 
