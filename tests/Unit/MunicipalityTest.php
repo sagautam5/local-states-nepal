@@ -254,4 +254,43 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
             }
         }
     }
+
+    /**
+     * Individual Province Municipality Count Test
+     */
+    public function test_GetMunicipalityByProvince_For_Individual_Correct_Count()
+    {
+        $expectedSet = array(
+            '1' => 137,
+            '2' => 136,
+            '3' => 119,
+            '4' => 85,
+            '5' => 109,
+            '6' => 79,
+            '7' => 88
+        );
+
+        $actualSet = array();
+
+        for ($index = 1; $index<=7; $index++){
+            $actualSet[(string)$index] = count($this->municipality->getMunicipalityByProvince($index));
+        }
+
+        $this->assertSame($expectedSet, $actualSet);
+    }
+
+    /**
+     * Total Municipality Count Test
+     */
+    public function test_GetMunicipalityByProvince_For_Total_Count()
+    {
+        $expectedTotal = 753;
+
+        $actualTotal = 0;
+        for ($index = 1; $index<=7; $index++){
+            $actualTotal += count($this->municipality->getMunicipalityByProvince($index));
+        }
+
+        $this->assertSame($actualTotal, $expectedTotal);
+    }
 }
