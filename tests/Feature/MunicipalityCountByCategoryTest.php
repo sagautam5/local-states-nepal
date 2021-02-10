@@ -28,7 +28,7 @@ class MunicipalityCountByCategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Municipalities Count for Each Category
      */
-    public function testMunicipalityCountByCategory()
+    public function test_municipalityCountByCategory()
     {
         $categoryIdSet = range(1,4);
         $categoryCountSet = [6,11,276,460];
@@ -43,7 +43,6 @@ class MunicipalityCountByCategoryTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        if($correct)
-            $this->assertTrue(true);
+        $this->assertTrue($correct);
     }
 }
