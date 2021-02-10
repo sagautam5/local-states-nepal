@@ -33,7 +33,7 @@ class ProvinceDistrictFeatureTest extends PHPUnit_Framework_TestCase
      *
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testGetProvincesWithDistricts()
+    public function test_getProvincesWithDistricts()
     {
         $provinceWithDistricts = $this->province->getProvincesWithDistricts();
 
@@ -45,8 +45,7 @@ class ProvinceDistrictFeatureTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        if ($correct)
-            $this->assertTrue(true);
+        $this->assertTrue($correct);
     }
 
     /**
@@ -54,7 +53,7 @@ class ProvinceDistrictFeatureTest extends PHPUnit_Framework_TestCase
      *
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testGetProvincesWithDistrictsWithMunicipalities()
+    public function test_getProvincesWithDistrictsWithMunicipalities()
     {
         $provinceWithDistrictWithMunicipalities = $this->province->getProvincesWithDistrictsWithMunicipalities();
 
@@ -73,7 +72,6 @@ class ProvinceDistrictFeatureTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        if($correct)
-            $this->assertTrue(true);
+        $this->assertTrue($correct);
     }
 }

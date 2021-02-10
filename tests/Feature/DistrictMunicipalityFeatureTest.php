@@ -29,7 +29,7 @@ class DistrictMunicipalityFeatureTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testGetDistrictsWithMunicipalities()
+    public function test_getDistrictsWithMunicipalities()
     {
         $districtsWithMunicipalities = $this->district->getDistrictsWithMunicipalities();
 
@@ -40,8 +40,7 @@ class DistrictMunicipalityFeatureTest extends PHPUnit_Framework_TestCase
                 $this->fail('Failed to get associated municipalities of district');
             }
         }
-
-        if ($correct)
-            $this->assertTrue(true);
+        
+        $this->assertTrue($correct);
     }
 }

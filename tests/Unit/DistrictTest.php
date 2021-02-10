@@ -30,21 +30,17 @@ class DistrictTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test Largest District
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testLargest()
+    public function test_largest_District()
     {
         $largest = $this->district->largest();
-        ($largest->id == 61 && $largest->province_id == 6) ? $this->assertTrue(true): $this->fail('Not a Largest District');
+        $this->assertSame([61,6],[$largest->id, $largest->province_id]);
     }
 
     /**
      * Test Find District By ID
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testFind()
+    public function test_find_For_Range_Between_1_to_77()
     {
         $correctIdSet = range(1,77);
         $incorrectIdSet = range(78,154);
@@ -73,21 +69,17 @@ class DistrictTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test Smallest District
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testSmallest()
+    public function test_smallest_district()
     {
         $smallest = $this->district->smallest();
-        ($smallest->id == 23 && $smallest->province_id == 3) ? $this->assertTrue(true): $this->fail('Not a Smallest District');
+        $this->assertSame([23,3], [$smallest->id, $smallest->province_id]);
     }
 
     /**
      * Test Number of All Districts
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function testAllDistricts()
+    public function test_allDistricts_For_Count()
     {
         if(count($this->district->allDistricts()) == 77){
             $this->assertTrue(true);
@@ -99,7 +91,7 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     /**
      * Test Null Values in District Data
      */
-    public function testNullValues()
+    public function test_Null_Values()
     {
         $hasNull = false;
         foreach ($this->district->allDistricts() as $set) {
@@ -108,14 +100,14 @@ class DistrictTest extends PHPUnit_Framework_TestCase
                 break;
             }
         }
-        if(!$hasNull)
-            $this->assertTrue(true);
+
+        $this->assertTrue(!$hasNull);
     }
 
     /**
      * Test Province of District
      */
-    public function testDistrictProvince()
+    public function test_District_For_Correct_Province_ID()
     {
         $idSet = range(1,77);
 
@@ -130,15 +122,14 @@ class DistrictTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        if($correct)
-            $this->assertTrue(true);
+        $this->assertTrue($correct);
 
     }
 
     /**
      * Test District Search
      */
-    public function testSearch()
+    public function test_search()
     {
         $districts = $this->district->allDistricts();
         $keywords =  ['id', 'province_id', 'name', 'area_sq_km', 'website', 'headquarter'];
@@ -160,7 +151,7 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     /**
      * Test Recursive Search
      */
-    public function testRecursiveSearch()
+    public function test_recursiveSearch()
     {
         $params = $_ENV['APP_LANG'] == 'en' ? [
             ['key' => 'name', 'value' => 'Gulmi', 'exact' => false],
@@ -184,7 +175,7 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     /**
      * Test sort by feature on districts
      */
-    public function testSortBy()
+    public function test_sortBy()
     {
         $keys = $this->district->getKeys();
 
