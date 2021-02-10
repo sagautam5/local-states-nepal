@@ -91,6 +91,17 @@ class Municipality extends BaseEntity
         }));
     }
 
+    public function getMunicipalityByProvince($provinceId)
+    {
+        $district = new District();
+        $districts = $district->getDistrictsByProvince($provinceId);
+        $municipalities = array_map(function ($item) {
+            return $this->getMunicipalitiesByDistrict($item->id);
+        }, $districts);
+
+        return array_merge(...$municipalities);
+    }
+
     /**
      * Find municipality by id
      *
