@@ -24,6 +24,12 @@ Image Source: [Wikipedia(Provinces of Nepal)](https://en.wikipedia.org/wiki/Prov
   Local States Nepal Requires 
   
   PHP >= 5.5
+  
+## Demo
+
+You can view Province -> District -> Municipality -> Wards in following demo.
+
+Demo URL: https://stacklearning.com/local-state-demo  
     
 ## Support
 
