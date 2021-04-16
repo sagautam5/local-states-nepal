@@ -29,7 +29,8 @@ Image Source: [Wikipedia(Provinces of Nepal)](https://en.wikipedia.org/wiki/Prov
 
 You can view Province -> District -> Municipality -> Wards in following demo.
 
-Demo URL: https://stacklearning.com/local-state-demo  
+Demo URL(English): https://stacklearning.com/local-state-demo  
+Demo URL(नेपाली): https://stacklearning.com/local-state-demo-np
     
 ## Support
 
