@@ -31,7 +31,7 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     /**
      * Test Largest District
      */
-    public function test_largest_District()
+    public function test_largest_district()
     {
         $largest = $this->district->largest();
         $this->assertSame([61,6],[$largest->id, $largest->province_id]);
@@ -40,7 +40,7 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     /**
      * Test Find District By ID
      */
-    public function test_find_For_Range_Between_1_to_77()
+    public function test_find_for_range_between_1_to_77()
     {
         $correctIdSet = range(1,77);
         $incorrectIdSet = range(78,154);
@@ -79,7 +79,7 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     /**
      * Test Number of All Districts
      */
-    public function test_allDistricts_For_Count()
+    public function test_allDistricts_for_count()
     {
         if(count($this->district->allDistricts()) == 77){
             $this->assertTrue(true);
@@ -91,7 +91,7 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     /**
      * Test Null Values in District Data
      */
-    public function test_Null_Values()
+    public function test_allDistricts_for_null_values()
     {
         $hasNull = false;
         foreach ($this->district->allDistricts() as $set) {
@@ -107,7 +107,7 @@ class DistrictTest extends PHPUnit_Framework_TestCase
     /**
      * Test Province of District
      */
-    public function test_District_For_Correct_Province_ID()
+    public function test_district_for_correct_province_id()
     {
         $idSet = range(1,77);
 

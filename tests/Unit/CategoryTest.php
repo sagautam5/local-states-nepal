@@ -31,7 +31,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Category Find By ID
      */
-    public function test_find_Category_For_Range_Between_1_to_4()
+    public function test_find_category_for_range_between_1_to_4()
     {
         $correctIdSet = range(1,4);
         $incorrectIdSet = range(5,8);
@@ -61,7 +61,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Find Category By Short Code
      */
-    public function test_findBy_For_Each_Short_Code()
+    public function test_findBy_for_each_short_code()
     {
         $correctCodeSet = ['MC', 'SMC', 'M', 'RM'];
         $incorrectCodeSet = ['AA', 'BB', 'CC', 'DD'];
@@ -90,7 +90,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Null Values in Category Data
      */
-    public function test_Null_Values()
+    public function test_allCategories_for_null_values()
     {
         $hasNull = false;
         foreach ($this->category->allCategories() as $set) {
@@ -106,7 +106,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Number of All Categories
      */
-    public function test_allCategories_For_Count()
+    public function test_allCategories_for_count()
     {
         if(count($this->category->allCategories()) == 4){
             $this->assertTrue(true);

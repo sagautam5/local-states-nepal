@@ -32,7 +32,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     /**
      * Test Largest Province
      */
-    public function test_largest_Province()
+    public function test_largest_province()
     {
         $largest = $this->province->largest();
         $this->assertSame($largest->id, 6);
@@ -41,7 +41,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     /**
      * Test Find Province By ID
      */
-    public function test_find_Province_For_Range_Between_1_to_7()
+    public function test_find_province_for_range_between_1_to_7()
     {
         $correctIdSet = range(1,7);
         $incorrectIdSet = range(8,15);
@@ -71,7 +71,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     /**
      * Test Smallest Province
      */
-    public function test_smallest_Province()
+    public function test_smallest_province()
     {
         $smallest = $this->province->smallest();
         $this->assertSame($smallest->id, 2);
@@ -80,7 +80,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     /**
      * Test Number of All Provinces
      */
-    public function test_allProvinces_Count()
+    public function test_allProvinces_count()
     {
         if(count($this->province->allProvinces()) == 7){
             $this->assertTrue(true);
@@ -92,7 +92,7 @@ class ProvinceTest extends PHPUnit_Framework_TestCase
     /**
      * Test Null Values in Provinces Data
      */
-    public function test_Null_Values()
+    public function test_allProvinces_for_null_values()
     {
         $hasNull = false;
         foreach ($this->province->allProvinces() as $set) {

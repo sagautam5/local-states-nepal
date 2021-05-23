@@ -32,7 +32,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     /**
      * Test Largest Province
      */
-    public function test_largest_Municipality()
+    public function test_largest_municipality()
     {
         $largest = $this->municipality->largest();
 
@@ -72,7 +72,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     /**
      * Test Smallest Municipality
      */
-    public function test_smallest_Municipality()
+    public function test_smallest_municipality()
     {
         $smallest = $this->municipality->smallest();
         $this->assertSame([274,23,3],[$smallest->id, $smallest->district_id, $smallest->category_id]);
@@ -81,7 +81,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     /**
      * Test Number of All Municipalities
      */
-    public function test_All_Municipalities_Count()
+    public function test_allMunicipalities_count()
     {
         if(count($this->municipality->allMunicipalities()) == 753){
             $this->assertTrue(true);
@@ -93,7 +93,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     /**
      * Test Null Values in Municipality Data
      */
-    public function test_Null_Values()
+    public function test_allMunicipalities_for_null_values()
     {
         $hasNull = false;
         foreach ($this->municipality->allMunicipalities() as $set) {
@@ -109,7 +109,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     /**
      * Test Municipality Wards
      */
-    public function test_If_Municipality_Has_Wards_In_Range_Of_5_To_33()
+    public function test_if_municipality_has_wards_in_range_of_5_to_33()
     {
         $lang = $this->municipality->getLanguage();
         if($lang == 'np'){
@@ -139,7 +139,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     /**
      * Test Municipality Categories
      */
-    public function test_If_Municipality_Has_Correct_Category_ID()
+    public function test_if_municipality_has_correct_category_id()
     {
         $idSet = range(1,753);
 
@@ -160,7 +160,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     /**
      * Test Municipality District
      */
-    public function test_If_Municipality_Has_Correct_District_ID()
+    public function test_if_municipality_has_correct_district_id()
     {
         $idSet = range(1,753);
 
@@ -248,7 +248,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     /**
      * Individual Province Municipality Count Test
      */
-    public function test_getMunicipalityByProvince_For_Individual_Correct_Count()
+    public function test_getMunicipalityByProvince_for_individual_correct_count()
     {
         $expectedSet = array(
             '1' => 137,
@@ -272,7 +272,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
     /**
      * Total Municipality Count Test
      */
-    public function test_getMunicipalityByProvince_For_Total_Count()
+    public function test_getMunicipalityByProvince_for_total_count()
     {
         $expectedTotal = 753;
 
