@@ -8,12 +8,12 @@ Image Source: [Wikipedia(Provinces of Nepal)](https://en.wikipedia.org/wiki/Prov
 
  [![Latest Stable Version](https://poser.pugx.org/sagautam5/local-states-nepal/v)](//packagist.org/packages/sagautam5/local-states-nepal)
 [![Total Downloads](https://poser.pugx.org/sagautam5/local-states-nepal/downloads)](//packagist.org/packages/sagautam5/local-states-nepal)
-![Issues](https://img.shields.io/github/issues/sagautam5/local-states-nepal
-) [![Stars](https://img.shields.io/github/stars/sagautam5/local-states-nepal
+[![Issues](https://img.shields.io/github/issues/sagautam5/local-states-nepal
+)](https://github.com/sagautam5/local-states-nepal/issues) [![Stars](https://img.shields.io/github/stars/sagautam5/local-states-nepal
 )](https://github.com/sagautam5/local-states-nepal/stargazers) 
-[![License](https://img.shields.io/github/license/sagautam5/local-states-nepal)](https://github.com/sagautam5/local-states-nepal/stargazers) 
+[![License](https://img.shields.io/github/license/sagautam5/local-states-nepal)](https://github.com/sagautam5/local-states-nepal/blob/master/LICENSE) 
 [![Forks](https://img.shields.io/github/forks/sagautam5/local-states-nepal
-)](https://github.com/sagautam5/local-states-nepal/LICENSE) 
+)](https://github.com/sagautam5/local-states-nepal/network/members) 
 [![Twitter](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fsagautam5%2Flocal-states-nepal
 )](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fsagautam5%2Flocal-states-nepal)
 
