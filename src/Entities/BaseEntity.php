@@ -17,6 +17,11 @@ abstract class BaseEntity
     protected $keys;
 
     /**
+     * @var string
+     */
+    protected $lang;
+
+    /**
      * Filter data by key value pair
      *
      * @param $key
@@ -30,6 +35,16 @@ abstract class BaseEntity
         return  array_values(array_filter($data, function ($item) use ($key, $value, $exact) {
             return ($exact ? ($item->$key == $value ? true:false) :(is_int(strpos($item->$key, $value)) ? true:false));
         }));
+    }
+
+    /**
+     * Get language
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->lang;
     }
 
     /**

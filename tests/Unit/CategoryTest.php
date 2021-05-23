@@ -16,7 +16,7 @@ class CategoryTest extends PHPUnit_Framework_TestCase
     /**
      * @var array
      */
-    private $language;
+    private $lang;
 
     /**
      * CategoryTest constructor.
@@ -24,13 +24,10 @@ class CategoryTest extends PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $this->language = $_ENV['APP_LANG'];
-        $this->category = new Category($this->language);
+        $this->lang = $_ENV['APP_LANG'];
+        $this->category = new Category($this->lang);
     }
 
-    /**
-     * Test Category Find By ID
-     */
     public function test_find_category_for_range_between_1_to_4()
     {
         $correctIdSet = range(1,4);
@@ -58,9 +55,6 @@ class CategoryTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($correctStatus);
     }
 
-    /**
-     * Test Find Category By Short Code
-     */
     public function test_findBy_for_each_short_code()
     {
         $correctCodeSet = ['MC', 'SMC', 'M', 'RM'];
@@ -87,9 +81,6 @@ class CategoryTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($correctStatus);
     }
 
-    /**
-     * Test Null Values in Category Data
-     */
     public function test_allCategories_for_null_values()
     {
         $hasNull = false;
@@ -103,9 +94,6 @@ class CategoryTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(!$hasNull);
     }
 
-    /**
-     * Test Number of All Categories
-     */
     public function test_allCategories_for_count()
     {
         if(count($this->category->allCategories()) == 4){
@@ -115,9 +103,6 @@ class CategoryTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * Test Category Search
-     */
     public function test_search()
     {
         $categories = $this->category->allCategories();
@@ -137,9 +122,6 @@ class CategoryTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($correct);
     }
 
-    /**
-     * Test Recursive Search
-     */
     public function test_recursiveSearch()
     {
         $params = $_ENV['APP_LANG'] == 'en' ? [
@@ -160,9 +142,6 @@ class CategoryTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * Test sort by feature on categories
-     */
     public function test_sortBy()
     {
         $keys = $this->category->getKeys();
@@ -182,5 +161,10 @@ class CategoryTest extends PHPUnit_Framework_TestCase
                 $this->assertSame($expected, $actual);
             }
         }
+    }
+
+    public function test_getLanguage_should_return_en_or_np()
+    {
+        $this->assertTrue(in_array($this->category->getLanguage(), ['en', 'np']));
     }
 }

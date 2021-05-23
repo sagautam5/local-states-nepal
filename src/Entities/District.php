@@ -13,11 +13,6 @@ use Sagautam5\LocalStateNepal\Loaders\DistrictsLoader;
 class District extends BaseEntity
 {
     /**
-     * @var string
-     */
-    private $lang;
-
-    /**
      * District constructor.
      * @param string $lang
      * @throws LoadingException

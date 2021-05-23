@@ -12,11 +12,6 @@ use Sagautam5\LocalStateNepal\Loaders\CategoriesLoader;
 class Category extends BaseEntity
 {
     /**
-     * @var string
-     */
-    private $lang;
-
-    /**
      * Category constructor.
      * @param string $lang
      * @throws LoadingException

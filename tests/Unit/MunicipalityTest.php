@@ -29,9 +29,6 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $this->municipality = new Municipality($this->language);
     }
 
-    /**
-     * Test Largest Province
-     */
     public function test_largest_municipality()
     {
         $largest = $this->municipality->largest();
@@ -39,9 +36,6 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $this->assertSame([617,62,4],[$largest->id, $largest->district_id, $largest->category_id]);
     }
 
-    /**
-     * Test Find Municipality By ID
-     */
     public function test_find_for_range_between_1_and_753()
     {
         $correctIdSet = range(1,753);
@@ -69,18 +63,12 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($correctStatus);
     }
 
-    /**
-     * Test Smallest Municipality
-     */
     public function test_smallest_municipality()
     {
         $smallest = $this->municipality->smallest();
         $this->assertSame([274,23,3],[$smallest->id, $smallest->district_id, $smallest->category_id]);
     }
 
-    /**
-     * Test Number of All Municipalities
-     */
     public function test_allMunicipalities_count()
     {
         if(count($this->municipality->allMunicipalities()) == 753){
@@ -90,9 +78,6 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * Test Null Values in Municipality Data
-     */
     public function test_allMunicipalities_for_null_values()
     {
         $hasNull = false;
@@ -106,9 +91,6 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(!$hasNull);
     }
 
-    /**
-     * Test Municipality Wards
-     */
     public function test_if_municipality_has_wards_in_range_of_5_to_33()
     {
         $lang = $this->municipality->getLanguage();
@@ -136,9 +118,6 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($correct);
     }
 
-    /**
-     * Test Municipality Categories
-     */
     public function test_if_municipality_has_correct_category_id()
     {
         $idSet = range(1,753);
@@ -157,9 +136,6 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($correct);
     }
 
-    /**
-     * Test Municipality District
-     */
     public function test_if_municipality_has_correct_district_id()
     {
         $idSet = range(1,753);
@@ -178,9 +154,7 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($correct);
     }
 
-    /**
-     * Test Municipality Search
-     */
+
     public function test_search()
     {
         $municipalities = $this->municipality->allMunicipalities();
@@ -201,9 +175,6 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($correct);
     }
 
-    /**
-     * Test Recursive Search
-     */
     public function test_recursiveSearch()
     {
         $params = $_ENV['APP_LANG'] == 'en' ? [
@@ -221,9 +192,6 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * Test sort by feature on municipalities
-     */
     public function test_sortBy()
     {
         $keys = $this->municipality->getKeys();
@@ -245,9 +213,6 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * Individual Province Municipality Count Test
-     */
     public function test_getMunicipalityByProvince_for_individual_correct_count()
     {
         $expectedSet = array(
@@ -269,9 +234,6 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expectedSet, $actualSet);
     }
 
-    /**
-     * Total Municipality Count Test
-     */
     public function test_getMunicipalityByProvince_for_total_count()
     {
         $expectedTotal = 753;
@@ -283,5 +245,10 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertSame($actualTotal, $expectedTotal);
+    }
+
+    public function test_getLanguage_should_return_en_or_np()
+    {
+        $this->assertTrue(in_array($this->municipality->getLanguage(), ['en', 'np']));
     }
 }

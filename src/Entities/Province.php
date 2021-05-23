@@ -13,11 +13,6 @@ use Sagautam5\LocalStateNepal\Loaders\ProvinceLoader;
 class Province extends BaseEntity
 {
     /**
-     * @var string
-     */
-    private $lang;
-
-    /**
      * Province constructor.
      * @param $lang
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException

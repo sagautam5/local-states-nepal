@@ -28,18 +28,12 @@ class DistrictTest extends PHPUnit_Framework_TestCase
         $this->district = new District($this->language);
     }
 
-    /**
-     * Test Largest District
-     */
     public function test_largest_district()
     {
         $largest = $this->district->largest();
         $this->assertSame([61,6],[$largest->id, $largest->province_id]);
     }
 
-    /**
-     * Test Find District By ID
-     */
     public function test_find_for_range_between_1_to_77()
     {
         $correctIdSet = range(1,77);
@@ -67,18 +61,12 @@ class DistrictTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($correctStatus);
     }
 
-    /**
-     * Test Smallest District
-     */
     public function test_smallest_district()
     {
         $smallest = $this->district->smallest();
         $this->assertSame([23,3], [$smallest->id, $smallest->province_id]);
     }
 
-    /**
-     * Test Number of All Districts
-     */
     public function test_allDistricts_for_count()
     {
         if(count($this->district->allDistricts()) == 77){
@@ -88,9 +76,6 @@ class DistrictTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * Test Null Values in District Data
-     */
     public function test_allDistricts_for_null_values()
     {
         $hasNull = false;
@@ -104,9 +89,6 @@ class DistrictTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(!$hasNull);
     }
 
-    /**
-     * Test Province of District
-     */
     public function test_district_for_correct_province_id()
     {
         $idSet = range(1,77);
@@ -126,9 +108,6 @@ class DistrictTest extends PHPUnit_Framework_TestCase
 
     }
 
-    /**
-     * Test District Search
-     */
     public function test_search()
     {
         $districts = $this->district->allDistricts();
@@ -148,9 +127,6 @@ class DistrictTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($correct);
     }
 
-    /**
-     * Test Recursive Search
-     */
     public function test_recursiveSearch()
     {
         $params = $_ENV['APP_LANG'] == 'en' ? [
@@ -172,9 +148,6 @@ class DistrictTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * Test sort by feature on districts
-     */
     public function test_sortBy()
     {
         $keys = $this->district->getKeys();
@@ -194,5 +167,10 @@ class DistrictTest extends PHPUnit_Framework_TestCase
                 $this->assertSame($expected, $actual);
             }
         }
+    }
+
+    public function test_getLanguage_should_return_en_or_np()
+    {
+        $this->assertTrue(in_array($this->district->getLanguage(), ['en', 'np']));
     }
 }

@@ -13,11 +13,6 @@ use Sagautam5\LocalStateNepal\Loaders\MunicipalitiesLoader;
 class Municipality extends BaseEntity
 {
     /**
-     * @var string
-     */
-    private $lang;
-
-    /**
      * Municipality constructor.
      * @param string $lang
      * @throws LoadingException
@@ -44,16 +39,6 @@ class Municipality extends BaseEntity
         }catch (LoadingException $exception){
             throw $exception;
         }
-    }
-
-    /**
-     * Get language
-     *
-     * @return string
-     */
-    public function getLanguage()
-    {
-        return $this->lang;
     }
 
     /**
