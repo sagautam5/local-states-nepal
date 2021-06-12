@@ -23,7 +23,7 @@ Image Source: [Wikipedia(Provinces of Nepal)](https://en.wikipedia.org/wiki/Prov
   
   Local States Nepal Requires 
   
-  PHP >= 5.5
+  PHP >= 7.0
   
 ## Demo
 
