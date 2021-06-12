@@ -31,6 +31,17 @@ You can view Province -> District -> Municipality -> Wards in following demo.
 
 Demo URL(English): https://stacklearning.com/local-state-demo  
 Demo URL(नेपाली): https://stacklearning.com/local-state-demo-np
+
+### How to set up demo ?
+You can find all source code for demo inside demo directory. You can clone this repository in your server and then visit following url:
+
+local_server_url/local-states-nepal/demo/
+
+Example: http://127.0.0.1/local-states-nepal/demo
+
+Demo Video:
+
+https://www.loom.com/share/a8c3d825a9ee41a9817b24645453e979
     
 ## Support
 
