@@ -15,7 +15,7 @@ class Province extends BaseEntity
     /**
      * Province constructor.
      * @param $lang
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
+     * @throws LoadingException
      */
     public function __construct($lang = 'en')
     {

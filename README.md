@@ -31,6 +31,10 @@ You can view Province -> District -> Municipality -> Wards in following demo.
 
 Demo URL(English): https://stacklearning.com/local-state-demo  
 Demo URL(नेपाली): https://stacklearning.com/local-state-demo-np
+
+Demo Video:
+
+https://www.loom.com/share/a8c3d825a9ee41a9817b24645453e979
     
 ## Support
 
