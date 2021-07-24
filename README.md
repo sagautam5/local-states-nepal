@@ -30,8 +30,8 @@ Image Source: [Wikipedia(Provinces of Nepal)](https://en.wikipedia.org/wiki/Prov
 
 You can view Province -> District -> Municipality -> Wards in following demo.
 
-Demo URL(English): https://stacklearning.com/local-state-demo  
-Demo URL(नेपाली): https://stacklearning.com/local-state-demo-np
+<!-- Demo URL(English): https://stacklearning.com/local-state-demo  
+Demo URL(नेपाली): https://stacklearning.com/local-state-demo-np -->
 
 ### How to set up demo ?
 You can find all source code for demo inside demo directory. You can clone this repository in your server and then visit following url:
