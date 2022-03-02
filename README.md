@@ -1,6 +1,6 @@
 # Local States Nepal
 
-##### This will help to get data about local states in nepal based on recent administrative division
+##### This will help to get data about local states in Nepal based on recent administrative division
 
 ![Laravel Nepal](images/nepal.png)
 
@@ -22,7 +22,7 @@ Image Source: [Wikipedia(Provinces of Nepal)](https://en.wikipedia.org/wiki/Prov
 
   Local States Nepal is the php composer package to get structured dataset about local states in Nepal.  
   
-  Local States Nepal Requires 
+  Local States Nepal requires 
   
   PHP >= 7.0
   
@@ -36,7 +36,7 @@ Demo URL(नेपाली): https://stacklearning.com/local-state-demo-np -->
 ### How to set up demo ?
 You can find all source code for demo inside demo directory. You can clone this repository in your server and then visit following url:
 
-local_server_url/local-states-nepal/demo/
+`local_server_url/local-states-nepal/demo/`
 
 Example: http://127.0.0.1/local-states-nepal/demo
 
@@ -102,7 +102,7 @@ You can see more detail documentation of each entity in the links provided in fo
 
 ## Security
 
-If you discover a security vulnerability within this package, please send an e-mail to sagautam5@gmail.com, All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this package, please send an e-mail to [sagautam5@gmail.com](mailto:sagautam5@gmail.com?subject=[Local States Nepal]), All security vulnerabilities will be promptly addressed.
 
 ## 🤝 Contributing
 
