@@ -102,7 +102,7 @@ You can see more detail documentation of each entity in the links provided in fo
 
 ## Security
 
-If you discover a security vulnerability within this package, please send an e-mail to [sagautam5@gmail.com](mailto:sagautam5@gmail.com?subject=[Local States Nepal]), All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this package, please send an e-mail to sagautam5@gmail.com, All security vulnerabilities will be promptly addressed.
 
 ## 🤝 Contributing
 
