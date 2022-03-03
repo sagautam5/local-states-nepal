@@ -4,7 +4,7 @@
 
 ![Laravel Nepal](images/nepal.png)
 
-Image Source: [Wikipedia(Provinces of Nepal)](https://en.wikipedia.org/wiki/Provinces_of_Nepal)
+Image Source: [Wikipedia(Administrative divisions of Nepal)](https://simple.wikipedia.org/wiki/Administrative_divisions_of_Nepal)
 
 ![Build](https://github.com/sagautam5/local-states-nepal/workflows/CI/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/sagautam5/local-states-nepal/v)](//packagist.org/packages/sagautam5/local-states-nepal)
