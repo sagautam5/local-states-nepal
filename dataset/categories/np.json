@@ -1,1 +1,22 @@
-[{"id":1,"name":"महानगरपालिका","short_code":"MC"},{"id":2,"name":"उपमहानगरपालिका","short_code":"SMC"},{"id":3,"name":"नगरपालिका ","short_code":"M"},{"id":4,"name":"गाउपालिका ","short_code":"RM"}]
+[
+  {
+    "id": 1,
+    "name": "महानगरपालिका",
+    "short_code": "MC"
+  },
+  {
+    "id": 2,
+    "name": "उपमहानगरपालिका",
+    "short_code": "SMC"
+  },
+  {
+    "id": 3,
+    "name": "नगरपालिका ",
+    "short_code": "M"
+  },
+  {
+    "id": 4,
+    "name": "गाउपालिका ",
+    "short_code": "RM"
+  }
+]

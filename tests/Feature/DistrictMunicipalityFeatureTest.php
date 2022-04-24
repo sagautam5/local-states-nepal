@@ -1,6 +1,7 @@
 <?php
+namespace Sagautam5\LocalStateNepal\Test\Feature;
 
-
+use PHPUnit_Framework_TestCase;
 use Sagautam5\LocalStateNepal\Entities\District;
 
 class DistrictMunicipalityFeatureTest extends PHPUnit_Framework_TestCase
@@ -22,6 +23,8 @@ class DistrictMunicipalityFeatureTest extends PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->language = $_ENV['APP_LANG'];
         $this->district = new District($this->language);
     }

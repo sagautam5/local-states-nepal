@@ -1,6 +1,7 @@
 <?php
+namespace Sagautam5\LocalStateNepal\Test\Unit;
 
-
+use PHPUnit_Framework_TestCase;
 use Sagautam5\LocalStateNepal\Entities\Category;
 
 /**
@@ -24,6 +25,8 @@ class CategoryTest extends PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->lang = $_ENV['APP_LANG'];
         $this->category = new Category($this->lang);
     }
