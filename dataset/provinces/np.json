@@ -1,1 +1,51 @@
-[{"id":1,"name":"प्रदेश न. १","area_sq_km":"२५९०६","website":"https:\/\/p1.gov.np\/","headquarter":"बिराटनगर"},{"id":2,"name":"प्रदेश न. २","area_sq_km":"९६६१","website":"https:\/\/p2.gov.np\/","headquarter":"जनकपुर"},{"id":3,"name":"बाग्मती प्रदेश","area_sq_km":"२०३००","website":"https:\/\/p3.gov.np\/","headquarter":"हेटौडा"},{"id":4,"name":"गण्डकी प्रदेश","area_sq_km":"२१८५६","website":"https:\/\/gandaki.gov.np\/","headquarter":"पोखरा"},{"id":5,"name":"लुम्बिनी प्रदेश","area_sq_km":"१९७०७","website":"https:\/\/dccdang.gov.np\/","headquarter":"देउखुरी"},{"id":6,"name":"कर्णाली प्रदेश","area_sq_km":"३०२१३","website":"https:\/\/karnali.gov.np\/","headquarter":"बिरेन्द्रनगर"},{"id":7,"name":"सुदुरपश्चिम प्रदेश","area_sq_km":"१९५३९","website":"https:\/\/p7.gov.np\/","headquarter":"गोदावरी"}]
+[
+  {
+    "id": 1,
+    "name": "प्रदेश न. १",
+    "area_sq_km": "२५९०६",
+    "website": "https:\/\/p1.gov.np\/",
+    "headquarter": "बिराटनगर"
+  },
+  {
+    "id": 2,
+    "name": "प्रदेश न. २",
+    "area_sq_km": "९६६१",
+    "website": "https:\/\/p2.gov.np\/",
+    "headquarter": "जनकपुर"
+  },
+  {
+    "id": 3,
+    "name": "बाग्मती प्रदेश",
+    "area_sq_km": "२०३००",
+    "website": "https:\/\/p3.gov.np\/",
+    "headquarter": "हेटौडा"
+  },
+  {
+    "id": 4,
+    "name": "गण्डकी प्रदेश",
+    "area_sq_km": "२१८५६",
+    "website": "https:\/\/gandaki.gov.np\/",
+    "headquarter": "पोखरा"
+  },
+  {
+    "id": 5,
+    "name": "लुम्बिनी प्रदेश",
+    "area_sq_km": "१९७०७",
+    "website": "https:\/\/dccdang.gov.np\/",
+    "headquarter": "देउखुरी"
+  },
+  {
+    "id": 6,
+    "name": "कर्णाली प्रदेश",
+    "area_sq_km": "३०२१३",
+    "website": "https:\/\/karnali.gov.np\/",
+    "headquarter": "बिरेन्द्रनगर"
+  },
+  {
+    "id": 7,
+    "name": "सुदुरपश्चिम प्रदेश",
+    "area_sq_km": "१९५३९",
+    "website": "https:\/\/p7.gov.np\/",
+    "headquarter": "गोदावरी"
+  }
+]
