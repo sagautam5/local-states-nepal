@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-md-offset-3 col-md-6">            
             <h4 style="margin-bottom: 40px; margin-top: 40px;">Local State Nepal Demo</h4>
             <div class="form-group">
                 <label>Language</label>
