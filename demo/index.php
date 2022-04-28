@@ -16,7 +16,7 @@
                         <!-- <h3>Local States Nepal</h3>
                         <p>Local state nepal. 
                         </p> -->
-                        <img src="../images/nepal-map.png" alt="">
+                        <img src="./assets/images/nepal-map.png" alt="">
                     </div>
                     
                 </div>
