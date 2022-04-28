@@ -4,50 +4,66 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-offset-3 col-md-6">            
-            <h4 style="margin-bottom: 40px; margin-top: 40px;">Local State Nepal Demo</h4>
-            <div class="form-group">
-                <label>Language</label>
-                <select class="form-control language">
-                    <option value="en" selected>English</option>
-                    <option value="np">Nepali</option>
-                </select>
-            </div>
+    <section class="demo-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="side-image">
+                        <!-- <h3>Local States Nepal</h3>
+                        <p>Local state nepal. 
+                        </p> -->
+                        <img src="./assets/images/nepal-map.png" alt="">
+                    </div>
+                    
+                </div>
+                <div class="col-md-6"> 
+                    <div class="bg-form">
+                    <h4 style="margin-bottom: 40px; margin-top: 40px;">Local State Nepal Demo</h4>
+                    <div class="form-group">
+                        <label>Language</label>
+                        <select class="form-control language">
+                            <option value="en" selected>English</option>
+                            <option value="np">Nepali</option>
+                        </select>
+                    </div>
 
-            <div class="form-group">
-                <label>Province</label>
-                <select class="form-control province">
-                    <option>Select</option>
-                </select>
-            </div>
+                    <div class="form-group">
+                        <label>Province</label>
+                        <select class="form-control province">
+                            <option>Select</option>
+                        </select>
+                    </div>
 
-            <div class="form-group">
-                <label>District</label>
-                <select class="form-control district">
-                    <option>Select</option>
-                </select>
-            </div>
+                    <div class="form-group">
+                        <label>District</label>
+                        <select class="form-control district">
+                            <option>Select</option>
+                        </select>
+                    </div>
 
-            <div class="form-group">
-                <label>Municipality</label>
-                <select class="form-control municipality">
-                    <option>Select</option>
-                </select>
-            </div>
+                    <div class="form-group">
+                        <label>Municipality</label>
+                        <select class="form-control municipality">
+                            <option>Select</option>
+                        </select>
+                    </div>
 
-            <div class="form-group">
-                <label>Ward</label>
-                <select class="form-control ward">
-                    <option>Select</option>
-                </select>
+                    <div class="form-group">
+                        <label>Ward</label>
+                        <select class="form-control ward">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                    </div>           
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="./assets/js/jquery.min.js"></script>

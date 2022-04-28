@@ -40,6 +40,8 @@ You can find all source code for demo inside demo directory. You can clone this 
 
 Example: http://127.0.0.1/local-states-nepal/demo
 
+![Laravel Nepal](demo/assets/images/demo-page.png)
+
 Demo Video:
 
 https://www.loom.com/share/a8c3d825a9ee41a9817b24645453e979
