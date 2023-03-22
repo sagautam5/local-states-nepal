@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "name": "Province No. 1",
+    "name": "Koshi Province",
     "area_sq_km": "25906",
-    "website": "https:\/\/p1.gov.np\/",
+    "website": "https:\/\/koshi.gov.np\/",
     "headquarter": "Biratnagar"
   },
   {
@@ -17,7 +17,7 @@
     "id": 3,
     "name": "Bagmati Province",
     "area_sq_km": "20300",
-    "website": "https:\/\/p3.gov.np\/",
+    "website": "https:\/\/ocmcm.bagamati.gov.np\/",
     "headquarter": "Hetauda"
   },
   {
@@ -31,7 +31,7 @@
     "id": 5,
     "name": "Lumbini Province",
     "area_sq_km": "19707",
-    "website": "https:\/\/dccdang.gov.np\/",
+    "website": "https:\/\/ocmcm.lumbini.gov.np\/",
     "headquarter": "Deukhuri"
   },
   {
@@ -45,7 +45,7 @@
     "id": 7,
     "name": "Sudurpaschim Province",
     "area_sq_km": "19539",
-    "website": "https:\/\/p7.gov.np\/",
+    "website": "https:\/\/sudurpashchim.gov.np\/",
     "headquarter": "Godawari"
   }
 ]

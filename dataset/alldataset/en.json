@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "name": "Province No. 1",
+    "name": "Koshi Province",
     "area_sq_km": "25906",
-    "website": "https:\/\/p1.gov.np\/",
+    "website": "https:\/\/koshi.gov.np\/",
     "headquarter": "Biratnagar",
     "districts": [
       {
@@ -2679,7 +2679,7 @@
     "id": 2,
     "name": "Madhesh Province",
     "area_sq_km": "9661",
-    "website": "https:\/\/p2.gov.np\/",
+    "website": "https:\/\/madhesh.gov.np\/",
     "headquarter": "Janakpur",
     "districts": {
       "14": {
@@ -5399,7 +5399,7 @@
     "id": 3,
     "name": "Bagmati",
     "area_sq_km": "20300",
-    "website": "https:\/\/p3.gov.np\/",
+    "website": "https:\/\/ocmcm.bagamati.gov.np\/",
     "headquarter": "Hetauda",
     "districts": {
       "22": {
@@ -9575,7 +9575,7 @@
     "id": 5,
     "name": "Lumbini",
     "area_sq_km": "19707",
-    "website": "https:\/\/dccdang.gov.np\/",
+    "website": "https:\/\/ocmcm.lumbini.gov.np\/",
     "headquarter": "Deukhuri",
     "districts": {
       "46": {
@@ -13394,7 +13394,7 @@
     "id": 7,
     "name": "Sudur Paschimanchal",
     "area_sq_km": "19539",
-    "website": "https:\/\/p7.gov.np\/",
+    "website": "https:\/\/sudurpashchim.gov.np\/",
     "headquarter": "Godawari",
     "districts": {
       "68": {
