@@ -35,17 +35,18 @@ Before submitting a pull request:
 - Fetch the phpunit testing dependency by executing following command on root of the project.
 ```sh 
 composer update 
-```
+```- Check the pull requests tab to ensure that the bug doesn't have a fix in progress.
+
 - Create and test the feature/issue and make sure it doesn't affect codebase by running full tests by executing following console command for two different environment variables.
   
   Set APP_LANG to np and en respectively and run following command for each value of language.
 ```sh 
 vendor/bin/phpunit 
 ```
-- Make sure unit tests are passed on pipeline after your updates.
+<!-- - Make sure unit tests are passed on pipeline after your updates. -->
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
-- Send pull request to dev branch only.
+<!-- - Send pull request to dev branch only. -->
 
 ## Requirements
 
