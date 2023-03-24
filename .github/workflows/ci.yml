@@ -20,4 +20,5 @@ jobs:
         with:
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
+          php_version: 7.0
           args: --coverage-text
