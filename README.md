@@ -2,7 +2,7 @@
 
 ##### This will help to get data about local states in Nepal based on recent administrative division
 
-![Laravel Nepal](images/nepal-updated-province-names.png)
+![Laravel Nepal](images/nepal-map-with-updated-province-names.png)
 
 Image Source: [Wikipedia(Administrative divisions of Nepal)](https://simple.wikipedia.org/wiki/Administrative_divisions_of_Nepal)
 
@@ -40,7 +40,7 @@ You can find all source code for demo inside demo directory. You can clone this 
 
 Example: http://127.0.0.1/local-states-nepal/demo
 
-![Laravel Nepal](demo/assets/images/demo-page.png)
+![Laravel Nepal](demo/assets/images/demo-page-latest.png)
 
 Demo Video:
 
