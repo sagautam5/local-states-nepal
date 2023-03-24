@@ -2,7 +2,7 @@
 
 ##### This will help to get data about local states in Nepal based on recent administrative division
 
-![Laravel Nepal](images/nepal-map-with-updated-province-names.png)
+![Local States Nepal](images/latest-nepal.png)
 
 Image Source: [Wikipedia(Administrative divisions of Nepal)](https://simple.wikipedia.org/wiki/Administrative_divisions_of_Nepal)
 
