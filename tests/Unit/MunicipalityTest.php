@@ -1,13 +1,13 @@
 <?php
 namespace Sagautam5\LocalStateNepal\Test\Unit;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\Municipality;
 
 /**
  * Class MunicipalityTest
  */
-class MunicipalityTest extends PHPUnit_Framework_TestCase
+final class MunicipalityTest extends TestCase
 {
     /**
      * @var Municipality
@@ -23,9 +23,9 @@ class MunicipalityTest extends PHPUnit_Framework_TestCase
      * MunicipalityTest constructor.
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function __construct()
+    public function __construct($name = null, array $data = [], $dataName = '') 
     {
-        parent::__construct();
+        parent::__construct($name, $data, $dataName);
 
         $this->language = $_ENV['APP_LANG'];
 

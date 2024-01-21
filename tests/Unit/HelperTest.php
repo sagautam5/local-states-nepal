@@ -1,13 +1,13 @@
 <?php
 namespace Sagautam5\LocalStateNepal\Test\Unit;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Helpers\Helper;
 
 /**
  * Class HelperTest
  */
-class HelperTest extends PHPUnit_Framework_TestCase
+final class HelperTest extends TestCase
 {
     /**
      * @var Helper
@@ -27,9 +27,9 @@ class HelperTest extends PHPUnit_Framework_TestCase
     /**
      * HelperTest constructor.
      */
-    public function __construct()
+    public function __construct($name = null, array $data = [], $dataName = '') 
     {
-        parent::__construct();
+        parent::__construct($name, $data, $dataName);
         $this->helper = new Helper();
     }
 

@@ -1,13 +1,13 @@
 <?php
 namespace Sagautam5\LocalStateNepal\Test\Unit;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\Category;
 
 /**
  * Class CategoryTest
  */
-class CategoryTest extends PHPUnit_Framework_TestCase
+final class CategoryTest extends TestCase
 {
     /**
      * @var Category
@@ -23,9 +23,9 @@ class CategoryTest extends PHPUnit_Framework_TestCase
      * CategoryTest constructor.
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function __construct()
+    public function __construct($name = null, array $data = [], $dataName = '') 
     {
-        parent::__construct();
+        parent::__construct($name, $data, $dataName);
 
         $this->lang = $_ENV['APP_LANG'];
         $this->category = new Category($this->lang);

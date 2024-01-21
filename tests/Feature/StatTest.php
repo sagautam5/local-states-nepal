@@ -1,13 +1,13 @@
 <?php
 namespace Sagautam5\LocalStateNepal\Test\Feature;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\Municipality;
 
 /**
  * Class ProvinceDistrictFeatureTest
  */
-class StatTest extends PHPUnit_Framework_TestCase
+final class StatTest extends TestCase
 {
     /**
      * @var array
@@ -20,12 +20,12 @@ class StatTest extends PHPUnit_Framework_TestCase
     private $municipality;
 
     /**
-     * ProvinceDistrictFeatureTest constructor.D
+     * ProvinceDistrictFeatureTest constructor.
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function __construct()
+    public function __construct($name = null, array $data = [], $dataName = '') 
     {
-        parent::__construct();
+        parent::__construct($name, $data, $dataName);
         $this->language = $_ENV['APP_LANG'];
         $this->municipality = new Municipality($this->language);
     }

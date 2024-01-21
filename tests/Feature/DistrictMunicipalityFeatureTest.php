@@ -1,10 +1,10 @@
 <?php
 namespace Sagautam5\LocalStateNepal\Test\Feature;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\District;
 
-class DistrictMunicipalityFeatureTest extends PHPUnit_Framework_TestCase
+final class DistrictMunicipalityFeatureTest extends TestCase
 {
 
     /**
@@ -21,9 +21,9 @@ class DistrictMunicipalityFeatureTest extends PHPUnit_Framework_TestCase
      * DistrictMunicipalityFeatureTest constructor.
      * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
      */
-    public function __construct()
+    public function __construct($name = null, array $data = [], $dataName = '') 
     {
-        parent::__construct();
+        parent::__construct($name, $data, $dataName);
 
         $this->language = $_ENV['APP_LANG'];
         $this->district = new District($this->language);
