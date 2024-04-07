@@ -26,14 +26,21 @@ Image Source: [Wikipedia(Administrative divisions of Nepal)](https://simple.wiki
   
   PHP >= 7.0
 
-  Version v1.0.8 has been tested on following php versions.
+  Version **v1.0.8** has been tested on following php versions.
 
   - 7.0
   - 7.1
   - 7.2
   - 7.3
   - 7.4
-  
+
+  Current **dev-master** has been tested on following php versions.
+
+  - 8.0
+  - 8.1
+  - 8.2
+  - 8.3
+    
 ## Demo
 
 You can view Province -> District -> Municipality -> Wards in following demo.
