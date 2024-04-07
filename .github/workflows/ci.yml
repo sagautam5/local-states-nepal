@@ -4,22 +4,20 @@ on: [push]
 
 jobs:
   build:
+    name: PHP Composer
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Install dependencies
-        uses: php-actions/composer@v6
-        with:
-          php_version: 8.0
-          version: 1
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
 
-      # - name: PHPUnit tests
-      #   uses: php-actions/phpunit@master
-      #   with:
-      #     bootstrap: vendor/autoload.php
-      #     configuration: phpunit.xml
-      #     php_version: 7.0
-      #     version: 4.0.0
-      #     args: --coverage-text
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-interaction
+
+    - name: Run PHPUnit tests
+      run: vendor/bin/phpunit
