@@ -1,13 +1,13 @@
 <?php
 namespace Sagautam5\LocalStateNepal\Test\Unit;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\Category;
 
 /**
  * Class CategoryTest
  */
-class CategoryTest extends PHPUnit_Framework_TestCase
+class CategoryTest extends TestCase
 {
     /**
      * @var Category

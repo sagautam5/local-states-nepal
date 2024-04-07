@@ -1,13 +1,13 @@
 <?php
 namespace Sagautam5\LocalStateNepal\Test\Unit;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Helpers\Helper;
 
 /**
  * Class HelperTest
  */
-class HelperTest extends PHPUnit_Framework_TestCase
+class HelperTest extends TestCase
 {
     /**
      * @var Helper

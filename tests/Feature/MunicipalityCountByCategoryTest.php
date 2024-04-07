@@ -1,10 +1,10 @@
 <?php
 namespace Sagautam5\LocalStateNepal\Test\Feature;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\Municipality;
 
-class MunicipalityCountByCategoryTest extends PHPUnit_Framework_TestCase
+class MunicipalityCountByCategoryTest extends TestCase
 {
     /**
      * @var Municipality
