@@ -53,8 +53,8 @@ class Municipality extends BaseEntity
     /**
      * Get municipalities by district id
      *
-     * @param $districtId
-     * @return array|mixed|null
+     * @param int $districtId
+     * @return array<object>|null
      */
     public function getMunicipalitiesByDistrict($districtId)
     {
@@ -66,8 +66,8 @@ class Municipality extends BaseEntity
     /**
      * Get municipalities by category id
      *
-     * @param $categoryId
-     * @return array
+     * @param int $categoryId
+     * @return array<object>
      */
     public function getMunicipalityByCategory($categoryId)
     {
@@ -76,6 +76,12 @@ class Municipality extends BaseEntity
         }));
     }
 
+    /**
+     * Get municipalities by province
+     * 
+     * @param int $provinceId
+     * @return array<object> 
+     */
     public function getMunicipalityByProvince($provinceId)
     {
         $district = new District();
@@ -90,7 +96,7 @@ class Municipality extends BaseEntity
     /**
      * Find municipality by id
      *
-     * @param $id
+     * @param int $id
      * @return object|null
      */
     public function find($id)
@@ -103,7 +109,7 @@ class Municipality extends BaseEntity
     /**
      * Get municipality with largest area
      *
-     * @return mixed
+     * @return object
      */
     public function largest()
     {
@@ -121,7 +127,7 @@ class Municipality extends BaseEntity
     /**
      * Get municipality with smallest area
      *
-     * @return mixed
+     * @return object
      */
     public function smallest()
     {
@@ -139,8 +145,8 @@ class Municipality extends BaseEntity
     /**
      * Get wards of municipality
      *
-     * @param $id
-     * @return array
+     * @param int $id
+     * @return array<string>
      */
     public function wards($id)
     {
@@ -163,10 +169,10 @@ class Municipality extends BaseEntity
     /**
      * Search Municipalities
      *
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param string $value
      * @param bool $exact
-     * @return array
+     * @return array<object>
      */
     public function search($key, $value, $exact = false)
     {

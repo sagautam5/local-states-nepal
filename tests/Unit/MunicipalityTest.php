@@ -98,7 +98,7 @@ class MunicipalityTest extends TestCase
         if($lang == 'np'){
             $wards = range(1,33);
             $wards = array_map(function ($item){
-                return \Sagautam5\LocalStateNepal\Helpers\Helper::numericNepali($item);
+                return \Sagautam5\LocalStateNepal\Helpers\Helper::numericNepali((string) $item);
             }, $wards);
         }else{
             $wards = range(1,33);

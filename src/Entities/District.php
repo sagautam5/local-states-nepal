@@ -45,7 +45,7 @@ class District extends BaseEntity
     /**
      * Get districts with municipalities
      *
-     * @return array
+     * @return array<object>
      * @throws LoadingException
      */
     public function getDistrictsWithMunicipalities()
@@ -69,8 +69,8 @@ class District extends BaseEntity
     /**
      * Get districts by province id
      *
-     * @param $provinceId
-     * @return array|mixed|null
+     * @param int $provinceId
+     * @return array<object>|null
      */
     public function getDistrictsByProvince($provinceId)
     {
@@ -82,7 +82,7 @@ class District extends BaseEntity
     /**
      * Find district by id
      *
-     * @param $id
+     * @param int $id
      * @return object|null
      */
     public function find($id)
@@ -95,7 +95,7 @@ class District extends BaseEntity
     /**
      * Get district with largest area
      *
-     * @return mixed
+     * @return object
      */
     public function largest()
     {
@@ -113,7 +113,7 @@ class District extends BaseEntity
     /**
      * Get district with smallest area
      *
-     * @return mixed
+     * @return object
      */
     public function smallest()
     {
@@ -131,10 +131,10 @@ class District extends BaseEntity
     /**
      * Search Districts
      *
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param string $value
      * @param bool $exact
-     * @return array
+     * @return array<object>
      */
     public function search($key, $value, $exact = false)
     {

@@ -44,7 +44,7 @@ class Category extends BaseEntity
     /**
      * Find category by id
      *
-     * @param $id
+     * @param int $id
      * @return object|null
      */
     public function find($id)
@@ -57,7 +57,7 @@ class Category extends BaseEntity
     /**
      * Find category by short code
      *
-     * @param $short_code
+     * @param string $short_code
      * @return object|null
      */
     public function findByShortCode($short_code)
@@ -70,10 +70,10 @@ class Category extends BaseEntity
     /**
      * Search Categories
      *
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param string $value
      * @param bool $exact
-     * @return array
+     * @return array<object>
      */
     public function search($key, $value, $exact = false)
     {

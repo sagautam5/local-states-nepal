@@ -18,7 +18,7 @@ class MunicipalitiesLoader
 
     /**
      * MunicipalitiesLoader constructor.
-     * @param $lang
+     * @param string $lang
      * @throws LoadingException
      */
     public function __construct($lang = 'en')
