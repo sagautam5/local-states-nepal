@@ -12,7 +12,7 @@ jobs:
       - name: Install dependencies
         uses: php-actions/composer@v6
         with:
-          php_version: 7.0
+          php_version: 8.0
           version: 1
 
       # - name: PHPUnit tests
