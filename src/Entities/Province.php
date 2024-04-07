@@ -45,7 +45,7 @@ class Province extends BaseEntity
      * Find province by id
      *
      * @param $id
-     * @return false|int|string
+     * @return object|null
      */
     public function find($id)
     {

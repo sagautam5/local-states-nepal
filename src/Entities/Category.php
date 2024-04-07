@@ -45,7 +45,7 @@ class Category extends BaseEntity
      * Find category by id
      *
      * @param $id
-     * @return false|int|string
+     * @return object|null
      */
     public function find($id)
     {
@@ -58,7 +58,7 @@ class Category extends BaseEntity
      * Find category by short code
      *
      * @param $short_code
-     * @return string|null
+     * @return object|null
      */
     public function findByShortCode($short_code)
     {
