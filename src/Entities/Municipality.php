@@ -59,7 +59,7 @@ class Municipality extends BaseEntity
     public function getMunicipalitiesByDistrict($districtId)
     {
         return array_values(array_filter($this->items, function ($item) use ($districtId) {
-            return ($item->district_id == $districtId);
+            return property_exists($item, 'district_id') && ($item->district_id == $districtId);
         }));
     }
 
@@ -72,7 +72,7 @@ class Municipality extends BaseEntity
     public function getMunicipalityByCategory($categoryId)
     {
         return array_values(array_filter($this->items, function ($item) use ($categoryId) {
-            return ($item->category_id == $categoryId);
+            return property_exists($item, 'category_id') && ($item->category_id == $categoryId);
         }));
     }
 
@@ -87,7 +87,7 @@ class Municipality extends BaseEntity
         $district = new District();
         $districts = $district->getDistrictsByProvince($provinceId);
         $municipalities = array_map(function ($item) {
-            return $this->getMunicipalitiesByDistrict($item->id);
+            return $this->getMunicipalitiesByDistrict($item->id ?? 0);
         }, $districts);
 
         return array_merge(...$municipalities);
@@ -154,14 +154,14 @@ class Municipality extends BaseEntity
 
         if($this->lang == 'np'){
 
-            $totalWards = Helper::numericEnglish($municipality->wards);
+            $totalWards = Helper::numericEnglish($municipality->wards ?? 1);
 
             $wards = range(1, $totalWards);
             $wards = array_map(function ($item){
                 return Helper::numericNepali($item);
             }, $wards);
         }else{
-            $wards = range(1, $municipality->wards);
+            $wards = range(1, $municipality->wards ?? 1);
         }
         return $wards;
     }

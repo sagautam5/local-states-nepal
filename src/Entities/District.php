@@ -75,7 +75,7 @@ class District extends BaseEntity
     public function getDistrictsByProvince($provinceId)
     {
          return array_values(array_filter($this->items, function ($item) use ($provinceId) {
-             return ($item->province_id == $provinceId);
+             return property_exists($item, 'province_id') && ($item->province_id == $provinceId);
          }));
     }
 
