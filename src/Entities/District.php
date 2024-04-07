@@ -61,7 +61,7 @@ class District extends BaseEntity
                 $municipalityItem = (array) $municipalityItem;
                 $municipalityItem['wards'] = $municipality->wards($municipalityItem['id']);
                 return (object) $municipalityItem;
-            }, $municipalities);
+            }, (array) $municipalities);
             return (object) $districtItem;
         },$provinces);
     }

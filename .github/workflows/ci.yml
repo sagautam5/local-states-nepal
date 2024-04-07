@@ -23,7 +23,7 @@ jobs:
       run: vendor/bin/phpunit
 
     - name: Run PhpStan Analyse Code
-      run:  vendor/bin/phpstan analyse --level=6 src
+      run:  vendor/bin/phpstan analyse --level=7 src
 
     - name: Run PhpStan Analyse Code
       run:  vendor/bin/phpstan analyse --level=5 tests

@@ -88,8 +88,12 @@ class Municipality extends BaseEntity
         $districts = $district->getDistrictsByProvince($provinceId);
         $municipalities = array_map(function ($item) {
             return $this->getMunicipalitiesByDistrict($item->id ?? 0);
-        }, $districts);
-
+        }, (array) $districts);
+        
+        $municipalities = array_filter($municipalities, function ($value) {
+            return $value !== null;
+        });
+        
         return array_merge(...$municipalities);
     }
 
