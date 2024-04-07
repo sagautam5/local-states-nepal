@@ -7,12 +7,12 @@ namespace Sagautam5\LocalStateNepal\Entities;
 abstract class BaseEntity
 {
     /**
-     * @var
+     * @var array<object>
      */
     protected $items;
 
     /**
-     * @var
+     * @var array<string>
      */
     protected $keys;
 

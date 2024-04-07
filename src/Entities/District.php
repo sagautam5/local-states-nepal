@@ -83,7 +83,7 @@ class District extends BaseEntity
      * Find district by id
      *
      * @param $id
-     * @return false|int|string
+     * @return object|null
      */
     public function find($id)
     {
