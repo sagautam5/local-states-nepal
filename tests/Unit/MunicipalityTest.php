@@ -1,13 +1,13 @@
 <?php
 namespace Sagautam5\LocalStateNepal\Test\Unit;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\Municipality;
 
 /**
  * Class MunicipalityTest
  */
-class MunicipalityTest extends PHPUnit_Framework_TestCase
+class MunicipalityTest extends TestCase
 {
     /**
      * @var Municipality
