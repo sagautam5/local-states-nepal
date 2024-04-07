@@ -25,6 +25,14 @@ Image Source: [Wikipedia(Administrative divisions of Nepal)](https://simple.wiki
   Local States Nepal requires 
   
   PHP >= 7.0
+
+  Version v1.0.8 has been tested on following php versions.
+
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+  - 7.4
   
 ## Demo
 
