@@ -80,7 +80,7 @@
         $('.ward').find("option:gt(0)").remove();
 
         $.ajax({
-            url: '/local-states-nepal/demo/api/provinces.php?lang='+lang,
+            url: 'api/provinces.php?lang='+lang,
             type: 'GET',
             dataType: 'json',
         }).done(function (data) {
@@ -104,7 +104,7 @@
             $('.ward').find("option:gt(0)").remove();
             var selected = $(this).find(":selected").attr('value');
             $.ajax({
-                url: '/local-states-nepal/demo/api/districts.php?lang='+lang+'&&province_id=' + selected,
+                url: 'api/districts.php?lang='+lang+'&&province_id=' + selected,
                 type: 'GET',
                 dataType: 'json',
             }).done(function (data) {
@@ -120,7 +120,7 @@
             $('.ward').find("option:gt(0)").remove();
             var selected = $(this).find(":selected").attr('value');
             $.ajax({
-                url: '/local-states-nepal/demo/api/municipalities.php?lang='+lang+'&&district_id=' + selected,
+                url: 'api/municipalities.php?lang='+lang+'&&district_id=' + selected,
                 type: 'GET',
                 dataType: 'json',
             }).done(function (data) {
@@ -135,7 +135,7 @@
             var selected = $(this).find(":selected").attr('value');
             $('.ward').find("option:gt(0)").remove();
             $.ajax({
-                url: '/local-states-nepal/demo/api/wards.php?lang='+lang+'&&municipality_id=' + selected,
+                url: 'api/wards.php?lang='+lang+'&&municipality_id=' + selected,
                 type: 'GET',
                 dataType: 'json',
             }).done(function (data) {

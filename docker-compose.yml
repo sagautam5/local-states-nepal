@@ -1,0 +1,35 @@
+version: '1.0'
+services:
+  localstates: 
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: localstates
+    working_dir: /var/www/html/
+    volumes:
+      - ./:/var/www/html
+    expose:
+      - 9000  
+    tty: true
+    restart: unless-stopped
+    container_name: localstates
+    networks:
+      - lsn
+
+  nginx:
+    image: nginx:alpine-slim
+    volumes:
+      - ./:/var/www/html
+      - ./localstates.conf:/etc/nginx/conf.d/localstates.conf
+    ports:
+      - 80:80
+    depends_on:
+      - localstates
+    container_name: lsn_nginx
+    restart: unless-stopped
+    tty: true
+    networks:
+      - lsn
+networks:
+  lsn:
+    driver: bridge
