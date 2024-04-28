@@ -34,19 +34,30 @@ Before filing an issue:
 Before submitting a pull request:
 - Fetch the phpunit testing dependency by executing following command on root of the project.
 ```sh 
-composer update 
-```- Check the pull requests tab to ensure that the bug doesn't have a fix in progress.
+  composer install 
+```
+- Check the pull requests tab to ensure that the bug doesn't have a fix in progress.
 
 - Create and test the feature/issue and make sure it doesn't affect codebase by running full tests by executing following console command for two different environment variables.
   
   Set APP_LANG to np and en respectively and run following command for each value of language.
 ```sh 
-vendor/bin/phpunit 
+  vendor/bin/phpunit 
+```
+- Make sure contribution align with phpstan standards. You can run following command to ensure this.
+```sh
+  vendor/bin/phpunit analyse --level=9
 ```
 <!-- - Make sure unit tests are passed on pipeline after your updates. -->
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
 <!-- - Send pull request to dev branch only. -->
+
+## Docker Option
+
+We have recently added workflow to setup this package with Docker Desktop. You can find guidelines in the following document.
+
+- [Local setup with Docker](https://github.com/sagautam5/local-states-nepal/tree/master/docs/docker/setup.md)
 
 ## Requirements
 
@@ -61,4 +72,4 @@ If the project maintainer has any additional requirements, you will find them li
 
 - **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash them](https://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages) before submitting.
 
-**Happy coding**!
+**Happy coding** !
