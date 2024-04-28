@@ -47,6 +47,8 @@ Before submitting a pull request:
 - Make sure contribution align with phpstan standards. You can run following command to ensure this.
 ```sh
   vendor/bin/phpunit analyse --level=8 src/
+  vendor/bin/phpunit analyse --level=5 tests/
+  
 ```
 <!-- - Make sure unit tests are passed on pipeline after your updates. -->
 - Check the codebase to ensure that your feature doesn't already exist.

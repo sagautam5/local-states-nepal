@@ -22,7 +22,9 @@ In order to verify contribution align with php unit tests and php stan standards
 
 vendor/bin/phpunit
 
-vendor/bin/phpstan analyse --level=9
+vendor/bin/phpstan analyse --level=8 src/
+
+vendor/bin/phpstan analyse --level=5 tests/
 
 ## Docker Images
 
