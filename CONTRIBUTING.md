@@ -46,7 +46,7 @@ Before submitting a pull request:
 ```
 - Make sure contribution align with phpstan standards. You can run following command to ensure this.
 ```sh
-  vendor/bin/phpunit analyse --level=9
+  vendor/bin/phpunit analyse --level=8 src/
 ```
 <!-- - Make sure unit tests are passed on pipeline after your updates. -->
 - Check the codebase to ensure that your feature doesn't already exist.
@@ -57,7 +57,7 @@ Before submitting a pull request:
 
 We have recently added workflow to setup this package with Docker Desktop. You can find guidelines in the following document.
 
-- [Local setup with Docker](https://github.com/sagautam5/local-states-nepal/tree/master/docs/docker/setup.md)
+- [Local setup with Docker](./docs/docker/setup.md)
 
 ## Requirements
 
