@@ -81,15 +81,13 @@ class DistrictTest extends TestCase
 
     public function test_allDistricts_for_null_values()
     {
-        $hasNull = false;
         foreach ($this->district->allDistricts() as $set) {
-            if ($hasNull = in_array(null, (array) $set, true)) {
+            if (in_array(null, (array) $set, true)) {
                 $this->fail('District dataset can\'t have null values');
-                break;
             }
         }
 
-        $this->assertTrue(!$hasNull);
+        $this->assertTrue(true);
     }
 
     public function test_district_for_correct_province_id()
@@ -103,7 +101,6 @@ class DistrictTest extends TestCase
             if($district && !in_array($district->province_id, range(1,7))){
                 $correct = false;
                 $this->fail('Invalid Province for District');
-                break;
             }
         }
 

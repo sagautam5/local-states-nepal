@@ -34,7 +34,7 @@ Image Source: [Wikipedia(Administrative divisions of Nepal)](https://simple.wiki
   - 7.3
   - 7.4
 
-  Current **dev-master** has been tested on following php versions.
+  Current **v2.0.0** has been tested on following php versions.
 
   - 8.0
   - 8.1
@@ -60,7 +60,11 @@ Example: http://127.0.0.1/local-states-nepal/demo
 Demo Video:
 
 https://www.loom.com/share/a8c3d825a9ee41a9817b24645453e979
+
+Additionally, you can setup with Docker and visit [localstates.test](http://localstates.test) to view the demo. Here is guideline for setting up with Docker. 
     
+ [Local setup with Docker](./docs/docker/setup.md)
+
 ## Support
 
 Currently, This library supports following two languages.

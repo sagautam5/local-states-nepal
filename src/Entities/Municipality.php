@@ -53,45 +53,55 @@ class Municipality extends BaseEntity
     /**
      * Get municipalities by district id
      *
-     * @param $districtId
-     * @return array|mixed|null
+     * @param int $districtId
+     * @return array<object>|null
      */
     public function getMunicipalitiesByDistrict($districtId)
     {
         return array_values(array_filter($this->items, function ($item) use ($districtId) {
-            return ($item->district_id == $districtId);
+            return property_exists($item, 'district_id') && ($item->district_id == $districtId);
         }));
     }
 
     /**
      * Get municipalities by category id
      *
-     * @param $categoryId
-     * @return array
+     * @param int $categoryId
+     * @return array<object>
      */
     public function getMunicipalityByCategory($categoryId)
     {
         return array_values(array_filter($this->items, function ($item) use ($categoryId) {
-            return ($item->category_id == $categoryId);
+            return property_exists($item, 'category_id') && ($item->category_id == $categoryId);
         }));
     }
 
+    /**
+     * Get municipalities by province
+     * 
+     * @param int $provinceId
+     * @return array<object> 
+     */
     public function getMunicipalityByProvince($provinceId)
     {
         $district = new District();
         $districts = $district->getDistrictsByProvince($provinceId);
         $municipalities = array_map(function ($item) {
-            return $this->getMunicipalitiesByDistrict($item->id);
-        }, $districts);
-
+            return $this->getMunicipalitiesByDistrict($item->id ?? 0);
+        }, (array) $districts);
+        
+        $municipalities = array_filter($municipalities, function ($value) {
+            return $value !== null;
+        });
+        
         return array_merge(...$municipalities);
     }
 
     /**
      * Find municipality by id
      *
-     * @param $id
-     * @return false|int|string
+     * @param int $id
+     * @return object|null
      */
     public function find($id)
     {
@@ -103,7 +113,7 @@ class Municipality extends BaseEntity
     /**
      * Get municipality with largest area
      *
-     * @return mixed
+     * @return object
      */
     public function largest()
     {
@@ -121,7 +131,7 @@ class Municipality extends BaseEntity
     /**
      * Get municipality with smallest area
      *
-     * @return mixed
+     * @return object
      */
     public function smallest()
     {
@@ -139,8 +149,8 @@ class Municipality extends BaseEntity
     /**
      * Get wards of municipality
      *
-     * @param $id
-     * @return array
+     * @param int $id
+     * @return array<string>
      */
     public function wards($id)
     {
@@ -148,14 +158,14 @@ class Municipality extends BaseEntity
 
         if($this->lang == 'np'){
 
-            $totalWards = Helper::numericEnglish($municipality->wards);
+            $totalWards = Helper::numericEnglish($municipality->wards ?? 1);
 
             $wards = range(1, $totalWards);
             $wards = array_map(function ($item){
                 return Helper::numericNepali($item);
             }, $wards);
         }else{
-            $wards = range(1, $municipality->wards);
+            $wards = range(1, $municipality->wards ?? 1);
         }
         return $wards;
     }
@@ -163,10 +173,10 @@ class Municipality extends BaseEntity
     /**
      * Search Municipalities
      *
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param string $value
      * @param bool $exact
-     * @return array
+     * @return array<object>
      */
     public function search($key, $value, $exact = false)
     {

@@ -84,15 +84,13 @@ class ProvinceTest extends TestCase
 
     public function test_allProvinces_for_null_values()
     {
-        $hasNull = false;
         foreach ($this->province->allProvinces() as $set) {
-            if ($hasNull = in_array(null, (array) $set, true)) {
+            if (in_array(null, (array) $set, true)) {
                 $this->fail('Province dataset can\'t have null values');
-                break;
             }
         }
 
-        $this->assertTrue(!$hasNull);
+        $this->assertTrue(true);
     }
 
     public function test_search()

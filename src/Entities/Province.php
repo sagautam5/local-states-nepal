@@ -14,7 +14,7 @@ class Province extends BaseEntity
 {
     /**
      * Province constructor.
-     * @param $lang
+     * @param string $lang
      * @throws LoadingException
      */
     public function __construct($lang = 'en')
@@ -34,7 +34,7 @@ class Province extends BaseEntity
 
     /**
      * Get list of all provinces
-     * @return mixed|null
+     * @return array<object>
      */
     public function allProvinces()
     {
@@ -44,8 +44,8 @@ class Province extends BaseEntity
     /**
      * Find province by id
      *
-     * @param $id
-     * @return false|int|string
+     * @param int $id
+     * @return object|null
      */
     public function find($id)
     {
@@ -56,7 +56,8 @@ class Province extends BaseEntity
 
     /**
      * Get province with largest area
-     * @return mixed
+     * 
+     * @return object
      */
     public function largest()
     {
@@ -74,7 +75,7 @@ class Province extends BaseEntity
     /**
      * Get province with smallest area
      *
-     * @return mixed
+     * @return object
      */
     public function smallest()
     {
@@ -92,7 +93,7 @@ class Province extends BaseEntity
     /**
      * Get provinces with districts
      *
-     * @return array
+     * @return array<object>
      * @throws LoadingException
      */
     public function getProvincesWithDistricts()
@@ -111,7 +112,7 @@ class Province extends BaseEntity
     /**
      * Get provinces with districts with municipalities
      *
-     * @return array
+     * @return array<object>
      * @throws LoadingException
      */
     public function getProvincesWithDistrictsWithMunicipalities()
@@ -122,30 +123,30 @@ class Province extends BaseEntity
         $provinces = $this->allProvinces();
 
         return array_map(function ($provinceItem) use ($district, $municipality) {
-            $provinceItem = (array)$provinceItem;
+            $provinceItem = (array) $provinceItem;
             $provinceDistricts = $district->getDistrictsByProvince($provinceItem['id']);
             $provinceItem['districts'] = array_map(function ($districtItem) use ($municipality) {
-                $districtItem = (array)$districtItem;
+                $districtItem = (array) $districtItem;
                 $municipalities = $municipality->getMunicipalitiesByDistrict($districtItem['id']);
                 $districtItem['municipalities'] = array_map(function ($municipalityItem) use ($municipality) {
-                    $municipalityItem = (array)$municipalityItem;
+                    $municipalityItem = (array) $municipalityItem;
                     $municipalityItem['wards'] = $municipality->wards($municipalityItem['id']);
-                    return (object)$municipalityItem;
-                }, $municipalities);
+                    return (object) $municipalityItem;
+                }, (array) $municipalities);
 
-                return (object)$districtItem;
-            }, $provinceDistricts);
-            return (object)$provinceItem;
-        }, $provinces);
+                return (object) $districtItem;
+            }, (array) $provinceDistricts);
+            return (object) $provinceItem;
+        }, (array) $provinces);
     }
 
     /**
      * Search Provinces
      *
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param string $value
      * @param bool $exact
-     * @return array
+     * @return array<object>
      */
     public function search($key, $value, $exact = false)
     {

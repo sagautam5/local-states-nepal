@@ -86,15 +86,12 @@ class CategoryTest extends TestCase
 
     public function test_allCategories_for_null_values()
     {
-        $hasNull = false;
         foreach ($this->category->allCategories() as $set) {
-            if ($hasNull = in_array(null, (array) $set, true)) {
+            if (in_array(null, (array) $set, true)) {
                 $this->fail('Category dataset can\'t have null values');
-                break;
             }
         }
-
-        $this->assertTrue(!$hasNull);
+        $this->assertTrue(true);
     }
 
     public function test_allCategories_for_count()

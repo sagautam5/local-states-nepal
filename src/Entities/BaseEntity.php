@@ -1,18 +1,16 @@
 <?php
 
-
 namespace Sagautam5\LocalStateNepal\Entities;
-
 
 abstract class BaseEntity
 {
     /**
-     * @var
+     * @var array<object>
      */
     protected $items;
 
     /**
-     * @var
+     * @var array<string>
      */
     protected $keys;
 
@@ -24,13 +22,13 @@ abstract class BaseEntity
     /**
      * Filter data by key value pair
      *
-     * @param $key
-     * @param $value
-     * @param $data
+     * @param string $key
+     * @param string $value
+     * @param array<object> $data
      * @param bool $exact
-     * @return array
+     * @return array<object>
      */
-    protected function filter($key, $value, $data, $exact = false)
+    protected function filter($key, $value, $data, $exact = false): array
     {
         return  array_values(array_filter($data, function ($item) use ($key, $value, $exact) {
             return ($exact ? ($item->$key == $value ? true:false) :(is_int(strpos($item->$key, $value)) ? true:false));
@@ -42,15 +40,15 @@ abstract class BaseEntity
      *
      * @return string
      */
-    public function getLanguage()
+    public function getLanguage(): string
     {
         return $this->lang;
     }
 
     /**
-     * @return mixed
+     * @return array<string>
      */
-    public function getKeys()
+    public function getKeys(): array
     {
         return $this->keys;
     }
@@ -58,11 +56,11 @@ abstract class BaseEntity
     /**
      * Recursive Search Data
      *
-     * @param $params
-     * @param array $items
-     * @return array|mixed
+     * @param array<mixed> $params
+     * @param array<object> $items
+     * @return array<object>
      */
-    public function recursiveSearch($params, $items = [])
+    public function recursiveSearch($params, $items = []): array
     {
         $items = $items ? $items : $this->items;
 
@@ -78,9 +76,9 @@ abstract class BaseEntity
      *
      * @param string $key
      * @param int $order
-     * @return mixed
+     * @return array<mixed>
      */
-    public function sortBy($key = 'name', $order = SORT_ASC)
+    public function sortBy($key = 'name', $order = SORT_ASC): array
     {
         $keys = array_column($this->items, $key);
 

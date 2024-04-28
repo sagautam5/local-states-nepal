@@ -19,7 +19,7 @@ class DistrictsLoader
 
     /**
      * DistrictsLoader constructor.
-     * @param $lang
+     * @param string $lang
      * @throws LoadingException
      */
     public function __construct($lang = 'en')

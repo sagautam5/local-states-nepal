@@ -83,15 +83,13 @@ class MunicipalityTest extends TestCase
 
     public function test_allMunicipalities_for_null_values()
     {
-        $hasNull = false;
         foreach ($this->municipality->allMunicipalities() as $set) {
-            if ($hasNull = in_array(null, (array) $set, true)) {
+            if (in_array(null, (array) $set, true)) {
                 $this->fail('Municipality dataset can\'t have null values');
-                break;
             }
         }
 
-        $this->assertTrue(!$hasNull);
+        $this->assertTrue(true);
     }
 
     public function test_if_municipality_has_wards_in_range_of_5_to_33()
@@ -100,7 +98,7 @@ class MunicipalityTest extends TestCase
         if($lang == 'np'){
             $wards = range(1,33);
             $wards = array_map(function ($item){
-                return \Sagautam5\LocalStateNepal\Helpers\Helper::numericNepali($item);
+                return \Sagautam5\LocalStateNepal\Helpers\Helper::numericNepali((string) $item);
             }, $wards);
         }else{
             $wards = range(1,33);
@@ -114,7 +112,6 @@ class MunicipalityTest extends TestCase
             {
                 $correct = false;
                 $this->fail('Invalid Wards for Municipality');
-                break;
             }
         }
 
@@ -132,7 +129,6 @@ class MunicipalityTest extends TestCase
             if($municipality && !in_array($municipality->category_id, range(1,4))){
                 $correct = false;
                 $this->fail('Invalid Category for Municipality');
-                break;
             }
         }
 
@@ -150,7 +146,6 @@ class MunicipalityTest extends TestCase
             if($municipality && !in_array($municipality->district_id, range(1,77))){
                 $correct = false;
                 $this->fail('Invalid District for Municipality');
-                break;
             }
         }
 
