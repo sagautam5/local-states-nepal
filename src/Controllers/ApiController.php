@@ -19,7 +19,7 @@ class ApiController
 
     private function setHeaders(): void
     {
-        ini_set('display_errors', 1);
+        ini_set('display_errors', 1); // @phpstan-ignore-line
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Headers: access");
         header("Access-Control-Allow-Methods: GET");
