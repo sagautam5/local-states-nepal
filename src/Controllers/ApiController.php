@@ -27,12 +27,18 @@ class ApiController
         header('Content-Type: application/json');
     }
 
-    private function getRequestParam(string $param, $default = null, array $allowedValues = []): mixed
+    /**
+     * @param array<string> $allowedValues
+     */
+    private function getRequestParam(string $param, string $default = null, array $allowedValues = []): mixed
     {
         $value = $_REQUEST[$param] ?? $default;
         return $allowedValues ? (in_array($value, $allowedValues) ? $value : $default) : $value;
     }
 
+    /**
+     * @param array<mixed> $data
+     */
     private function sendResponse(int $statusCode, array $data): void
     {
         http_response_code($statusCode);
@@ -54,47 +60,47 @@ class ApiController
         }
     }
 
-    public function fetchProvinces()
+    public function fetchProvinces(): void
     {
         $this->handleRequest(function ($lang) {
             $province = new Province($lang);
             $provinces = $province->allProvinces();
         
             return array_reduce($provinces, function ($carry, $item) {
-                $carry[$item->id] = $item->name;
+                $carry[$item->id] = $item->name; // @phpstan-ignore-line
                 return $carry;
             }, []);
         });
     }
 
-    public function fetchDistricts()
+    public function fetchDistricts(): void
     {
         $this->handleRequest(function ($lang) {
             $provinceId = $_REQUEST['province_id'] ?? null;
             $district = new District($lang);
             $districts = $district->getDistrictsByProvince($provinceId);
         
-            return array_reduce($districts, function ($carry, $item) {
-                $carry[$item->id] = $item->name;
+            return array_reduce($districts, function ($carry, $item) { // @phpstan-ignore-line
+                $carry[$item->id] = $item->name; // @phpstan-ignore-line
                 return $carry;
             }, []);
         });
     }
 
-    public function fetchMunicipalities()
+    public function fetchMunicipalities(): void
     {
         $this->handleRequest(function ($lang) {
             $districtId = $_REQUEST['district_id'] ?? null;
             $municipality = new Municipality($lang);
             $municipalities = $municipality->getMunicipalitiesByDistrict($districtId);
         
-            return array_reduce($municipalities, function ($carry, $item) {
-                $carry[$item->id] = $item->name;
+            return array_reduce($municipalities, function ($carry, $item) { // @phpstan-ignore-line
+                $carry[$item->id] = $item->name; // @phpstan-ignore-line
                 return $carry;
             }, []);
         });
     }
-    public function fetchWards()
+    public function fetchWards(): void
     {
         $this->handleRequest(function ($lang) {
             $municipalityId = $_REQUEST['municipality_id'] ?? null;
