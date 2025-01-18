@@ -22,12 +22,12 @@
                 </div>
                 <div class="col-md-6"> 
                     <div class="bg-form">
-                    <h4 style="margin-bottom: 40px; margin-top: 40px;">Local State Nepal Demo</h4>
+                    <h4 style="margin-bottom: 40px; margin-top: 40px;">Local States Nepal Demo</h4>
                     <div class="form-group">
                         <label>Language</label>
                         <select class="form-control language">
                             <option value="en" selected>English</option>
-                            <option value="np">Nepali</option>
+                            <option value="np">नेपाली</option>
                         </select>
                     </div>
 
@@ -103,7 +103,7 @@
         // Reload provinces based on the selected language
         function reloadProvinces(lang) {
             const url = `api/provinces.php?lang=${lang}`;
-            fetchAndPopulate(url, '.province', ['.district', '.municipality', '.ward']);
+            fetchAndPopulate(url, '.province', ['.province', '.district', '.municipality', '.ward']);
         }
 
         // Event handlers
