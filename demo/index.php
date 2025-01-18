@@ -22,12 +22,12 @@
                 </div>
                 <div class="col-md-6"> 
                     <div class="bg-form">
-                    <h4 style="margin-bottom: 40px; margin-top: 40px;">Local State Nepal Demo</h4>
+                    <h4 style="margin-bottom: 40px; margin-top: 40px;">Local States Nepal Demo</h4>
                     <div class="form-group">
                         <label>Language</label>
                         <select class="form-control language">
                             <option value="en" selected>English</option>
-                            <option value="np">Nepali</option>
+                            <option value="np">नेपाली</option>
                         </select>
                     </div>
 
@@ -71,81 +71,80 @@
 <script src="./assets/js/bootstrap.min.js"></script>
 
 <!-- Current doc JS -->
-<script type="text/javascript">
-    function reloadProvinces(lang)
-    {
-        $('.province').find("option:gt(0)").remove();
-        $('.district').find("option:gt(0)").remove();
-        $('.municipality').find("option:gt(0)").remove();
-        $('.ward').find("option:gt(0)").remove();
 
-        $.ajax({
-            url: 'api/provinces.php?lang='+lang,
-            type: 'GET',
-            dataType: 'json',
-        }).done(function (data) {
-            var select = $('.province');
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Utility function to clear dependent dropdowns
+        function clearDropdowns(...selectors) {
+            selectors.forEach(selector => $(selector).find("option:gt(0)").remove());
+        }
+
+        // Utility function to populate a dropdown
+        function populateDropdown(selector, data) {
+            const select = $(selector);
             $.each(data, function (key, value) {
-                select.append('<option value=' + key + '>' + value + '</option>');
+                select.append(`<option value="${key}">${value}</option>`);
             });
-        });
-    }
-    $(document).ready(function (){
-        var lang = $('.language').val();
-        reloadProvinces(lang);
-        $('.language').on('change', function (){
-            lang = $('.language').val();
+        }
+
+        // Function to fetch data and populate a dropdown
+        function fetchAndPopulate(url, targetSelector, dependentSelectors = []) {
+            clearDropdowns(...dependentSelectors);
+
+            $.ajax({
+                url,
+                type: 'GET',
+                dataType: 'json',
+            })
+            .done(data => populateDropdown(targetSelector, data))
+            .fail(() => console.error(`Failed to fetch data from ${url}`));
+        }
+
+        // Reload provinces based on the selected language
+        function reloadProvinces(lang) {
+            const url = `api/provinces.php?lang=${lang}`;
+            fetchAndPopulate(url, '.province', ['.province', '.district', '.municipality', '.ward']);
+        }
+
+        // Event handlers
+        const langSelector = '.language';
+        const provinceSelector = '.province';
+        const districtSelector = '.district';
+        const municipalitySelector = '.municipality';
+        const wardSelector = '.ward';
+
+        $(langSelector).on('change', function () {
+            const lang = $(langSelector).val();
             reloadProvinces(lang);
         });
 
-        $('.province').on('change', function () {
-            $('.district').find("option:gt(0)").remove();
-            $('.municipality').find("option:gt(0)").remove();
-            $('.ward').find("option:gt(0)").remove();
-            var selected = $(this).find(":selected").attr('value');
-            $.ajax({
-                url: 'api/districts.php?lang='+lang+'&&province_id=' + selected,
-                type: 'GET',
-                dataType: 'json',
-            }).done(function (data) {
-                var select = $('.district');
-                $.each(data, function (key, value) {
-                    select.append('<option value=' + key + '>' + value + '</option>');
-                });
-            })
+        $(provinceSelector).on('change', function () {
+            const lang = $(langSelector).val();
+            const provinceId = $(this).val();
+            const url = `api/districts.php?lang=${lang}&province_id=${provinceId}`;
+            fetchAndPopulate(url, districtSelector, [districtSelector, municipalitySelector, wardSelector]);
         });
 
-        $('.district').on('change', function () {
-            $('.municipality').find("option:gt(0)").remove();
-            $('.ward').find("option:gt(0)").remove();
-            var selected = $(this).find(":selected").attr('value');
-            $.ajax({
-                url: 'api/municipalities.php?lang='+lang+'&&district_id=' + selected,
-                type: 'GET',
-                dataType: 'json',
-            }).done(function (data) {
-                var select = $('.municipality');
-                $.each(data, function (key, value) {
-                    select.append('<option value=' + key + '>' + value + '</option>');
-                });
-            })
+        $(districtSelector).on('change', function () {
+            const lang = $(langSelector).val();
+            const districtId = $(this).val();
+            const url = `api/municipalities.php?lang=${lang}&district_id=${districtId}`;
+            fetchAndPopulate(url, municipalitySelector, [municipalitySelector, wardSelector]);
         });
 
-        $('.municipality').on('change', function () {
-            var selected = $(this).find(":selected").attr('value');
-            $('.ward').find("option:gt(0)").remove();
-            $.ajax({
-                url: 'api/wards.php?lang='+lang+'&&municipality_id=' + selected,
-                type: 'GET',
-                dataType: 'json',
-            }).done(function (data) {
-                var select = $('.ward');
-                $.each(data, function (key, value) {
-                    select.append('<option value=' + key + '>' + value + '</option>');
-                });
-            })
+        $(municipalitySelector).on('change', function () {
+            const lang = $(langSelector).val();
+            const municipalityId = $(this).val();
+            const url = `api/wards.php?lang=${lang}&municipality_id=${municipalityId}`;
+            fetchAndPopulate(url, wardSelector, [wardSelector]);
         });
+
+        // Initial setup
+        const initialLang = $(langSelector).val();
+        reloadProvinces(initialLang);
     });
 </script>
+
+
 </body>
 </html>
