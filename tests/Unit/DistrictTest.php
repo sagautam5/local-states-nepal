@@ -1,176 +1,124 @@
 <?php
-namespace Sagautam5\LocalStateNepal\Test\Unit;
 
-use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\District;
 
-/**
- * Class DistrictTest
- */
-class DistrictTest extends TestCase
-{
-    /**
-     * @var District
-     */
-    private $district;
+beforeEach(function () {
+    $this->language = $_ENV['APP_LANG'];
+    $this->district = new District($this->language);
+});
 
-    /**
-     * @var array
-     */
-    private $language;
+it('returns the largest district', function () {
+    $largest = $this->district->largest();
+    expect([$largest->id, $largest->province_id])->toEqual([61, 6]);
+});
 
-    /**
-     * DistrictTest constructor.
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
-     */
-    public function __construct()
-    {
-        parent::__construct();
+it('finds district for range between 1 to 77', function () {
+    $correctIdSet = range(1, 77);
+    $incorrectIdSet = range(78, 154);
 
-        $this->language = $_ENV['APP_LANG'];
-        $this->district = new District($this->language);
+    foreach ($correctIdSet as $id) {
+        expect($this->district->find($id))->not()->toBeNull();
     }
 
-    public function test_largest_district()
-    {
-        $largest = $this->district->largest();
-        $this->assertSame([61,6],[$largest->id, $largest->province_id]);
+    foreach ($incorrectIdSet as $id) {
+        expect($this->district->find($id))->toBeNull();
     }
+});
 
-    public function test_find_for_range_between_1_to_77()
-    {
-        $correctIdSet = range(1,77);
-        $incorrectIdSet = range(78,154);
+it('returns the smallest district', function () {
+    $smallest = $this->district->smallest();
+    expect([$smallest->id, $smallest->province_id])->toEqual([23, 3]);
+});
 
-        $correctStatus = true;
-        foreach ($correctIdSet as $id)
-        {
-            $item = $this->district->find($id);
+it('counts the districts correctly', function () {
+    expect(count($this->district->allDistricts()))->toBe(77);
+});
 
-            if(!$item){
-                $correctStatus= false;
-            }
-        }
-        $this->assertTrue($correctStatus);
-
-
-        $correctStatus = false;
-        foreach ($incorrectIdSet as $id)
-        {
-            if($this->district->find($id)){
-                $correctStatus= true;
-            }
-        }
-        $this->assertFalse($correctStatus);
+it('fails if district data contains null values', function () {
+    foreach ($this->district->allDistricts() as $set) {
+        expect(in_array(null, (array) $set, true))->toBeFalse();
     }
+});
 
-    public function test_smallest_district()
-    {
-        $smallest = $this->district->smallest();
-        $this->assertSame([23,3], [$smallest->id, $smallest->province_id]);
-    }
+it('checks districts for correct province ids', function () {
+    $idSet = range(1, 77);
 
-    public function test_allDistricts_for_count()
-    {
-        if(count($this->district->allDistricts()) == 77){
-            $this->assertTrue(true);
-        }else{
-            $this->fail('Only 77 Districts Exists in Nepal');
+    foreach ($idSet as $id) {
+        $district = $this->district->find($id);
+        if ($district) {
+            expect(in_array($district->province_id, range(1, 7)))->toBeTrue();
         }
     }
+});
 
-    public function test_allDistricts_for_null_values()
-    {
-        foreach ($this->district->allDistricts() as $set) {
-            if (in_array(null, (array) $set, true)) {
-                $this->fail('District dataset can\'t have null values');
-            }
+it('searches across all districts', function () {
+    $districts = $this->district->allDistricts();
+    $keywords = ['id', 'province_id', 'name', 'area_sq_km', 'website', 'headquarter'];
+
+    foreach ($keywords as $key) {
+        $dataSet = array_column($districts, $key);
+        foreach ($dataSet as $item) {
+            $searchResults = $this->district->search($key, $item, true);
+            expect($searchResults)->not()->toBeEmpty();
         }
-
-        $this->assertTrue(true);
     }
+});
 
-    public function test_district_for_correct_province_id()
-    {
-        $idSet = range(1,77);
-
-        $correct = true;
-        foreach ($idSet as $id)
-        {
-            $district = $this->district->find($id);
-            if($district && !in_array($district->province_id, range(1,7))){
-                $correct = false;
-                $this->fail('Invalid Province for District');
-            }
-        }
-
-        $this->assertTrue($correct);
-
-    }
-
-    public function test_search()
-    {
-        $districts = $this->district->allDistricts();
-        $keywords =  ['id', 'province_id', 'name', 'area_sq_km', 'website', 'headquarter'];
-
-        $correct = true;
-        foreach ($keywords as $key){
-            $dataSet = array_column($districts, $key);
-            foreach ($dataSet as $item){
-                if(!count($this->district->search($key, $item, true))){
-                    $correct = false;
-                    $this->fail('District not found for '.$key.' => '. $item);
-                }
-            }
-        }
-
-        $this->assertTrue($correct);
-    }
-
-    public function test_recursiveSearch()
-    {
-        $params = $_ENV['APP_LANG'] == 'en' ? [
-            ['key' => 'name', 'value' => 'Gulmi', 'exact' => false],
-            ['key' => 'headquarter', 'value' => 'Tamghas', 'exact' => false],
-            ['key' => 'province_id', 'value' => '5', 'exact' => false]
-        ]:[
-            ['key' => 'name', 'value' => 'गुल्', 'exact' => false],
-            ['key' => 'headquarter', 'value' => 'तम्घा', 'exact' => false],
-            ['key' => 'province_id', 'value' => '5', 'exact' => false]
+it('performs a recursive search', function () {
+    $params = $_ENV['APP_LANG'] == 'en'
+        ? [
+            [
+                'key' => 'name', 
+                'value' => 'Gulmi', 
+                'exact' => false
+            ],
+            [
+                'key' => 'headquarter', 
+                'value' => 'Tamghas', 
+                'exact' => false
+            ],
+            [
+                'key' => 'province_id', 
+                'value' => '5', 
+                'exact' => false
+            ]
+        ]
+        : [
+            [
+                'key' => 'name',
+                'value' => 'गुल्', 
+                'exact' => false
+            ],
+            [
+                'key' => 'headquarter',
+                'value' => 'तम्घा',
+                'exact' => false
+            ],
+            [
+                'key' => 'province_id',
+                'value' => '5', 
+                'exact' => false
+            ]
         ];
 
-        $result = $this->district->recursiveSearch($params);
+    $result = $this->district->recursiveSearch($params);
+    expect($result)->not()->toBeNull();
+});
 
-        if(!$result){
-            $this->fail('Not Found');
-        }
+it('sorts districts by keys', function () {
+    $keys = $this->district->getKeys();
+    $orders = [SORT_ASC, SORT_DESC];
 
-        $this->assertTrue(true);
-    }
-
-    public function test_sortBy()
-    {
-        $keys = $this->district->getKeys();
-
-        $orders = array(SORT_ASC, SORT_DESC);
-
-        foreach ($orders as $order)
-        {
-            foreach ($keys as $key)
-            {
-                $expected = array_column($this->district->allDistricts(), $key);
-
-                $order == SORT_ASC ? sort($expected) : rsort($expected);
-
-                $actual = array_column($this->district->sortBy($key, $order), $key);
-
-                $this->assertSame($expected, $actual);
-            }
+    foreach ($orders as $order) {
+        foreach ($keys as $key) {
+            $expected = array_column($this->district->allDistricts(), $key);
+            $order == SORT_ASC ? sort($expected) : rsort($expected);
+            $actual = array_column($this->district->sortBy($key, $order), $key);
+            expect($expected)->toEqual($actual);
         }
     }
+});
 
-    public function test_getLanguage_should_return_en_or_np()
-    {
-        $this->assertTrue(in_array($this->district->getLanguage(), ['en', 'np']));
-    }
-}
+it('returns a valid language (en or np)', function () {
+    expect($this->district->getLanguage())->toBeIn(['en', 'np']);
+});

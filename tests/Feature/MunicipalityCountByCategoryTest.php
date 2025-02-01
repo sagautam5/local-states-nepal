@@ -1,51 +1,20 @@
 <?php
-namespace Sagautam5\LocalStateNepal\Test\Feature;
 
-use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\Municipality;
 
-class MunicipalityCountByCategoryTest extends TestCase
-{
-    /**
-     * @var Municipality
-     */
-    private $municipality;
+beforeEach(function () {
+    $this->language = $_ENV['APP_LANG'];
+    $this->municipality = new Municipality($this->language);
+});
 
-    /**
-     * @var array
-     */
-    private $language;
+it('retrieves correct municipality count for each category', function () {
+    $categoryIdSet = range(1, 4);
+    $categoryCountSet = [6, 11, 276, 460];
 
-    /**
-     * MunicipalityCountByCategoryTest constructor.
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
-     */
-    public function __construct()
-    {
-        parent::__construct();
+    foreach ($categoryIdSet as $key => $id) {
+        $municipalities = $this->municipality->getMunicipalityByCategory($id);
 
-        $this->language = $_ENV['APP_LANG'];
-        $this->municipality = new Municipality($this->language);
+        expect(is_array($municipalities) && count($municipalities) == $categoryCountSet[$key])
+            ->toBeTrue();
     }
-
-    /**
-     * Test Municipalities Count for Each Category
-     */
-    public function test_municipalityCountByCategory()
-    {
-        $categoryIdSet = range(1,4);
-        $categoryCountSet = [6,11,276,460];
-
-        $correct = true;
-        foreach ($categoryIdSet as $key => $id)
-        {
-            $municipalities = $this->municipality->getMunicipalityByCategory($id);
-            if (!(is_array($municipalities) && count($municipalities) == $categoryCountSet[$key])) {
-                $correct = false;
-                $this->fail('Failed to get associated municipalities of district');
-            }
-        }
-
-        $this->assertTrue($correct);
-    }
-}
+});

@@ -1,80 +1,30 @@
 <?php
-namespace Sagautam5\LocalStateNepal\Test\Feature;
 
-use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\Province;
 
-/**
- * Class ProvinceDistrictFeatureTest
- */
-class ProvinceDistrictFeatureTest extends TestCase
-{
-    /**
-     * @var Province
-     */
-    private $province;
+beforeEach(function () {
+    $this->language = $_ENV['APP_LANG'];
+    $this->province = new Province($this->language);
+});
 
-    /**
-     * @var array
-     */
-    private $language;
+it('retrieves provinces with districts correctly', function () {
+    $provinceWithDistricts = $this->province->getProvincesWithDistricts();
 
-    /**
-     * ProvinceDistrictFeatureTest constructor.
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->language = $_ENV['APP_LANG'];
-        $this->province = new Province($this->language);
+    foreach ($provinceWithDistricts as $item) {
+        expect(isset($item->districts) && is_array($item->districts))
+            ->toBeTrue();
     }
+});
 
-    /**
-     * Test If Districts Are Correctly Loaded With Provinces
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
-     */
-    public function test_getProvincesWithDistricts()
-    {
-        $provinceWithDistricts = $this->province->getProvincesWithDistricts();
+it('retrieves provinces with districts and their municipalities correctly', function () {
+    $provinceWithDistrictWithMunicipalities = $this->province->getProvincesWithDistrictsWithMunicipalities();
 
-        $correct = true;
-        foreach ($provinceWithDistricts as $item) {
-            if (!(isset($item->districts) && is_array($item->districts))) {
-                $correct = false;
-                $this->fail('Failed to get associated districts of provinces');
-            }
+    foreach ($provinceWithDistrictWithMunicipalities as $province) {
+        expect(isset($province->districts) && is_array($province->districts))->toBeTrue();
+
+        foreach ($province->districts as $district) {
+            expect(isset($district->municipalities) && is_array($district->municipalities))
+                ->toBeTrue();
         }
-
-        $this->assertTrue($correct);
     }
-
-    /**
-     * Check if Districts And Their Municipalities Are Correctly Loaded With  Provinces
-     *
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
-     */
-    public function test_getProvincesWithDistrictsWithMunicipalities()
-    {
-        $provinceWithDistrictWithMunicipalities = $this->province->getProvincesWithDistrictsWithMunicipalities();
-
-        $correct = true;
-        foreach ($provinceWithDistrictWithMunicipalities as $province) {
-            if ((isset($province->districts) && is_array($province->districts))) {
-                foreach ($province->districts as $district) {
-                    if (!(isset($district->municipalities) && is_array($district->municipalities))) {
-                        $correct = false;
-                        $this->fail('Failed to get associated municipalities of districts');
-                    }
-                }
-            } else {
-                $correct = false;
-                $this->fail('Failed to get associated municipalities of districts');
-            }
-        }
-
-        $this->assertTrue($correct);
-    }
-}
+});
