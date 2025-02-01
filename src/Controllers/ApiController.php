@@ -19,7 +19,7 @@ class ApiController
 
     private function setHeaders(): void
     {
-        ini_set('display_errors', 1); // @phpstan-ignore-line
+        ini_set('display_errors', 1);
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Headers: access");
         header("Access-Control-Allow-Methods: GET");
@@ -30,7 +30,7 @@ class ApiController
     /**
      * @param array<string> $allowedValues
      */
-    private function getRequestParam(string $param, string $default = null, array $allowedValues = []): mixed
+    private function getRequestParam(string $param, ?string $default, array $allowedValues = []): mixed
     {
         $value = $_REQUEST[$param] ?? $default;
         return $allowedValues ? (in_array($value, $allowedValues) ? $value : $default) : $value;
