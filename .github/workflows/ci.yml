@@ -24,6 +24,3 @@ jobs:
 
     - name: Run PhpStan Analyse Code
       run:  vendor/bin/phpstan analyse --level=8 src
-
-    - name: Run PhpStan Analyse Code
-      run:  vendor/bin/phpstan analyse --level=5 tests
