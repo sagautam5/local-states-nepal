@@ -19,8 +19,8 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-interaction
 
-    - name: Run PHPUnit tests
-      run: vendor/bin/phpunit
+    - name: Run pest php tests
+      run: vendor/bin/pest
 
     - name: Run PhpStan Analyse Code
       run:  vendor/bin/phpstan analyse --level=8 src
