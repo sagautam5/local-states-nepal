@@ -34,19 +34,21 @@ Image Source: [Wikipedia(Administrative divisions of Nepal)](https://simple.wiki
   - 7.3
   - 7.4
 
-  Current **v2.0.0** has been tested on following php versions.
+  Version **v2.0.0** has been tested on following php versions.
 
   - 8.0
   - 8.1
   - 8.2
   - 8.3
-    
+
+  Version **v2.0.1** has been tested on following php versions.
+
+  - 8.4
+
 ## Demo
 
 You can view Province -> District -> Municipality -> Wards in following demo.
 
-<!-- Demo URL(English): https://stacklearning.com/local-state-demo  
-Demo URL(नेपाली): https://stacklearning.com/local-state-demo-np -->
 
 ### How to set up demo ?
 You can find all source code for demo inside demo directory. You can clone this repository in your server and then visit following url:

@@ -1,252 +1,150 @@
 <?php
-namespace Sagautam5\LocalStateNepal\Test\Unit;
 
-use PHPUnit\Framework\TestCase;
 use Sagautam5\LocalStateNepal\Entities\Municipality;
 
-/**
- * Class MunicipalityTest
- */
-class MunicipalityTest extends TestCase
-{
-    /**
-     * @var Municipality
-     */
-    private $municipality;
+beforeEach(function () {
+    $this->language = $_ENV['APP_LANG'];
+    $this->municipality = new Municipality($this->language);
+});
 
-    /**
-     * @var array
-     */
-    private $language;
+it('returns the largest municipality', function () {
+    $largest = $this->municipality->largest();
+    expect([$largest->id, $largest->district_id, $largest->category_id])->toEqual([617, 62, 4]);
+});
 
-    /**
-     * MunicipalityTest constructor.
-     * @throws \Sagautam5\LocalStateNepal\Exceptions\LoadingException
-     */
-    public function __construct()
-    {
-        parent::__construct();
+it('finds municipality for range between 1 and 753', function () {
+    $correctIdSet = range(1, 753);
+    $incorrectIdSet = range(754, 1000);
 
-        $this->language = $_ENV['APP_LANG'];
-
-        $this->municipality = new Municipality($this->language);
+    foreach ($correctIdSet as $id) {
+        expect($this->municipality->find($id))->not()->toBeNull();
     }
 
-    public function test_largest_municipality()
-    {
-        $largest = $this->municipality->largest();
-
-        $this->assertSame([617,62,4],[$largest->id, $largest->district_id, $largest->category_id]);
+    foreach ($incorrectIdSet as $id) {
+        expect($this->municipality->find($id))->toBeNull();
     }
+});
 
-    public function test_find_for_range_between_1_and_753()
-    {
-        $correctIdSet = range(1,753);
-        $incorrectIdSet = range(754,1000);
+it('returns the smallest municipality', function () {
+    $smallest = $this->municipality->smallest();
+    expect([$smallest->id, $smallest->district_id, $smallest->category_id])->toEqual([274, 23, 3]);
+});
 
-        $correctStatus = true;
-        foreach ($correctIdSet as $id)
-        {
-            $item = $this->municipality->find($id);
+it('counts the municipalities correctly', function () {
+    expect(count($this->municipality->allMunicipalities()))->toBe(753);
+});
 
-            if(!$item){
-                $correctStatus= false;
-            }
-        }
-        $this->assertTrue($correctStatus);
-
-
-        $correctStatus = false;
-        foreach ($incorrectIdSet as $id)
-        {
-            if($this->municipality->find($id)){
-                $correctStatus= true;
-            }
-        }
-        $this->assertFalse($correctStatus);
+it('fails if municipality data contains null values', function () {
+    foreach ($this->municipality->allMunicipalities() as $set) {
+        expect(in_array(null, (array) $set, true))->toBeFalse();
     }
+});
 
-    public function test_smallest_municipality()
-    {
-        $smallest = $this->municipality->smallest();
-        $this->assertSame([274,23,3],[$smallest->id, $smallest->district_id, $smallest->category_id]);
+it('checks municipality wards in range of 5 to 33', function () {
+    $lang = $this->municipality->getLanguage();
+    $wards = $lang === 'np'
+        ? array_map(fn($item) => \Sagautam5\LocalStateNepal\Helpers\Helper::numericNepali((string) $item), range(1, 33))
+        : range(1, 33);
+
+    $idSet = range(1, 753);
+    foreach ($idSet as $id) {
+        expect(array_diff($this->municipality->wards($id), $wards))->toBeEmpty();
     }
+});
 
-    public function test_allMunicipalities_count()
-    {
-        if(count($this->municipality->allMunicipalities()) == 753){
-            $this->assertTrue(true);
-        }else{
-            $this->fail('Only 753 Local States Exists in Nepal');
+it('checks if municipality has correct category id', function () {
+    $idSet = range(1, 753);
+
+    foreach ($idSet as $id) {
+        $municipality = $this->municipality->find($id);
+        if ($municipality) {
+            expect(in_array($municipality->category_id, range(1, 4)))->toBeTrue();
         }
     }
+});
 
-    public function test_allMunicipalities_for_null_values()
-    {
-        foreach ($this->municipality->allMunicipalities() as $set) {
-            if (in_array(null, (array) $set, true)) {
-                $this->fail('Municipality dataset can\'t have null values');
-            }
+it('checks if municipality has correct district id', function () {
+    $idSet = range(1, 753);
+
+    foreach ($idSet as $id) {
+        $municipality = $this->municipality->find($id);
+        if ($municipality) {
+            expect(in_array($municipality->district_id, range(1, 77)))->toBeTrue();
         }
-
-        $this->assertTrue(true);
     }
+});
 
-    public function test_if_municipality_has_wards_in_range_of_5_to_33()
-    {
-        $lang = $this->municipality->getLanguage();
-        if($lang == 'np'){
-            $wards = range(1,33);
-            $wards = array_map(function ($item){
-                return \Sagautam5\LocalStateNepal\Helpers\Helper::numericNepali((string) $item);
-            }, $wards);
-        }else{
-            $wards = range(1,33);
+it('searches across all municipalities', function () {
+    $municipalities = $this->municipality->allMunicipalities();
+    $keywords = ['id', 'district_id', 'category_id', 'name', 'area_sq_km', 'website', 'wards'];
+
+    foreach ($keywords as $key) {
+        $dataSet = array_column($municipalities, $key);
+        foreach ($dataSet as $item) {
+            $searchResults = $this->municipality->search($key, $item, true);
+            expect($searchResults)->not()->toBeEmpty();
         }
-        $idSet = range(1,753);
-
-        $correct = true;
-        foreach ($idSet as $id)
-        {
-            if(array_diff($this->municipality->wards($id), $wards))
-            {
-                $correct = false;
-                $this->fail('Invalid Wards for Municipality');
-            }
-        }
-
-        $this->assertTrue($correct);
     }
+});
 
-    public function test_if_municipality_has_correct_category_id()
-    {
-        $idSet = range(1,753);
-
-        $correct = true;
-        foreach ($idSet as $id)
-        {
-            $municipality = $this->municipality->find($id);
-            if($municipality && !in_array($municipality->category_id, range(1,4))){
-                $correct = false;
-                $this->fail('Invalid Category for Municipality');
-            }
-        }
-
-        $this->assertTrue($correct);
-    }
-
-    public function test_if_municipality_has_correct_district_id()
-    {
-        $idSet = range(1,753);
-
-        $correct = true;
-        foreach ($idSet as $id)
-        {
-            $municipality = $this->municipality->find($id);
-            if($municipality && !in_array($municipality->district_id, range(1,77))){
-                $correct = false;
-                $this->fail('Invalid District for Municipality');
-            }
-        }
-
-        $this->assertTrue($correct);
-    }
-
-
-    public function test_search()
-    {
-        $municipalities = $this->municipality->allMunicipalities();
-        $keywords = ['id', 'district_id', 'category_id', 'name', 'area_sq_km', 'website', 'wards'];
-
-        $correct = true;
-        foreach ($keywords as $key){
-            $dataSet = array_column($municipalities, $key);
-            foreach ($dataSet as $item){
-                if(!count($this->municipality->search($key, $item, true))){
-                    $correct = false;
-                    $this->fail('Municipality not found for '.$key.' => '.$item);
-                }
-            }
-
-        }
-
-        $this->assertTrue($correct);
-    }
-
-    public function test_recursiveSearch()
-    {
-        $params = $_ENV['APP_LANG'] == 'en' ? [
-            ['key' => 'name', 'value' => 'Jorpati', 'exact' => false],
-        ]:[
-            ['key' => 'name', 'value' => 'जोरपाटी', 'exact' => false],
+it('performs a recursive search', function () {
+    $params = $_ENV['APP_LANG'] == 'en'? 
+        [
+            [
+                'key' => 'name', 
+                'value' => 
+                'Jorpati', 
+                'exact' => false
+            ]
+        ]: 
+        [
+            [
+                'key' => 'name',
+                'value' => 'जोरपाटी', 
+                'exact' => false
+            ]
         ];
 
-        $result = $this->municipality->recursiveSearch($params);
+    $result = $this->municipality->recursiveSearch($params);
+    expect($result)->not()->toBeNull();
+});
 
-        if(!$result){
-            $this->fail('Not Found');
-        }
+it('sorts municipalities by keys', function () {
+    $keys = $this->municipality->getKeys();
+    $orders = [SORT_ASC, SORT_DESC];
 
-        $this->assertTrue(true);
-    }
-
-    public function test_sortBy()
-    {
-        $keys = $this->municipality->getKeys();
-
-        $orders = array(SORT_ASC, SORT_DESC);
-
-        foreach ($orders as $order)
-        {
-            foreach ($keys as $key)
-            {
-                $expected = array_column($this->municipality->allMunicipalities(), $key);
-
-                $order == SORT_ASC ? sort($expected) : rsort($expected);
-
-                $actual = array_column($this->municipality->sortBy($key, $order), $key);
-
-                $this->assertSame($expected, $actual);
-            }
+    foreach ($orders as $order) {
+        foreach ($keys as $key) {
+            $expected = array_column($this->municipality->allMunicipalities(), $key);
+            $order === SORT_ASC ? sort($expected) : rsort($expected);
+            $actual = array_column($this->municipality->sortBy($key, $order), $key);
+            expect($expected)->toEqual($actual);
         }
     }
+});
 
-    public function test_getMunicipalityByProvince_for_individual_correct_count()
-    {
-        $expectedSet = array(
-            '1' => 137,
-            '2' => 136,
-            '3' => 119,
-            '4' => 85,
-            '5' => 109,
-            '6' => 79,
-            '7' => 88
-        );
+it('checks correct municipality count by province', function () {
+    $expectedSet = [
+        '1' => 137, '2' => 136, '3' => 119, '4' => 85, '5' => 109, '6' => 79, '7' => 88
+    ];
+    $actualSet = [];
+    for ($index = 1; $index <= 7; $index++) {
+        $actualSet[(string) $index] = count($this->municipality->getMunicipalityByProvince($index));
+    }
+    expect($expectedSet)->toEqual($actualSet);
+});
 
-        $actualSet = array();
+it('checks total municipality count by province', function () {
+    $expectedTotal = 753;
+    $actualTotal = 0;
 
-        for ($index = 1; $index<=7; $index++){
-            $actualSet[(string)$index] = count($this->municipality->getMunicipalityByProvince($index));
-        }
-
-        $this->assertSame($expectedSet, $actualSet);
+    for ($index = 1; $index <= 7; $index++) {
+        $actualTotal += count($this->municipality->getMunicipalityByProvince($index));
     }
 
-    public function test_getMunicipalityByProvince_for_total_count()
-    {
-        $expectedTotal = 753;
+    expect($actualTotal)->toBe($expectedTotal);
+});
 
-        $actualTotal = 0;
-        for ($index = 1; $index<=7; $index++)
-        {
-            $actualTotal += count($this->municipality->getMunicipalityByProvince($index));
-        }
-
-        $this->assertSame($actualTotal, $expectedTotal);
-    }
-
-    public function test_getLanguage_should_return_en_or_np()
-    {
-        $this->assertTrue(in_array($this->municipality->getLanguage(), ['en', 'np']));
-    }
-}
+it('returns a valid language (en or np)', function () {
+    expect($this->municipality->getLanguage())->toBeIn(['en', 'np']);
+});

@@ -14,16 +14,13 @@ jobs:
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0'
+        php-version: '8.2'
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-interaction
 
-    - name: Run PHPUnit tests
-      run: vendor/bin/phpunit
+    - name: Run pest php tests
+      run: vendor/bin/pest
 
     - name: Run PhpStan Analyse Code
       run:  vendor/bin/phpstan analyse --level=8 src
-
-    - name: Run PhpStan Analyse Code
-      run:  vendor/bin/phpstan analyse --level=5 tests
