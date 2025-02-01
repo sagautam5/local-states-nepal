@@ -24,8 +24,6 @@ vendor/bin/phpunit
 
 vendor/bin/phpstan analyse --level=8 src/
 
-vendor/bin/phpstan analyse --level=5 tests/
-
 ## Docker Images
 
 We have uploaded docker images for various version of the php. If you find bug related to specific version of the php, then you can report the bug or contribute on bug
@@ -45,6 +43,7 @@ As you can see,the above image is for PHP 8.3. We have the following Docker imag
 - [sagautam5/localstates_8.1:v1.0](https://hub.docker.com/r/sagautam5/localstates_8.1)
 - [sagautam5/localstates_8.2:v1.0](https://hub.docker.com/r/sagautam5/localstates_8.2)
 - [sagautam5/localstates_8.3:v1.0](https://hub.docker.com/r/sagautam5/localstates_8.3)
+- [sagautam5/localstates_8.4:v1.0](https://hub.docker.com/r/sagautam5/localstates_8.4)
 
 After updating `Dockerfile`, you have to recreate the container with the following command:
 
