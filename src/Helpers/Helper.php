@@ -1,7 +1,8 @@
 <?php
 
-
 namespace Sagautam5\LocalStateNepal\Helpers;
+
+use Sagautam5\LocalStateNepal\Exceptions\InvalidFormatException;
 
 /**
  * Class Helper
@@ -23,10 +24,16 @@ class Helper
      * Convert english numeric value to nepali numeric value
      *
      * @param string $value
-     * @return string
+     * @return string|null
      */
-    public static function numericNepali($value): string
+    public static function numericNepali($value): ?string
     {
+        $pattern = '/^[' . implode('', self::$english) . ']+$/u';
+
+        if (!preg_match($pattern, $value)) {
+            throw new InvalidFormatException('Invalid english numeric value');
+        }
+        
         for ($i = 0; $i < 10; $i++)
         {
             $value = str_replace(self::$english[$i], self::$nepali[$i], $value);
@@ -39,12 +46,19 @@ class Helper
      * Convert nepali numeric value to english numeric value
      *
      * @param string $value
-     * @return string
+     * @return string|null
      */
-    public static function numericEnglish($value): string
+    public static function numericEnglish($value): ?string
     {
-        for ($i = 0; $i < 10; $i++)
-        {
+        // Create regex pattern from nepali digits
+        $pattern = '/^[' . implode('', self::$nepali) . ']+$/u';
+        
+        // Check if string contains only nepali digits
+        if (!preg_match($pattern, $value)) {
+            throw new InvalidFormatException('Invalid nepali numeric value');
+        }
+
+        for ($i = 0; $i < 10; $i++) {
             $value = str_replace(self::$nepali[$i], self::$english[$i], $value);
         }
         return $value;

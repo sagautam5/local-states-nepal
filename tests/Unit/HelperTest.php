@@ -2,6 +2,7 @@
 namespace Sagautam5\LocalStateNepal\Test\Unit;
 
 use Sagautam5\LocalStateNepal\Helpers\Helper;
+use Sagautam5\LocalStateNepal\Exceptions\InvalidFormatException;
 
 it('converts nepali numbers to english correctly', function () {
     $helper = new Helper();
@@ -22,3 +23,16 @@ it('converts english numbers to nepali correctly', function () {
         expect($helper->numericNepali($number))->toBe($nepaliSet[$key]);
     }
 });
+
+it('throws InvalidFormatException for invalid nepali input', function () {
+    $helper = new Helper();
+    $invalidNepali = 'अब';
+    $helper->numericEnglish($invalidNepali);
+})->throws(InvalidFormatException::class);
+
+it('throws InvalidFormatException for invalid english input', function () {
+    $helper = new Helper();
+    $invalidEnglish = 'abc';
+    $helper->numericNepali($invalidEnglish);
+})->throws(InvalidFormatException::class);
+

@@ -105,3 +105,26 @@ it('sorts categories by keys', function () {
 it('returns a valid language (en or np)', function () {
     expect($this->category->getLanguage())->toBeIn(['en', 'np']);
 });
+
+it('returns all categories', function () {
+    $categories = $this->category->allCategories();
+    expect($categories)->toBeArray();
+    expect($categories)->not()->toBeEmpty();
+});
+
+it('finds category by id', function () {
+    $category = $this->category->find(1);
+    expect($category)->not()->toBeNull();
+    expect($category)->toHaveProperties(['id', 'name', 'short_code']);
+});
+
+it('returns null for invalid category id', function () {
+    $category = $this->category->find(999);
+    expect($category)->toBeNull();
+});
+
+it('fails if category data contains null values', function () {
+    foreach ($this->category->allCategories() as $set) {
+        expect(in_array(null, (array) $set, true))->toBeFalse();
+    }
+});

@@ -121,7 +121,7 @@ class Municipality extends BaseEntity
 
         if($this->lang == 'np'){
             $area = array_map(function ($item){
-                return Helper::numericEnglish($item);
+                return (string) Helper::numericEnglish($item);
             }, $area);
         }
 
@@ -139,7 +139,7 @@ class Municipality extends BaseEntity
 
         if($this->lang == 'np'){
             $area = array_map(function ($item){
-                return Helper::numericEnglish($item);
+                return (string) Helper::numericEnglish($item);
             }, $area);
         }
 
@@ -158,11 +158,11 @@ class Municipality extends BaseEntity
 
         if($this->lang == 'np'){
 
-            $totalWards = Helper::numericEnglish($municipality->wards ?? 1);
+            $totalWards = Helper::numericEnglish($municipality->wards ?? 1) ?? 1;
 
             $wards = range(1, $totalWards);
             $wards = array_map(function ($item){
-                return Helper::numericNepali($item);
+                return (string) Helper::numericNepali($item);
             }, $wards);
         }else{
             $wards = range(1, $municipality->wards ?? 1);

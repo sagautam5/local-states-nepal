@@ -20,7 +20,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-interaction
 
     - name: Run pest php tests
-      run: vendor/bin/pest
+      run: vendor/bin/pest --parallel
 
     - name: Run PhpStan Analyse Code
       run:  vendor/bin/phpstan analyse --level=8 src

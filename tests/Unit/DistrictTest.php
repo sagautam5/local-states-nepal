@@ -1,5 +1,6 @@
 <?php
 
+
 use Sagautam5\LocalStateNepal\Entities\District;
 
 beforeEach(function () {
@@ -121,4 +122,29 @@ it('sorts districts by keys', function () {
 
 it('returns a valid language (en or np)', function () {
     expect($this->district->getLanguage())->toBeIn(['en', 'np']);
+});
+
+it('retrieves districts with municipalities', function () {
+    $districtsWithMunicipalities = $this->district->getDistrictsWithMunicipalities();
+
+    foreach ($districtsWithMunicipalities as $item) {
+        expect(isset($item->municipalities) && is_array($item->municipalities))->toBeTrue();
+    }
+});
+
+it('returns all districts', function () {
+    $districts = $this->district->allDistricts();
+    expect($districts)->toBeArray();
+    expect($districts)->not()->toBeEmpty();
+});
+
+it('finds district by id', function () {
+    $district = $this->district->find(1);
+    expect($district)->not()->toBeNull();
+    expect($district)->toHaveProperties(['id', 'name', 'headquarter', 'province_id']);
+});
+
+it('returns null for invalid district id', function () {
+    $district = $this->district->find(999);
+    expect($district)->toBeNull();
 });
