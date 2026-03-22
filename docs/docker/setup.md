@@ -45,6 +45,8 @@ As you can see,the above image is for PHP 8.3. We have the following Docker imag
 - [sagautam5/localstates_8.3:v1.0](https://hub.docker.com/r/sagautam5/localstates_8.3)
 - [sagautam5/localstates_8.4:v1.0](https://hub.docker.com/r/sagautam5/localstates_8.4)
 
+- [sagautam5/localstates_8.5:latest](https://hub.docker.com/r/sagautam5/localstates_8.5)
+
 After updating `Dockerfile`, you have to recreate the container with the following command:
 
     docker compose up -d --force-recreate
